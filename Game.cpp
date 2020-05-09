@@ -74,9 +74,7 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
 
         ListItem<Creature*>* iterEnemy = map->enemies.getHead();
         while(iterEnemy != NULL) {
-            if (iterEnemy->item->visible) {
-                iterEnemy->item->update(*map,*player);
-            }
+            iterEnemy->item->update(*map,*player);
             iterEnemy = iterEnemy->next;
         }
 

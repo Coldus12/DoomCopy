@@ -74,4 +74,32 @@ void DoomCopy::Map::loadEnemies(const char *pathToEnemyConf) {
 
         }
     }
+
+    if (line.find("MeleeMonster") != std::string::npos) {
+
+        double posX = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"positionX=\"","\""));
+        double posY = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"positionY=\"","\""));
+
+        double direction = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"direction=\"","\""));
+        direction *= M_PI/180.0;
+        double dirX = cos(direction);
+        double dirY = sin(direction);
+
+        double dmg = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"defaultDamage=\"","\""));
+        double hp = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"defaultHealth=\"","\""));
+        double fov = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"fov=\"","\""));
+
+        double viewDistance = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"viewDistance=\"","\""));
+        double attackSpeed = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"attackSpeed=\"","\""));
+
+        std::string textName = StringManager::get_substring_btwn_first_and_next(line,"textureName=\"","\"");
+
+        enemies.addItem(new MeleeEnemy(Point(posX,posY),Point(dirX,dirY),hp,dmg,attackSpeed,"textures/",textName.c_str(),fov,viewDistance));
+
+        std::getline(file,line);
+        //enemies.addItem(new MeleeEnemy())
+
+    } else if (line.find("RangedMonster") != std::string::npos) {
+
+    }
 }
