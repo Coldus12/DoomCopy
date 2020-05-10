@@ -7,41 +7,45 @@
 
 #include "Array2D.h"
 #include "Map.h"
+#include "Weapon.h"
 
 namespace DoomCopy {
+    //class Weapon;
     class Map;
 
     class Player {
-        double posY;
-        double posX;
+        Point position;
     public:
+        //Weapon weapon;
         double HP = 100;
         double FOV;
         double direction;
         double speed;
         double viewDistance;
+
         Player(double x, double y) {
-            posX = x;
-            posY = y;
+            position.x = x;
+            position.y = y;
         }
 
         Player(double x, double y, double FOV, double direction, double speed, double viewDistance) {
-            posX = x;
-            posY = y;
+            position.x = x;
+            position.y = y;
             this->FOV = FOV;
             this->direction = direction;
             this->speed = speed;
             this->viewDistance = viewDistance;
+            //weapon.set(&position,&direction);
         }
 
         void move(double relativeX, double relativY, const DoomCopy::Map& map);
-        void setPosX(double nPosX) {posX = nPosX;}
-        void setPosY(double nPosY) {posY = nPosY;}
+        void setPosX(double nPosX) {position.x = nPosX;}
+        void setPosY(double nPosY) {position.y = nPosY;}
         void setPosX(double nPosX, const DoomCopy::Map& map);
         void setPosY(double nPosY, const DoomCopy::Map& map);
 
-        double getPosX() {return posX;}
-        double getPosY() {return posY;}
+        double getPosX() {return position.x;}
+        double getPosY() {return position.y;}
     };
 }
 

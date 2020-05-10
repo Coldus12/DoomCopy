@@ -192,6 +192,7 @@ namespace DoomCopy {
             } else {
                 throw std::out_of_range("idx is out of range.");
             }
+            //return head;
         }
 
         T searchBy(bool fnc(T)) {
@@ -214,6 +215,16 @@ namespace DoomCopy {
             }
 
             throw "well shit.... Nincs közte...";
+        }
+
+        bool doesItContain(bool fnc(T)) {
+            ListItem<T>* iter = head;
+            while(iter != NULL) {
+                if (fnc(iter->item))
+                    return true;
+                iter = iter->next;
+            }
+            return false;
         }
 
         ~List() {

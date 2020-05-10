@@ -27,9 +27,9 @@ bool DoomCopy::Creature::isPlayerVisble(const Map& map, Point playerPos) {
     double angleToPlayer = atan2(dy,dx);
 
     while (dir < -M_PI)
-        dir += M_PI;
+        dir += 2 * M_PI;
     while (dir > M_PI)
-        dir -= M_PI;
+        dir -= 2 * M_PI;
 
     directionVector.x = cos(dir);
     directionVector.y = sin(dir);

@@ -7,6 +7,7 @@
 #include "Map.h"
 #include "StringManager.h"
 #include "MeleeEnemy.h"
+#include "Projectile.h"
 
 DoomCopy::Map::Map(const char *pathToMap, const char *pathToConf) : Array2D<int>(2,2), text(32,32) {
     load(pathToMap,pathToConf);
@@ -103,3 +104,18 @@ void DoomCopy::Map::loadEnemies(const char *pathToEnemyConf) {
 
     }
 }
+
+/*void DoomCopy::Map::loadProjectileTypes(const char *pathToProjectileConf) {
+    std::string line = "";
+    std::ifstream file;
+    file.open(pathToProjectileConf);
+    std::getline(file, line);
+
+    while(!file.eof()) {
+        projectileTypes.addItem(new ProjectileType());
+        projectileTypes.addrAt(projectileTypes.currentSize)->item->loadProjectileType(line);
+        std::getline(file, line);
+    }
+    projectileTypes.addItem(new ProjectileType());
+    projectileTypes.addrAt(projectileTypes.currentSize)->item->loadProjectileType(line);
+}*/

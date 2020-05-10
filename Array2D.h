@@ -30,7 +30,7 @@ public:
             }
         }
         delete[] data;
-        destroyed = true;
+        //destroyed = true;
     }
 
     virtual ~Array2D() {
