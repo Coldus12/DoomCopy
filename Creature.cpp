@@ -48,7 +48,6 @@ bool DoomCopy::Creature::isPlayerVisble(const Map& map, Point playerPos) {
         if (map.blocks.isTypeSolid(map.data[int(position.x + d1 * cosAngle)][int(position.y + d1 * sinAngle)]))
             break;
     }
-    //std::cout << d1 << " distance " << distanceFromPlayer << " playerPos " << playerPos.x << " " << playerPos.y << " M pos x " << position.x << " " << position.y << " dx " << cosAngle << " dy " << sinAngle << std::endl;
 
     if (d1 >= distanceFromPlayer)
         return (((dir - FOV / 2.0) <= angleToPlayer) && (angleToPlayer <= (dir + FOV / 2.0))) && (distanceFromPlayer <= viewDistance);

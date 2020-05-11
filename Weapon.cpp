@@ -45,6 +45,7 @@ bool DoomCopy::Weapon::loadWeapon(const char *pathToConf) {
 
 void DoomCopy::Weapon::gShot(Map &map) {
     if (clock.getElapsedTime().asSeconds() >= fireRate) {
+        //std::cout << ownerPos->x << " " << ownerPos->y << " " << *ownerDir << std::endl;
         currentState = shoot;
         map.projectiles.addItem(new Projectile(type,*ownerPos,Point(cos(*ownerDir),sin(*ownerDir))));
         clock.restart();

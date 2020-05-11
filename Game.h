@@ -33,8 +33,12 @@ namespace DoomCopy {
     public:
         Game() {}
         void startGraphicalGame(const char* mapName, Point resolution, Point screenSize);
+
         void renderWalls();
         void renderEnemies();
+        void renderProjectiles();
+        void renderWeapon();
+        void deleteDeadOrNonExistent();
 
         ~Game() {
             delete window;

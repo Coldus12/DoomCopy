@@ -33,7 +33,7 @@ namespace DoomCopy {
             this->direction = direction;
             this->speed = speed;
             this->viewDistance = viewDistance;
-            //weapon.set(&position,&direction);
+            weapon.set(&position, &this->direction);
         }
 
         void move(double relativeX, double relativY, const DoomCopy::Map& map);

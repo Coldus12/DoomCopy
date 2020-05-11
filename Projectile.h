@@ -40,16 +40,22 @@ namespace DoomCopy {
         bool stillExists = true;
         Point src;
     public:
+        bool visible = false;
         sf::Clock clock;
         ProjectileType type;
         Point direction;
         Point currenPosition;
+        sf::VertexArray vertexArray;
 
-        Projectile(ProjectileType type, Point srcPosition, Point dir) : type(type), direction(direction), src(srcPosition) {
+        Projectile(ProjectileType type, Point srcPosition, Point dir) : type(type), direction(dir), src(srcPosition) {
             currenPosition.x = srcPosition.x + dir.x * type.speed/20.0;
             currenPosition.y = srcPosition.y + dir.y * type.speed/20.0;
+
+            vertexArray = sf::VertexArray(sf::Quads,4);
             clock.restart();
         }
+
+        bool getStillExists() {return stillExists;}
 
         void update(Map& map, Player& player);
     };

@@ -27,10 +27,15 @@ namespace DoomCopy {
         const Point* ownerPos;
         const double* ownerDir;
 
-        Weapon() : texture(32,32) {}
+        sf::VertexArray vertexArray;
+
+        Weapon() : texture(32,32) {
+            vertexArray = sf::VertexArray(sf::Quads,4);
+        }
 
         Weapon(const Point* ownerPos, const double* ownerDirection) : texture(32,32), ownerPos(ownerPos), ownerDir(ownerDirection) {
             clock.restart();
+            vertexArray = sf::VertexArray(sf::Quads,4);
         }
 
         void set(const Point* ownerPos, const double* ownerDirection) {

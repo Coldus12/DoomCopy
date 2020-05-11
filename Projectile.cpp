@@ -20,37 +20,39 @@ void DoomCopy::ProjectileType::loadProjectileType(std::string line) {
 }
 
 bool DoomCopy::cmpr::nearby(DoomCopy::Creature* t) {
-    return (((t->getPos().x - 0.25) <= p.x) && ((t->getPos().x + 0.25) >= p.x) && ((t->getPos().y - 0.25) <= p.y) && ((t->getPos().y + 0.25) >= p.y));
+    return (((t->getPos().x - 0.75) <= p.x) && ((t->getPos().x + 0.75) >= p.x) && ((t->getPos().y - 0.75) <= p.y) && ((t->getPos().y + 0.75) >= p.y));
 }
 
 void DoomCopy::Projectile::update(Map &map, Player& player) {
     if (clock.getElapsedTime().asSeconds() >= 1/20.0) {
-        currenPosition.x += direction.x * type.speed/20.0;
-        currenPosition.y += direction.y * type.speed/20.0;
+        if (stillExists) {
+            currenPosition.x += direction.x * type.speed/20.0;
+            currenPosition.y += direction.y * type.speed/20.0;
 
-        if (map.blocks.isTypeSolid(map.data[int(currenPosition.y)][int(currenPosition.x)]))
-            stillExists = false;
+            if (map.blocks.isTypeSolid(map.data[int(currenPosition.y)][int(currenPosition.x)]))
+                stillExists = false;
 
-        cmpr cm(currenPosition);
-        if (map.enemies.doesItContain(cmpr::nearby)) {
-            ListItem<Creature*>* enemy =  map.enemies.pSearchBy(cmpr::nearby);
-            enemy->item->damage(type.dmg);
-            stillExists = false;
+            cmpr cm(currenPosition);
+            if (map.enemies.doesItContain(cmpr::nearby)) {
+                ListItem<Creature*>* enemy =  map.enemies.pSearchBy(cmpr::nearby);
+                enemy->item->damage(type.dmg);
+                stillExists = false;
+            }
+
+            if (((player.getPosX() - 0.25) <= currenPosition.x) && ((player.getPosX() + 0.25) >= currenPosition.x) && ((player.getPosY() - 0.25) <= currenPosition.y) && ((player.getPosY() + 0.25) >= currenPosition.y)) {
+                player.HP -= type.dmg;
+                stillExists = false;
+            }
+
+            double x = currenPosition.x - src.x;
+            double y = currenPosition.y - src.y;
+            double d = sqrt(x*x + y*y);
+
+            if (d >= type.range)
+                stillExists = false;
+
+            clock.restart();
         }
-
-        if (((player.getPosX() - 0.25) <= currenPosition.x) && ((player.getPosX() + 0.25) >= currenPosition.x) && ((player.getPosY() - 0.25) <= currenPosition.y) && ((player.getPosY() + 0.25) >= currenPosition.y)) {
-            player.HP -= type.dmg;
-            stillExists = false;
-        }
-
-        double x = currenPosition.x - src.x;
-        double y = currenPosition.y - src.y;
-        double d = sqrt(x*x + y*y);
-
-        if (d >= type.range)
-            stillExists = false;
-
-        clock.restart();
     }
 }
 

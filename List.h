@@ -229,6 +229,70 @@ namespace DoomCopy {
             return false;
         }
 
+        void deleteAt(size_t idx) {
+            if ((idx >= 0) && (idx <= currentSize)) {
+                if (idx == 0) {
+
+                    ListItem<T>* next = head->next;
+                    delete head;
+                    head = next;
+
+                } else if (addrAt(idx)->next == NULL) {
+
+                    ListItem<T>* del = addrAt(idx);
+                    delete del;
+                    addrAt(idx-1)->next == NULL;
+
+                } else {
+
+                    ListItem<T>* del = addrAt(idx);
+                    ListItem<T>* tmp = addrAt(idx+1);
+                    addrAt(idx-1)->next = tmp;
+                    delete del;
+
+                }
+
+                if (currentSize > 0)
+                    currentSize--;
+
+            } else {
+                throw std::out_of_range("del idx is out of range.");
+            }
+        }
+
+        void deleteAt(size_t idx, void fnc(T)) {
+            if ((idx >= 0) && (idx <= currentSize)) {
+                if (idx == 0) {
+
+                    ListItem<T>* next = head->next;
+                    fnc(head->item);
+                    delete head;
+                    head = next;
+
+                } else if (addrAt(idx)->next == NULL) {
+
+                    ListItem<T>* del = addrAt(idx);
+                    fnc(del->item);
+                    delete del;
+                    addrAt(idx-1)->next == NULL;
+
+                } else {
+
+                    ListItem<T>* del = addrAt(idx);
+                    ListItem<T>* tmp = addrAt(idx+1);
+                    addrAt(idx-1)->next = tmp;
+                    fnc(del->item);
+                    delete del;
+
+                }
+
+                if (currentSize > 0)
+                    currentSize--;
+            } else {
+                throw std::out_of_range("del idx is out of range.");
+            }
+        }
+
         ~List() {
             ListItem<T>* iter = head;
             while (iter != NULL) {

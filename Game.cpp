@@ -46,6 +46,7 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
     sf::Event event;
     map = new Map("textures/mapV1.png","blockType.conf");
     player = new Player(10,10,45*degree,0,1,108);
+    player->weapon.loadWeapon("weapon.conf");
     double fps = 1/30.0;
 
     while(window->isOpen()) {
@@ -65,6 +66,8 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
                     player->move(cos(player->direction),sin(player->direction),*map);
                 } else if (event.key.code == sf::Keyboard::S) {
                     player->move((-cos(player->direction)), (-sin(player->direction)), *map);
+                } else if (event.key.code == sf::Keyboard::Q) {
+                    player->weapon.gShot(*map);
                 }
             }
         }
@@ -72,32 +75,59 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
         if (player->direction >= M_PI) player->direction -= 2 * M_PI;
         if (player->direction <= -M_PI) player->direction += 2 * M_PI;
 
+        //Updating enemies
         ListItem<Creature*>* iterEnemy = map->enemies.getHead();
         while(iterEnemy != NULL) {
             iterEnemy->item->update(*map,*player);
             iterEnemy = iterEnemy->next;
         }
 
+        //Updating enemies
+        ListItem<Projectile*>* iterProjectile = map->projectiles.getHead();
+        while(iterProjectile != NULL) {
+            iterProjectile->item->update(*map,*player);
+            iterProjectile = iterProjectile->next;
+        }
+
+        //Deleting stuff from the list
+        deleteDeadOrNonExistent();
+
         renderWalls();
         renderEnemies();
+        renderProjectiles();
+        renderWeapon();
         map->enemies.sort(cmp);
 
         window->clear();
+
+        //Drawing walls
         window->draw(screen,map->text.states);
 
-        ListItem<Creature*>* iter2 = map->enemies.getHead();
-        while(iter2 != NULL) {
-            if (iter2->item->visible) {
-                window->draw(iter2->item->vertexArray,iter2->item->text.states);
+        //Drawing enemies
+        iterEnemy = map->enemies.getHead();
+        while(iterEnemy != NULL) {
+            if (iterEnemy->item->visible) {
+                window->draw(iterEnemy->item->vertexArray,iterEnemy->item->text.states);
             }
-            iter2 = iter2->next;
+            iterEnemy = iterEnemy->next;
         }
+
+        //Drawing projectiles
+        iterProjectile = map->projectiles.getHead();
+        while(iterProjectile != NULL) {
+            if (iterProjectile->item->visible)
+                window->draw(iterProjectile->item->vertexArray,iterProjectile->item->type.text.states);
+            iterProjectile = iterProjectile->next;
+        }
+
+        //Drawing weapon
+        window->draw(player->weapon.vertexArray,player->weapon.texture.states);
+
         window->display();
 
         sf::Time elapsedTime = clock.getElapsedTime();
         double waitTime = ((fps) - elapsedTime.asSeconds());
         sf::Time wait = sf::seconds(waitTime);
-        //std::cout << "valodi fps: " << 1.0/elapsedTime.asSeconds() << std::endl;
         sf::sleep(wait);
     }
 }
@@ -182,10 +212,46 @@ void DoomCopy::Game::renderWalls() {
     }
 }
 
+void fnc(DoomCopy::Creature* cre) {
+    delete cre;
+}
+
+void fnc2(DoomCopy::Projectile* pro) {
+    delete pro;
+}
+
+void DoomCopy::Game::deleteDeadOrNonExistent() {
+    ListItem<Creature*>* iterEnemy = map->enemies.getHead();
+    int i = 0;
+    while (iterEnemy !=  NULL) {
+        //std::cout << i << ".dik szörny hpja: " << iterEnemy->item->getHP() << std::endl;
+        if (!iterEnemy->item->isAlive()) {
+            ListItem<Creature*>* tmp = iterEnemy->next;
+            map->enemies.deleteAt(i,fnc);
+            iterEnemy = tmp;
+        } else
+            iterEnemy = iterEnemy->next;
+        i++;
+    }
+
+    ListItem<Projectile*>* iterProjectile = map->projectiles.getHead();
+    int j = 0;
+    while (iterProjectile !=  NULL) {
+        if (!iterProjectile->item->getStillExists()) {
+            ListItem<Projectile*>* tmpP = iterProjectile->next;
+            map->projectiles.deleteAt(j,fnc2);
+            iterProjectile = tmpP;
+            j++;
+        } else
+            iterProjectile = iterProjectile->next;
+    }
+}
+
 void DoomCopy::Game::renderEnemies() {
     int sqSizeX = (SCREEN_WIDTH/screenWidth);
     int sqSizeY = (SCREEN_HEIGHT/screenHeight);
 
+    int i = 0;
     ListItem<Creature*>* iter = map->enemies.getHead();
     while (iter != NULL) {
         double dx = iter->item->getPos().x - player->getPosX();
@@ -231,4 +297,70 @@ void DoomCopy::Game::renderEnemies() {
 
         iter = iter->next;
     }
+}
+
+void DoomCopy::Game::renderProjectiles() {
+    int sqSizeX = (SCREEN_WIDTH/screenWidth);
+    int sqSizeY = (SCREEN_HEIGHT/screenHeight);
+
+    int i = 0;
+    ListItem<Projectile*>* iter = map->projectiles.getHead();
+    while (iter != NULL) {
+
+        iter->item->visible = false;
+        //std::cout << "Projectile pos " << iter->item->currenPosition.x << " " << iter->item->currenPosition.y << std::endl;
+
+        double dx = iter->item->currenPosition.x - player->getPosX();
+        double dy = iter->item->currenPosition.y - player->getPosY();
+
+        double projectile_degree = atan2(dy,dx);
+
+        if (((player->direction - player->FOV/2.0) <= projectile_degree) && ((player->direction + player->FOV/2.0) >= projectile_degree)) {
+            double distanceFromBlock = Ray::distanceFromCollision(*map,Point(player->getPosX(),player->getPosY()),Point(cos(projectile_degree),sin(projectile_degree)),0.1,player->viewDistance);
+            double distanceFromProjectile = sqrt(dx*dx + dy*dy);
+
+            //Ha ez igaz, akkor rajzolunk ki projectilet
+            if (distanceFromBlock > distanceFromProjectile) {
+                iter->item->visible = true;
+
+                double dir = atan2(iter->item->direction.y,iter->item->direction.x);
+
+                int posW = int(((projectile_degree - player->direction + player->FOV/2.0) / player->FOV) * screenWidth);
+
+                int up = int(screenHeight/2.0 - screenHeight/distanceFromProjectile);
+
+                int blockSize = screenHeight - 2 * up;
+                blockSize *= sqSizeY;
+
+                iter->item->vertexArray[0].position = sf::Vector2f(posW * sqSizeX - blockSize/2.0,SCREEN_HEIGHT/2.0 - blockSize/2.0);
+                iter->item->vertexArray[1].position = sf::Vector2f(posW * sqSizeX + blockSize/2.0,SCREEN_HEIGHT/2.0 - blockSize/2.0);
+                iter->item->vertexArray[2].position = sf::Vector2f(posW * sqSizeX + blockSize/2.0,SCREEN_HEIGHT/2.0 + blockSize/2.0);
+                iter->item->vertexArray[3].position = sf::Vector2f(posW * sqSizeX - blockSize/2.0,SCREEN_HEIGHT/2.0 + blockSize/2.0);
+
+                iter->item->vertexArray[0].texCoords = sf::Vector2f(0,0);
+                iter->item->vertexArray[1].texCoords = sf::Vector2f(32,0);
+                iter->item->vertexArray[2].texCoords = sf::Vector2f(32,32);
+                iter->item->vertexArray[3].texCoords = sf::Vector2f(0,32);
+            }
+        }
+
+        iter = iter->next;
+    }
+}
+
+void DoomCopy::Game::renderWeapon() {
+    player->weapon.vertexArray[0].position = sf::Vector2f(0,0);
+    player->weapon.vertexArray[1].position = sf::Vector2f(SCREEN_WIDTH,0);
+    player->weapon.vertexArray[2].position = sf::Vector2f(SCREEN_WIDTH,SCREEN_HEIGHT);
+    player->weapon.vertexArray[3].position = sf::Vector2f(0,SCREEN_HEIGHT);
+
+    int px = int(player->weapon.currentState % 3);
+    int py = int(player->weapon.currentState / 3.0);
+
+    player->weapon.vertexArray[0].texCoords = sf::Vector2f(px * 32, py * 32);
+    player->weapon.vertexArray[1].texCoords = sf::Vector2f((px + 1) * 32, py * 32);
+    player->weapon.vertexArray[2].texCoords = sf::Vector2f((px + 1) * 32, (py + 1) * 32);
+    player->weapon.vertexArray[3].texCoords = sf::Vector2f(px * 32, (py + 1) * 32);
+
+    player->weapon.updateState();
 }

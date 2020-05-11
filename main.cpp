@@ -10,8 +10,8 @@
  *  High score
  *  Choose
  * Map loading properly
- * Weapon
- * Projectile
+ * Weapon - Done
+ * Projectile - Done
  * CLI-game
  * Objective
  * Score

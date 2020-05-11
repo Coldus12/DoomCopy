@@ -47,10 +47,10 @@ namespace DoomCopy {
 
         Creature(Point pos, double HP, Point direction, double FOV, double viewDistance) : position(pos), HP(HP), viewDistance(viewDistance), text(32,32) {
             this->FOV = FOV * M_PI/180.0;
-            //double d = sqrt(direction.x * direction.x + direction.y * direction.y);
             double alfa = atan2(direction.y,direction.x);
             alfa *= M_PI/180.0;
             this->directionVector = Point(cos(alfa),sin(alfa));
+            currentHP = HP;
         }
         virtual void setPos(Point newPos) {
             position = newPos;
