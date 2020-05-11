@@ -6,6 +6,7 @@
 #define DOOMCOPY_STRINGMANAGER_H
 
 #include <string>
+//#include "DoomCopy.h"
 
 namespace DoomCopy {
     class StringManager {

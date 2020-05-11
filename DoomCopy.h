@@ -5,16 +5,19 @@
 #ifndef DOOMCOPY_DOOMCOPY_H
 #define DOOMCOPY_DOOMCOPY_H
 
+/*#include "Array2D.h"
+#include "List.h"
+#include "StringManager.h"
 #include "Point.h"
-#include "Array2D.h"
+#include "Texture.h"
 #include "BlockType.h"
 #include "Creature.h"
+#include "Projectile.h"
 #include "Map.h"
-#include "List.h"
+#include "Weapon.h"
+#include "MeleeEnemy.h"
 #include "Player.h"
-#include "Ray.h"
-#include "StringManager.h"
-#include "Texture.h"
 #include "Game.h"
+#include "Ray.h"*/
 
 #endif //DOOMCOPY_DOOMCOPY_H

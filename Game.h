@@ -9,10 +9,9 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/System.hpp>
+
 #include "Array2D.h"
 #include "Creature.h"
-#include "Player.h"
-#include "Ray.h"
 
 inline bool cmp(DoomCopy::Creature* i, DoomCopy::Creature* j) {
     return (i->distanceFromPlayer > j->distanceFromPlayer);

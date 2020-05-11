@@ -6,6 +6,8 @@
 #define DOOMCOPY_LIST_H
 #include <iostream>
 
+//#include "DoomCopy.h"
+
 namespace DoomCopy {
 
     template <typename T>

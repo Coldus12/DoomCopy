@@ -4,7 +4,9 @@
 
 #include <fstream>
 #include "Projectile.h"
-#include "StringManager.h"
+
+//Teszt ez:
+#include "Player.h"
 
 void DoomCopy::ProjectileType::loadProjectileType(std::string line) {
     dmg = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"damage=\"","\""));

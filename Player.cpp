@@ -19,6 +19,7 @@ void DoomCopy::Player::setPosX(double nPosX, const DoomCopy::Map& map) {
     int y = position.y;
     if (!map.blocks.isTypeSolid(map.data[y][x])) setPosX(nPosX);
 }
+
 void DoomCopy::Player::setPosY(double nPosY, const DoomCopy::Map& map) {
     int x = position.x;
     int y = nPosY;

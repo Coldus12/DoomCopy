@@ -5,18 +5,16 @@
 #ifndef DOOMCOPY_PLAYER_H
 #define DOOMCOPY_PLAYER_H
 
-#include "Array2D.h"
+#include "Point.h"
 #include "Map.h"
 #include "Weapon.h"
 
 namespace DoomCopy {
-    //class Weapon;
-    class Map;
 
     class Player {
         Point position;
     public:
-        //Weapon weapon;
+        Weapon weapon;
         double HP = 100;
         double FOV;
         double direction;

@@ -5,8 +5,8 @@
 #ifndef DOOMCOPY_BLOCKTYPE_H
 #define DOOMCOPY_BLOCKTYPE_H
 
-#include "Texture.h"
 #include "List.h"
+#include "Texture.h"
 
 namespace DoomCopy {
     class BlockType {

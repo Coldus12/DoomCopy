@@ -5,14 +5,12 @@
 #ifndef DOOMCOPY_PROJECTILE_H
 #define DOOMCOPY_PROJECTILE_H
 
-#include "Texture.h"
-#include "Map.h"
-/*#include "Creature.h"
-#include "Player.h"
-#include "Map.h"*/
+#include <SFML/System/Clock.hpp>
+#include "List.h"
+#include "Creature.h"
+#include "StringManager.h"
 
 namespace DoomCopy {
-    class Creature;
     class Map;
     class Player;
 

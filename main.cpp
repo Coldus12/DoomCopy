@@ -1,6 +1,8 @@
 #include <iostream>
 //#include <SFML/Graphics.hpp>
-#include "DoomCopy.h"
+
+#include "Game.h"
+
 
 /*TODO
  * Menu

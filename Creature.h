@@ -8,10 +8,9 @@
 #include <SFML/Graphics/VertexArray.hpp>
 #include <cmath>
 #include <SFML/System/Clock.hpp>
-#include "Map.h"
+
 #include "Point.h"
 #include "Texture.h"
-#include "Player.h"
 
 namespace DoomCopy {
     class Map;
