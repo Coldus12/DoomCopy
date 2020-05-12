@@ -58,6 +58,7 @@ bool DoomCopy::Creature::isPlayerVisble(const Map& map, Point playerPos) {
 void DoomCopy::Creature::update(const Map& map, Player& player) {
     sf::Time passed = clock.getElapsedTime();
     if (passed.asSeconds() >= 1/10.0) {
+        //std::cout << position.x << " " << position.y << " player " << player.getPosX() << " " << player.getPosY() << std::endl;
 
         double dx = player.getPosX() - position.x;
         double dy = player.getPosY() - position.y;

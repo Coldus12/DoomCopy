@@ -26,6 +26,8 @@ namespace DoomCopy {
             position.y = y;
         }
 
+        Player(const char* conf);
+
         Player(double x, double y, double FOV, double direction, double speed, double viewDistance) {
             position.x = x;
             position.y = y;

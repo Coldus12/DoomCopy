@@ -6,36 +6,21 @@
 #include "BlockType.h"
 #include "StringManager.h"
 
-DoomCopy::Blocks::Blocks(const char* path, Texture& text) {
+DoomCopy::Blocks::Blocks(std::string path, Texture& text) {
     load(path, text);
 }
 
-void DoomCopy::Blocks::load(const char* path, Texture& text) {
+void DoomCopy::Blocks::load(std::string path, Texture& text) {
     std::string line = "";
     std::ifstream file;
-    file.open(path);
-    std::getline(file, line);
-    int i = 0;
+    file.open((path + "/blockType.conf"));
 
-    int nr = DoomCopy::StringManager::string_to_double(StringManager::get_substring_btwn_first_occurences(line,"number="," "));
-    bool firstSolid = StringManager::get_substring_btwn_first_occurences(line, "type=\"", "\"").find("solid") != std::string::npos;
-
+    int nr;
+    bool firstSolid;
     std::string pathToText = "";
     std::string textName = "";
 
-    if (line.find("texture") != std::string::npos) {
-        pathToText = StringManager::get_substring_after_first_occurence_of_and_last_occurence_of(line,"texture=\"","\"");
-        textName = StringManager::get_substring_btwn_first_occurences(pathToText,"/",".");
-
-        text.addImg(pathToText.c_str(),textName.c_str());
-    }
-
-    //std::cout << "szam " << nr << " bool " << firstSolid << "\n";
-
-    blockType.setHead(BlockType(nr,firstSolid,textName.c_str()));
-    while(!file.eof()) {
-        //i++;
-
+    do {
         std::getline(file,line);
         nr = StringManager::string_to_double(StringManager::get_substring_btwn_first_occurences(line,"number="," "));
         firstSolid = (StringManager::get_substring_btwn_first_occurences(line,"type=\"","\"").find("solid") != std::string::npos);
@@ -44,12 +29,10 @@ void DoomCopy::Blocks::load(const char* path, Texture& text) {
             pathToText = StringManager::get_substring_after_first_occurence_of_and_last_occurence_of(line,"texture=\"","\"");
             textName = StringManager::get_substring_btwn_first_occurences(pathToText,"/",".");
 
-            text.addImg(pathToText.c_str(),textName.c_str());
+            text.addImg((path + "/" + pathToText).c_str(),textName.c_str());
         }
-
-        //std::cout << textName << std::endl;
         blockType.addItem(BlockType(nr,firstSolid,textName.c_str()));
-    }
+    } while(!file.eof());
 }
 
 bool DoomCopy::Blocks::isTypeSolid(int type) const {

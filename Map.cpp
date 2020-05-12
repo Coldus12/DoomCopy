@@ -9,15 +9,14 @@
 #include "MeleeEnemy.h"
 #include "Projectile.h"
 
-DoomCopy::Map::Map(const char *pathToMap, const char *pathToConf) : Array2D<int>(2,2), text(32,32) {
-    load(pathToMap,pathToConf);
+DoomCopy::Map::Map(std::string pathToMap) : Array2D<int>(2,2), text(32,32) {
+    load(pathToMap);
 }
 
-void DoomCopy::Map::load(const char* pathToMap, const char* pathToConf) {
+void DoomCopy::Map::load(std::string pathToMap) {
     sf::Image img;
-    img.loadFromFile(pathToMap);
+    img.loadFromFile(pathToMap + "/textures/map.png");
 
-    //this->free();
     this->free();
 
     this->rows = img.getSize().y;
@@ -35,18 +34,19 @@ void DoomCopy::Map::load(const char* pathToMap, const char* pathToConf) {
         }
     }
 
-    blocks.load(pathToConf, text);
-    Map::loadEnemies("monsters.conf");
+    blocks.load(pathToMap, text);
+    Map::loadEnemies(pathToMap);
 }
 
-void DoomCopy::Map::loadEnemies(const char *pathToEnemyConf) {
+void DoomCopy::Map::loadEnemies(std::string pathToMap) {
 
     std::string line = "";
     std::ifstream file;
-    file.open(pathToEnemyConf);
-    std::getline(file, line);
+    file.open((pathToMap + "/monsters.conf"));
 
-    while (!file.eof()) {
+    do {
+        std::getline(file,line);
+
         if (line.find("MeleeMonster") != std::string::npos) {
 
             double posX = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"positionX=\"","\""));
@@ -66,56 +66,11 @@ void DoomCopy::Map::loadEnemies(const char *pathToEnemyConf) {
 
             std::string textName = StringManager::get_substring_btwn_first_and_next(line,"textureName=\"","\"");
 
-            enemies.addItem(new MeleeEnemy(Point(posX,posY),Point(dirX,dirY),hp,dmg,attackSpeed,"textures/",textName.c_str(),fov,viewDistance));
-
-            std::getline(file,line);
-            //enemies.addItem(new MeleeEnemy())
-
+            enemies.addItem(new MeleeEnemy(Point(posX,posY),Point(dirX,dirY),hp,dmg,attackSpeed,(pathToMap + "/textures/"),textName.c_str(),fov,viewDistance));
         } else if (line.find("RangedMonster") != std::string::npos) {
 
         }
-    }
-
-    if (line.find("MeleeMonster") != std::string::npos) {
-
-        double posX = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"positionX=\"","\""));
-        double posY = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"positionY=\"","\""));
-
-        double direction = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"direction=\"","\""));
-        direction *= M_PI/180.0;
-        double dirX = cos(direction);
-        double dirY = sin(direction);
-
-        double dmg = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"defaultDamage=\"","\""));
-        double hp = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"defaultHealth=\"","\""));
-        double fov = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"fov=\"","\""));
-
-        double viewDistance = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"viewDistance=\"","\""));
-        double attackSpeed = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"attackSpeed=\"","\""));
-
-        std::string textName = StringManager::get_substring_btwn_first_and_next(line,"textureName=\"","\"");
-
-        enemies.addItem(new MeleeEnemy(Point(posX,posY),Point(dirX,dirY),hp,dmg,attackSpeed,"textures/",textName.c_str(),fov,viewDistance));
-
-        std::getline(file,line);
-        //enemies.addItem(new MeleeEnemy())
-
-    } else if (line.find("RangedMonster") != std::string::npos) {
 
     }
+    while (!file.eof());
 }
-
-/*void DoomCopy::Map::loadProjectileTypes(const char *pathToProjectileConf) {
-    std::string line = "";
-    std::ifstream file;
-    file.open(pathToProjectileConf);
-    std::getline(file, line);
-
-    while(!file.eof()) {
-        projectileTypes.addItem(new ProjectileType());
-        projectileTypes.addrAt(projectileTypes.currentSize)->item->loadProjectileType(line);
-        std::getline(file, line);
-    }
-    projectileTypes.addItem(new ProjectileType());
-    projectileTypes.addrAt(projectileTypes.currentSize)->item->loadProjectileType(line);
-}*/

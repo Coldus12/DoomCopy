@@ -44,7 +44,7 @@ namespace DoomCopy {
             clock.restart();
         }
 
-        bool loadWeapon(const char* pathToConf);
+        bool loadWeapon(std::string path);
         void gShot(Map& map);
 
         void updateState() {

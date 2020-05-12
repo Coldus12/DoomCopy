@@ -5,6 +5,7 @@
 #ifndef DOOMCOPY_CREATURE_H
 #define DOOMCOPY_CREATURE_H
 
+#include <iostream>
 #include <SFML/Graphics/VertexArray.hpp>
 #include <cmath>
 #include <SFML/System/Clock.hpp>
@@ -51,6 +52,8 @@ namespace DoomCopy {
             alfa *= M_PI/180.0;
             this->directionVector = Point(cos(alfa),sin(alfa));
             currentHP = HP;
+            //std::cout << "meg egy" << std::endl;
+            //currentHP = 10;
         }
         virtual void setPos(Point newPos) {
             position = newPos;

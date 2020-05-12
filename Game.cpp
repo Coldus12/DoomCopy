@@ -11,6 +11,15 @@
 #include "Player.h"
 #include "Ray.h"
 
+//Segéd függvények
+void fnc(DoomCopy::Creature* cre) {
+    delete cre;
+}
+
+void fnc2(DoomCopy::Projectile* pro) {
+    delete pro;
+}
+
 void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, Point screenSize) {
     SCREEN_WIDTH = screenSize.x;
     SCREEN_HEIGHT = screenSize.y;
@@ -41,13 +50,20 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
         }
     }
 
+    std::string mapN = mapName;
 
     sf::Clock clock;
     sf::Event event;
-    map = new Map("textures/mapV1.png","blockType.conf");
-    player = new Player(10,10,45*degree,0,1,108);
-    player->weapon.loadWeapon("weapon.conf");
+    //map = new Map((mapN + "/map.png").c_str(),(mapN + "/blockType.conf").c_str());
+    //player = new Player(10,10,45*degree,0,1,108);
+    map = new Map(mapN);
+    player = new Player((mapN + "/player.conf").c_str());
+    player->weapon.loadWeapon(mapN);
     double fps = 1/30.0;
+
+    //Setting up function to run while destructing the list
+    map->enemies.setDestructFunction(fnc);
+    map->projectiles.setDestructFunction(fnc2);
 
     while(window->isOpen()) {
         clock.restart();
@@ -212,14 +228,6 @@ void DoomCopy::Game::renderWalls() {
     }
 }
 
-void fnc(DoomCopy::Creature* cre) {
-    delete cre;
-}
-
-void fnc2(DoomCopy::Projectile* pro) {
-    delete pro;
-}
-
 void DoomCopy::Game::deleteDeadOrNonExistent() {
     ListItem<Creature*>* iterEnemy = map->enemies.getHead();
     int i = 0;
@@ -229,6 +237,7 @@ void DoomCopy::Game::deleteDeadOrNonExistent() {
             ListItem<Creature*>* tmp = iterEnemy->next;
             map->enemies.deleteAt(i,fnc);
             iterEnemy = tmp;
+            i--;
         } else
             iterEnemy = iterEnemy->next;
         i++;
@@ -241,9 +250,10 @@ void DoomCopy::Game::deleteDeadOrNonExistent() {
             ListItem<Projectile*>* tmpP = iterProjectile->next;
             map->projectiles.deleteAt(j,fnc2);
             iterProjectile = tmpP;
-            j++;
+            j--;
         } else
             iterProjectile = iterProjectile->next;
+        j++;
     }
 }
 

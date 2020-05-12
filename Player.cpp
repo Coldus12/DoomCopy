@@ -1,6 +1,7 @@
 //
 // Created by coldus on 5/8/20.
 //
+#include <fstream>
 #include "Player.h"
 void DoomCopy::Player::move(double relativeX, double relativY, const DoomCopy::Map& map) {
     int x = (position.x + relativeX);
@@ -24,4 +25,20 @@ void DoomCopy::Player::setPosY(double nPosY, const DoomCopy::Map& map) {
     int x = position.x;
     int y = nPosY;
     if (!map.blocks.isTypeSolid(map.data[y][x])) setPosY(nPosY);
+}
+
+DoomCopy::Player::Player(const char *conf) {
+    std::fstream file;
+    file.open(conf);
+    std::string line = "";
+    std::getline(file,line);
+
+    position.x = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"posX=\"","\""));
+    position.y = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"posY=\"","\""));
+    FOV = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"FOV=\"","\""));
+    speed = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"speed=\"","\""));
+    viewDistance = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"viewDistance=\"","\""));
+    direction = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"direction=\"","\""));
+
+    weapon.set(&position, &direction);
 }

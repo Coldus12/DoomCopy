@@ -22,7 +22,7 @@ namespace DoomCopy {
         double range;
         Texture text;
         ProjectileType() : text(32,32) {}
-        void loadProjectileType(std::string line);
+        void loadProjectileType(std::string path, std::string line);
     };
 
     class cmpr {

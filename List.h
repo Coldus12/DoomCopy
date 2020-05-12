@@ -6,8 +6,6 @@
 #define DOOMCOPY_LIST_H
 #include <iostream>
 
-//#include "DoomCopy.h"
-
 namespace DoomCopy {
 
     template <typename T>
@@ -24,6 +22,8 @@ namespace DoomCopy {
     template <typename T>
     class List {
         ListItem<T>* head = NULL;
+        bool isDestructFucSet = false;
+        void (*fnc)(T t);
 
         void swap(size_t nr1, size_t nr2) {
             if ((0 < nr1 <= currentSize) && (0 < nr2 <= currentSize)) {
@@ -72,11 +72,6 @@ namespace DoomCopy {
                         kicsi = nr1;
                     }
 
-
-                    //nagy = kisebb->next
-                    //kisebb->next->next = kisebb
-                    //tmp = kisebb->next->next;
-                    //kisebb->next = tmp;
                     ListItem<T>* kisebb = addrAt(kicsi);
                     ListItem<T>* nagyobb = kisebb->next;
                     ListItem<T>* tmp = nagyobb->next;
@@ -194,7 +189,6 @@ namespace DoomCopy {
             } else {
                 throw std::out_of_range("idx is out of range.");
             }
-            //return head;
         }
 
         T searchBy(bool fnc(T)) {
@@ -232,24 +226,25 @@ namespace DoomCopy {
         void deleteAt(size_t idx) {
             if ((idx >= 0) && (idx <= currentSize)) {
                 if (idx == 0) {
-
-                    ListItem<T>* next = head->next;
-                    delete head;
-                    head = next;
-
+                    if (head != NULL) {
+                        if (head->next != NULL) {
+                            ListItem<T>* next = head->next;
+                            delete head;
+                            head = next;
+                        } else {
+                            delete head;
+                            head = NULL;
+                        }
+                    }
                 } else if (addrAt(idx)->next == NULL) {
-
                     ListItem<T>* del = addrAt(idx);
                     delete del;
                     addrAt(idx-1)->next == NULL;
-
                 } else {
-
                     ListItem<T>* del = addrAt(idx);
                     ListItem<T>* tmp = addrAt(idx+1);
                     addrAt(idx-1)->next = tmp;
                     delete del;
-
                 }
 
                 if (currentSize > 0)
@@ -263,40 +258,52 @@ namespace DoomCopy {
         void deleteAt(size_t idx, void fnc(T)) {
             if ((idx >= 0) && (idx <= currentSize)) {
                 if (idx == 0) {
-
-                    ListItem<T>* next = head->next;
-                    fnc(head->item);
-                    delete head;
-                    head = next;
-
+                    if (head != NULL) {
+                        if (head->next != NULL) {
+                            ListItem<T>* next = head->next;
+                            fnc(head->item);
+                            delete head;
+                            head = next;
+                        } else {
+                            fnc(head->item);
+                            delete head;
+                            head = NULL;
+                        }
+                    }
                 } else if (addrAt(idx)->next == NULL) {
-
+                    //std::cout << "here we are" << std::endl;
                     ListItem<T>* del = addrAt(idx);
+                    ListItem<T>* before = addrAt(idx-1);
                     fnc(del->item);
                     delete del;
-                    addrAt(idx-1)->next == NULL;
-
+                    before->next = NULL;
                 } else {
-
                     ListItem<T>* del = addrAt(idx);
                     ListItem<T>* tmp = addrAt(idx+1);
                     addrAt(idx-1)->next = tmp;
                     fnc(del->item);
                     delete del;
-
                 }
 
                 if (currentSize > 0)
                     currentSize--;
+
             } else {
                 throw std::out_of_range("del idx is out of range.");
             }
+        }
+
+        void setDestructFunction(void fnc(T)) {
+            isDestructFucSet = true;
+            this->fnc = fnc;
         }
 
         ~List() {
             ListItem<T>* iter = head;
             while (iter != NULL) {
                 ListItem<T>* nextF = iter->next;
+                if (isDestructFucSet)
+                    fnc(iter->item);
                 delete iter;
                 iter = nextF;
             }

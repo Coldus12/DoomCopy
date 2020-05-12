@@ -20,9 +20,9 @@ namespace DoomCopy {
         List<Projectile*> projectiles;
 
         Map() : text(32,32) {}
-        Map(const char* pathToMap, const char* pathToConf);
-        void load(const char* pathtoMap, const char* pathToConf);
-        void loadEnemies(const char* pathToEnemyConf);
+        Map(std::string pathToMap);
+        void load(std::string pathToMap);
+        void loadEnemies(std::string pathToMap);
 
         ~Map() {
             ListItem<Creature*>* iter = enemies.getHead();

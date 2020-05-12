@@ -8,13 +8,15 @@
 //Teszt ez:
 #include "Player.h"
 
-void DoomCopy::ProjectileType::loadProjectileType(std::string line) {
+void DoomCopy::ProjectileType::loadProjectileType(std::string path,std::string line) {
+    //std::cout << "load projectiles fnc" << std::endl;
     dmg = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"damage=\"","\""));
     speed = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"speed=\"","\""));
     size = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"size=\"","\""));
     range = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"range=\"","\""));
 
-    std::string path = StringManager::get_substring_btwn_first_and_next(line,"pathToTexture=\"","\"");
+    path += "/" + StringManager::get_substring_btwn_first_and_next(line,"pathToTexture=\"","\"");
+    //std::cout << path << std::endl;
 
     text.addImg(path.c_str(),StringManager::get_substring_btwn_last_occurences(path,"/",".png").c_str());
 }

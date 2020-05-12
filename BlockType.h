@@ -22,8 +22,8 @@ namespace DoomCopy {
     public:
         List<BlockType> blockType;
         Blocks() {}
-        Blocks(const char*, Texture& text);
-        void load(const char*, Texture&);
+        Blocks(std::string path, Texture& text);
+        void load(std::string path, Texture&);
         ~Blocks() {}
 
         bool isTypeSolid(int) const;
