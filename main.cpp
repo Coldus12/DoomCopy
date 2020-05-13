@@ -20,6 +20,6 @@
 
 int main() {
     DoomCopy::Game game;
-    game.startGraphicalGame("mapV1",DoomCopy::Point(216,144),DoomCopy::Point(1080,720));
+    //game.startGraphicalGame("desert",DoomCopy::Point(320,180),DoomCopy::Point(1280,720));
     return 0;
 }

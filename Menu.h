@@ -3,6 +3,7 @@
 //
 #include <iostream>
 #include <fstream>
+#include <SFML/Graphics/Text.hpp>
 
 #ifndef MENU_MENU_H
 #define MENU_MENU_H
@@ -71,9 +72,7 @@ namespace DoomCopy {
     class MenuItem : public Container<MenuItem> {
     public:
         std::string text;
-        int posX, posY;
-        int size;
-        int color;
+        sf::Text sfText;
 
         MenuItem(size_t size) : Container(size) {}
 
@@ -83,44 +82,6 @@ namespace DoomCopy {
 
         virtual void doSomething() {}
         virtual ~MenuItem() {}
-    };
-
-    class StartGameG : public MenuItem {
-    public:
-        StartGameG(const char* nameOfTheLevel) : MenuItem(0) {
-            text = nameOfTheLevel;
-        }
-
-        void doSomething() {
-            //std::cout << text << std::endl;
-        }
-    };
-
-    class Start : public MenuItem {
-    public:
-        Start() : MenuItem(10) {
-            loadMaps(*this);
-        }
-
-        void loadMaps(MenuItem& menu) {
-            std::fstream file;
-            file.open("maps.conf");
-            std::string line = "";
-            do {
-                std::getline(file,line);
-                menu.addItem(new StartGameG(line.c_str()));
-            } while(!file.eof());
-        }
-    };
-
-    class Settings : public MenuItem {
-    public:
-        Settings() : MenuItem(0) {}
-    };
-
-    class Exit : public MenuItem {
-    public:
-        Exit() : MenuItem(0) {}
     };
 }
 
