@@ -224,6 +224,7 @@ namespace DoomCopy {
         }
 
         void deleteAt(size_t idx) {
+            std::cout << currentSize << " " << idx << std::endl;
             if ((idx >= 0) && (idx <= currentSize)) {
                 if (idx == 0) {
                     if (head != NULL) {
@@ -239,7 +240,7 @@ namespace DoomCopy {
                 } else if (addrAt(idx)->next == NULL) {
                     ListItem<T>* del = addrAt(idx);
                     delete del;
-                    addrAt(idx-1)->next == NULL;
+                    addrAt(idx-1)->next = NULL;
                 } else {
                     ListItem<T>* del = addrAt(idx);
                     ListItem<T>* tmp = addrAt(idx+1);

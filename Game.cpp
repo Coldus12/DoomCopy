@@ -51,6 +51,7 @@ DoomCopy::Game::Game() {
                             iter = iter->back;
                         }
                     }
+
                 }
             }
 
@@ -75,7 +76,7 @@ DoomCopy::Game::Game() {
                 iter->back->gText.setPosition(SCREEN_WIDTH/2 - 30, (SCREEN_HEIGHT/2)/(iter->nr_of_menus + 1) * iter->nr_of_menus + (SCREEN_HEIGHT/3));
 
                 if (sel < 0)
-                    sel = iter->nr_of_menus - 1;
+                    sel = iter->nr_of_menus;
                 if (sel > iter->nr_of_menus)
                     sel = 0;
 
