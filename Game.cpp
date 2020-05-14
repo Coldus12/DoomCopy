@@ -16,17 +16,17 @@ DoomCopy::Game::Game() {
         loadSettings();
         window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "DoomCopy!",sf::Style::Titlebar | sf::Style::Close);
 
-        sf::Font font;
-        font.loadFromFile("Roboto-Regular.ttf");
-
-        MainMenu mainMenu(*this);
-        std::cout << mainMenu.itemNr() << std::endl;
-
+        MainMenu menu("Main",*this);
+        Menu* iter = &menu;
         int sel = 0;
+
+        sf::Font font;
+        if (!font.loadFromFile("FunSized.ttf")) {
+            font.loadFromFile("Roboto-Regular.ttf");
+        }
+
         sf::Event event;
         while(window->isOpen()) {
-
-
 
             while(window->pollEvent(event)) {
                 if (event.type == sf::Event::Closed) {
@@ -34,28 +34,76 @@ DoomCopy::Game::Game() {
                 } else if (event.type == sf::Event::KeyPressed) {
                     if (event.key.code == sf::Keyboard::Escape)
                         window->close();
+
                     if (event.key.code == sf::Keyboard::Up)
                         sel--;
+
                     if (event.key.code == sf::Keyboard::Down)
                         sel++;
 
+                    if(event.key.code == sf::Keyboard::Enter) {
+                        if (sel != iter->nr_of_menus) {
+                            if (iter->options[sel]->nr_of_menus != 0)
+                                iter = iter->options[sel];
+                            else
+                                iter->options[sel]->doAction();
+                        } else {
+                            iter = iter->back;
+                        }
+                    }
                 }
             }
 
-            if (sel < 0)
-                sel = mainMenu.itemNr() - 1;
-            if (sel > (mainMenu.itemNr() - 1))
-                sel = 0;
+            for (int i = 0; i < iter->nr_of_menus; i++) {
+                iter->options[i]->gText.setString(iter->options[i]->text);
+                iter->options[i]->gText.setFillColor(sf::Color::White);
+                iter->options[i]->gText.setCharacterSize(30);
+
+                if (iter->back != NULL)
+                    iter->options[i]->gText.setPosition(SCREEN_WIDTH/2 - 30,(SCREEN_HEIGHT/2)/(iter->nr_of_menus + 1) * i + SCREEN_HEIGHT/3);
+                else
+                    iter->options[i]->gText.setPosition(SCREEN_WIDTH/2 - 30,(SCREEN_HEIGHT/2)/iter->nr_of_menus * i + SCREEN_HEIGHT/3);
+
+                iter->options[i]->gText.setFont(font);
+            }
+
+            if (iter->back != NULL) {
+                iter->back->gText.setString("Back");
+                iter->back->gText.setFillColor(sf::Color::White);
+                iter->back->gText.setCharacterSize(30);
+                iter->back->gText.setFont(font);
+                iter->back->gText.setPosition(SCREEN_WIDTH/2 - 30, (SCREEN_HEIGHT/2)/(iter->nr_of_menus + 1) * iter->nr_of_menus + (SCREEN_HEIGHT/3));
+
+                if (sel < 0)
+                    sel = iter->nr_of_menus - 1;
+                if (sel > iter->nr_of_menus)
+                    sel = 0;
+
+                if (sel != iter->nr_of_menus)
+                    iter->options[sel]->gText.setFillColor(sf::Color::Red);
+                else
+                    iter->back->gText.setFillColor(sf::Color::Red);
+
+            } else {
+                if (sel < 0)
+                    sel = iter->nr_of_menus - 1;
+                if (sel > iter->nr_of_menus - 1)
+                    sel = 0;
+
+                iter->options[sel]->gText.setFillColor(sf::Color::Red);
+            }
+
+
+
+
 
             window->clear();
-            for (int i = 0; i < mainMenu.itemNr(); i++) {
-                mainMenu.getItemAt(i)->sfText.setFont(font);
-                mainMenu.getItemAt(i)->sfText.setString(mainMenu.getItemAt(i)->text);
-                mainMenu.getItemAt(i)->sfText.setFillColor(sf::Color::White);
-                mainMenu.getItemAt(sel)->sfText.setFillColor(sf::Color::Red);
-                mainMenu.getItemAt(i)->sfText.setPosition(SCREEN_WIDTH/2.0-50,SCREEN_HEIGHT/4.0 + (SCREEN_HEIGHT/2.0)/mainMenu.itemNr() * i);
-                window->draw(mainMenu.getItemAt(i)->sfText);
-            }
+
+            for (int i = 0; i < iter->nr_of_menus; i++)
+                window->draw(iter->options[i]->gText);
+
+            if (iter->back != NULL)
+                window->draw(iter->back->gText);
 
             window->display();
         }
@@ -63,34 +111,33 @@ DoomCopy::Game::Game() {
 }
 
 void DoomCopy::Game::loadSettings() {
-    std::cout << sf::Keyboard::F << std::endl;
-
     std::fstream keyCodes;
     keyCodes.open("controls.conf");
     std::string line = "";
 
     do {
         std::getline(keyCodes,line);
-        if (line.find("moveForward") != std::string::npos) {
+        if (line.find("moveForward") != std::string::npos)
             //bindings[0] = int(StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line, "moveForward=\"", "\"")));
             bindings[0] = static_cast<sf::Keyboard::Key>(StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line, "moveForward=\"", "\"")));
-        } else if (line.find("moveBackward") != std::string::npos) {
+        if (line.find("moveBackward") != std::string::npos)
             bindings[1] = static_cast<sf::Keyboard::Key>(StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line, "moveBackward=\"", "\"")));
-        } else if (line.find("turnLeft") != std::string::npos) {
+        if (line.find("turnLeft") != std::string::npos)
             bindings[2] = static_cast<sf::Keyboard::Key>(StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line, "turnLeft=\"", "\"")));
-        } else if (line.find("turnRight") != std::string::npos) {
+        if (line.find("turnRight") != std::string::npos)
             bindings[3] = static_cast<sf::Keyboard::Key>(StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line, "turnRight=\"", "\"")));
-        } else if (line.find("shoot") != std::string::npos) {
+        if (line.find("shoot") != std::string::npos)
             bindings[4] = static_cast<sf::Keyboard::Key>(StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line, "shoot=\"", "\"")));
-        } else if (line.find("openMap") != std::string::npos) {
+        if (line.find("openMap") != std::string::npos)
             bindings[5] = static_cast<sf::Keyboard::Key>(StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line, "openMap=\"", "\"")));
-        } else if (line.find("toggleFullscreen") != std::string::npos) {
+        if (line.find("toggleFullscreen") != std::string::npos)
             bindings[6] = static_cast<sf::Keyboard::Key>(StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line, "toggleFullscreen=\"", "\"")));
-        } else if (line.find("screenWidth") != std::string::npos) {
+        if (line.find("screenWidth") != std::string::npos)
             SCREEN_WIDTH = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"screenWidth=\"","\""));
+        if (line.find("screenHeight") != std::string::npos)
             SCREEN_HEIGHT = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"screenHeight=\"","\""));
-        //} else if (line.find("screenHeight") != std::string::npos) {
-        } else if (line.find("resolution") != std::string::npos) {
+
+        if (line.find("resolution") != std::string::npos) {
             screenWidth = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"resolution=\"","x"));
             screenHeight = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"x","\""));
         }
@@ -99,7 +146,7 @@ void DoomCopy::Game::loadSettings() {
 
     bindings[9] = sf::Keyboard::Escape;
 
-    std::cout << SCREEN_WIDTH << " " << SCREEN_HEIGHT << " " << screenWidth << " " << screenHeight << std::endl;
+    //std::cout << SCREEN_WIDTH << " " << SCREEN_HEIGHT << " " << screenWidth << " " << screenHeight << std::endl;
 }
 
 //Segéd függvények
@@ -118,17 +165,13 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
     screenWidth = resolution.x;
     screenHeight = resolution.y;
 
-    /*if (window != NULL)
-        delete window;*/
-
     if (window == NULL)
         window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "DoomCopy!",sf::Style::Titlebar | sf::Style::Close);
     else {
-        //window->getSize();
         window->setSize(sf::Vector2u(SCREEN_WIDTH,SCREEN_HEIGHT));
     }
 
-    std::cout << SCREEN_WIDTH << " " << SCREEN_HEIGHT << std::endl;
+    //std::cout << SCREEN_WIDTH << " " << SCREEN_HEIGHT << std::endl;
 
     sf::VertexArray screen;
     screen.setPrimitiveType(sf::Quads);
@@ -152,14 +195,11 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
 
     sf::Clock clock;
     sf::Event event;
-    //map = new Map((mapN + "/map.png").c_str(),(mapN + "/blockType.conf").c_str());
-    //player = new Player(10,10,45*degree,0,1,108);
     map = new Map(mapN);
     player = new Player((mapN + "/player.conf").c_str());
     player->weapon.loadWeapon(mapN);
     double fps = 1/30.0;
 
-    //Setting up function to run while destructing the list
     map->enemies.setDestructFunction(fnc);
     map->projectiles.setDestructFunction(fnc2);
 
@@ -172,23 +212,24 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
             else if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == bindings[9])
                     window->close();
-                else if (event.key.code == bindings[0])
-                    player->move(cos(player->direction),sin(player->direction),*map);
-                else if (event.key.code == bindings[1])
+                if (event.key.code == bindings[0])
+                    player->move(cos(player->direction), sin(player->direction), *map);
+                if (event.key.code == bindings[1])
                     player->move((-cos(player->direction)), (-sin(player->direction)), *map);
-                else if (event.key.code == bindings[2])
-                    player->direction -= 5*degree;
-                else if (event.key.code == bindings[3])
-                    player->direction += 5*degree;
-                } else if (event.key.code == bindings[4]) {
+                if (event.key.code == bindings[2])
+                    player->direction -= 5 * degree;
+                if (event.key.code == bindings[3])
+                    player->direction += 5 * degree;
+                if (event.key.code == bindings[4])
                     player->weapon.gShot(*map);
-                } else if (event.key.code == bindings[6]) {
-                    window->create(sf::VideoMode::getFullscreenModes()[0],"DoomCopy!", sf::Style::Fullscreen);
+                if (event.key.code == bindings[6]) {
+                    window->create(sf::VideoMode::getFullscreenModes()[0], "DoomCopy!", sf::Style::Fullscreen);
                     SCREEN_WIDTH = window->getSize().x;
                     SCREEN_HEIGHT = window->getSize().y;
                     std::cout << SCREEN_WIDTH << " " << SCREEN_HEIGHT << std::endl;
                 }
             }
+        }
 
         if (player->direction >= M_PI) player->direction -= 2 * M_PI;
         if (player->direction <= -M_PI) player->direction += 2 * M_PI;
@@ -334,7 +375,6 @@ void DoomCopy::Game::deleteDeadOrNonExistent() {
     ListItem<Creature*>* iterEnemy = map->enemies.getHead();
     int i = 0;
     while (iterEnemy !=  NULL) {
-        //std::cout << i << ".dik szörny hpja: " << iterEnemy->item->getHP() << std::endl;
         if (!iterEnemy->item->isAlive()) {
             ListItem<Creature*>* tmp = iterEnemy->next;
             map->enemies.deleteAt(i,fnc);

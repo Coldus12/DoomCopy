@@ -9,81 +9,72 @@
 #define MENU_MENU_H
 
 namespace DoomCopy {
-    template <typename T>
-    class Container {
-        size_t nrOfItems = 0;
-        size_t currentMaxSize;
-        T** items;
+    class Menu {
     public:
-        Container(size_t size) : currentMaxSize(size) {
-            if (currentMaxSize > 0)
-                items = new T*[currentMaxSize];
+        Menu* back;
+        Menu** options;
+        size_t nr_of_menus = 0;
+        size_t arraySize;
+        std::string text;
+        sf::Text gText;
+
+        Menu(size_t arraySize, std::string name, Menu* back = NULL) : arraySize(arraySize), back(back), text(name) {
+            if (arraySize > 0)
+                options = new Menu*[arraySize];
         }
 
-        void addItem(T* newItem) {
-            if (currentMaxSize > 0) {
-                if (nrOfItems < currentMaxSize) {
-                    items[nrOfItems] = newItem;
-                    nrOfItems++;
+        virtual void doAction() {}
+
+        virtual void addItem(Menu* newItem) {
+            if (arraySize > 0) {
+                if (nr_of_menus < arraySize) {
+                    options[nr_of_menus] = newItem;
+                    nr_of_menus++;
                 } else {
-                    currentMaxSize *= 2;
-                    T** temp = new T*[currentMaxSize];
-                    for (size_t i = 0; i < nrOfItems; i++)
-                        temp[i] = items[i];
+                    arraySize *= 2;
+                    Menu** temp = new Menu*[arraySize];
+                    for (size_t i = 0; i < nr_of_menus; i++)
+                        temp[i] = options[i];
 
-                    delete[] items;
+                    delete[] options;
 
-                    items = new T*[currentMaxSize];
-                    for (size_t i = 0; i < nrOfItems; i++) {
-                        items[i] = temp[i];
+                    options = new Menu*[arraySize];
+                    for (size_t i = 0; i < nr_of_menus; i++) {
+                        options[i] = temp[i];
                     }
 
                     delete[] temp;
 
-                    items[nrOfItems] = newItem;
-                    nrOfItems++;
+                    options[nr_of_menus] = newItem;
+                    nr_of_menus++;
                 }
             }
         }
 
-        int itemNr() const {return nrOfItems;}
-
-        int getMaxSize() {return currentMaxSize;}
-
-        T* getItemAt(size_t idx) {
-            if ((idx >= 0) && (idx <= currentMaxSize))
-                return items[idx];
+        virtual Menu* getItemAt(size_t idx) {
+            if ((idx >= 0) && (idx <= nr_of_menus))
+                return options[idx];
             else
                 throw std::out_of_range("well shit, container index is out of range");
         }
 
-        ~Container() {
-            if (currentMaxSize > 0) {
-                for (size_t i = 0; i < nrOfItems; i++) {
-                    delete items[i];
-                }
-                delete[] items;
+        virtual void printOptions() {
+            for (int i = 0; i < nr_of_menus; i++) {
+                std::cout << i <<". " << getItemAt(i)->text << std::endl;
             }
-            nrOfItems = 0;
         }
 
-    };
-
-    class MenuItem : public Container<MenuItem> {
-    public:
-        std::string text;
-        sf::Text sfText;
-
-        MenuItem(size_t size) : Container(size) {}
-
-        virtual void doActionAt(size_t idx) {
-            getItemAt(idx)->doSomething();
+        virtual ~Menu() {
+            if (arraySize > 0) {
+                for (size_t i = 0; i < nr_of_menus; i++) {
+                    delete options[i];
+                }
+                delete[] options;
+            }
+            nr_of_menus = 0;
+            arraySize = 0;
         }
-
-        virtual void doSomething() {}
-        virtual ~MenuItem() {}
     };
 }
-
 
 #endif //MENU_MENU_H

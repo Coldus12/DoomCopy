@@ -76,86 +76,68 @@ namespace DoomCopy {
         }
     };
 
-    class StartGameG : public MenuItem {
+    class GStartGame : public Menu {
     public:
         Game* game;
-        StartGameG(const char* nameOfTheLevel, Game& game) : MenuItem(0) {
-            text = nameOfTheLevel;
+        GStartGame(Game& game, std::string name, Menu* back = NULL) : Menu(0, name, back) {
             this->game = &game;
-
-            //sf::Font font;
-            //font.loadFromFile("FunSize.ttf");
-
-            //sfText.setFont(font);
-            sfText.setFillColor(sf::Color::White);
-            sfText.setString(text);
-            sfText.setCharacterSize(20);
         }
 
-        void doSomething() {
-            if (!game->isCLI())
-                game->startGraphicalGame(text.c_str(),Point(game->getResWidth(), game->getResHeight()),Point(game->getScreenWidth(), game->getScreenHeight()));
+        void doAction() {
+            game->startGraphicalGame(text.c_str(),Point(game->getResWidth(),game->getResHeight()),Point(game->getScreenWidth(),game->getScreenHeight()));
         }
     };
 
-    class Start : public MenuItem {
+    class Start : public Menu {
     public:
-        Start(Game& game) : MenuItem(10) {
-            text = "Start";
-            loadMaps(*this, game);
-
-            sfText.setFillColor(sf::Color::White);
-            sfText.setString(text);
-            sfText.setCharacterSize(40);
-        }
-
-        void loadMaps(MenuItem& menu, Game& game) {
+        Game* game;
+        Start(Game& game, size_t arraySize, std::string name, Menu* back = NULL) : Menu(arraySize, name, back) {
             std::fstream file;
             file.open("maps.conf");
             std::string line = "";
+            this->game = &game;
+
             do {
                 std::getline(file,line);
-                menu.addItem(new StartGameG(line.c_str(), game));
+                this->addItem(new GStartGame(game, line, this));
             } while(!file.eof());
         }
     };
 
-    class Settings : public MenuItem {
+    class ScreenSettings : public Menu {
     public:
-        Settings() : MenuItem(0) {
+        ScreenSettings(Menu* back) : Menu(0,"Display Settings",back) {}
 
-            text = "Settings";
-            sfText.setFillColor(sf::Color::White);
-            sfText.setString(text);
-            sfText.setCharacterSize(40);
+        void doAction() {
 
         }
     };
 
-    class Exit : public MenuItem {
-        Game* game;
+    class Settings : public Menu {
     public:
-        Exit(Game& game) : MenuItem(0) {
-            this->game = &game;
+        Settings(size_t arraySize, std::string name, Menu* back) : Menu(arraySize, name, back) {}
+    };
 
-            text = "Exit";
-            sfText.setFillColor(sf::Color::White);
-            sfText.setString(text);
-            sfText.setCharacterSize(40);
+    class Exit : public Menu {
+    public:
+        Game* game;
+        Exit(Game& game, Menu* back) : Menu(0,"Exit",back) {
+            this->game = &game;
         }
 
-        void doSomething() {
+        void doAction() {
             game->window->close();
         }
     };
 
-    class MainMenu : public MenuItem {
+    class MainMenu : public Menu {
     public:
-        //sf::Text sfText;
-        MainMenu(Game& game) : MenuItem(4) {
-            addItem(new Start(game));
-            addItem(new Settings);
-            addItem(new Exit(game));
+        Game* game;
+        MainMenu(std::string name, Game& game) : Menu(2, name) {
+            this->game = &game;
+            this->addItem(new Start(game,4,"Start",this));
+            this->addItem(new Settings(2,"Settings",this));
+            this->addItem(new Exit(game,this));
         }
     };
 
