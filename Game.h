@@ -50,6 +50,7 @@ namespace DoomCopy {
         void renderWeapon();
         void deleteDeadOrNonExistent();
         void loadSettings();
+        void winCondition(std::string mapName, int& x, int& y);
 
         void setScreenWidth(int newWidth) {
             SCREEN_WIDTH = newWidth;

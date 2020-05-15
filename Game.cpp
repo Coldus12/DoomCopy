@@ -20,6 +20,10 @@ void fnc2(DoomCopy::Projectile* pro) {
     delete pro;
 }
 
+bool scoreCmpr(int i, int i2) {
+    return i > i2;
+}
+
 DoomCopy::Game::Game() {
     if (cli == false) {
         loadSettings();
@@ -160,11 +164,42 @@ void DoomCopy::Game::loadSettings() {
 }
 
 void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, Point screenSize) {
+    //Cél ahová el kell jutni
+    int wherex;
+    int wherey;
+    winCondition(mapName,wherex,wherey);
+
     SCREEN_WIDTH = screenSize.x;
     SCREEN_HEIGHT = screenSize.y;
 
     screenWidth = resolution.x;
     screenHeight = resolution.y;
+
+    //ShowMap
+    bool mapShown = false;
+    std::string displayMapPath = mapName;
+    displayMapPath += "/textures/display_map.png";
+    sf::Texture displayMap;
+    sf::Texture displayMapConst;
+
+    displayMap.loadFromFile(displayMapPath);
+    displayMapConst.loadFromFile(displayMapPath);
+
+    sf::RenderStates mapStates;
+    mapStates.texture = &displayMap;
+    sf::VertexArray showMap;
+    showMap.setPrimitiveType(sf::Quads);
+    showMap.resize(4);
+
+    showMap[0].texCoords = sf::Vector2f(0,0);
+    showMap[1].texCoords = sf::Vector2f(displayMap.getSize().x,0);
+    showMap[2].texCoords = sf::Vector2f(displayMap.getSize().x,displayMap.getSize().y);
+    showMap[3].texCoords = sf::Vector2f(0,displayMap.getSize().y);
+
+    showMap[0].position = sf::Vector2f(0,0);
+    showMap[1].position = sf::Vector2f(SCREEN_WIDTH,0);
+    showMap[2].position = sf::Vector2f(SCREEN_WIDTH,SCREEN_HEIGHT);
+    showMap[3].position = sf::Vector2f(0,SCREEN_HEIGHT);
 
     if (window == NULL)
         window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "DoomCopy!",sf::Style::Titlebar | sf::Style::Close);
@@ -198,10 +233,15 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
     sf::Event event;
     map = new Map(mapN);
     map->enemies.setDestructFunction(fnc);
+    int nrOfEnemiesAtStart = map->enemies.currentSize+1;
     map->projectiles.setDestructFunction(fnc2);
     player = new Player((mapN + "/player.conf").c_str());
     player->weapon.loadWeapon(mapN);
     double fps = 1/30.0;
+
+    //Az óra indítása
+    sf::Clock gameTime;
+    bool mapDone = false;
 
 
     while(window->isOpen()) {
@@ -223,6 +263,10 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
                     player->direction += 5 * degree;
                 if (event.key.code == bindings[4])
                     player->weapon.gShot(*map);
+                if (event.key.code == bindings[5]) {
+                    //Display map
+                    mapShown = !mapShown;
+                }
                 if (event.key.code == bindings[6]) {
                     window->create(sf::VideoMode::getFullscreenModes()[0], "DoomCopy!", sf::Style::Fullscreen);
                     SCREEN_WIDTH = window->getSize().x;
@@ -234,6 +278,11 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
 
         if (player->direction >= M_PI) player->direction -= 2 * M_PI;
         if (player->direction <= -M_PI) player->direction += 2 * M_PI;
+
+        if ((int(player->getPosX()) == wherex) && (int(player->getPosY()) == wherey)) {
+            mapDone = true;
+            break;
+        }
 
         //Updating enemies
         ListItem<Creature*>* iterEnemy = map->enemies.getHead();
@@ -260,28 +309,37 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
 
         window->clear();
 
-        //Drawing walls
-        window->draw(screen,map->text.states);
+        if (!mapShown) {
+            //Drawing walls
+            window->draw(screen,map->text.states);
 
-        //Drawing enemies
-        iterEnemy = map->enemies.getHead();
-        while(iterEnemy != NULL) {
-            if (iterEnemy->item->visible) {
-                window->draw(iterEnemy->item->vertexArray,iterEnemy->item->text.states);
+            //Drawing enemies
+            iterEnemy = map->enemies.getHead();
+            while(iterEnemy != NULL) {
+                if (iterEnemy->item->visible) {
+                    window->draw(iterEnemy->item->vertexArray,iterEnemy->item->text.states);
+                }
+                iterEnemy = iterEnemy->next;
             }
-            iterEnemy = iterEnemy->next;
-        }
 
-        //Drawing projectiles
-        iterProjectile = map->projectiles.getHead();
-        while(iterProjectile != NULL) {
-            if (iterProjectile->item->visible)
-                window->draw(iterProjectile->item->vertexArray,iterProjectile->item->type.text.states);
-            iterProjectile = iterProjectile->next;
-        }
+            //Drawing projectiles
+            iterProjectile = map->projectiles.getHead();
+            while(iterProjectile != NULL) {
+                if (iterProjectile->item->visible)
+                    window->draw(iterProjectile->item->vertexArray,iterProjectile->item->type.text.states);
+                iterProjectile = iterProjectile->next;
+            }
 
-        //Drawing weapon
-        window->draw(player->weapon.vertexArray,player->weapon.texture.states);
+            //Drawing weapon
+            window->draw(player->weapon.vertexArray,player->weapon.texture.states);
+        } else {
+            sf::Uint8 playerColor(0);
+            sf::Uint8 whereToGo(255);
+            displayMap.update(&playerColor,1,1,int(player->getPosX()),int(player->getPosY()));
+            displayMap.update(&whereToGo,1,1,wherex,wherey);
+            window->draw(showMap,mapStates);
+            displayMap.update(displayMapConst);
+        }
 
         window->display();
 
@@ -289,6 +347,86 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
         double waitTime = ((fps) - elapsedTime.asSeconds());
         sf::Time wait = sf::seconds(waitTime);
         sf::sleep(wait);
+    }
+
+    if (mapDone) {
+        DoomCopy::List<int> list;
+        int score = 1500;
+
+        score -= int(gameTime.getElapsedTime().asSeconds());
+        score += int((nrOfEnemiesAtStart - map->enemies.currentSize) * 100);
+
+        std::fstream file;
+        std::string line = "";
+        file.open(mapN + "/scores.txt");
+        int lineNr = 0;
+
+        do {
+            std::getline(file,line);
+            if (!line.empty()) {
+                list.addItem(int(DoomCopy::StringManager::string_to_double(line)));
+                lineNr++;
+            } else
+                break;
+        } while(!file.eof() && (lineNr < 10));
+
+        list.addItem(score);
+        list.sort(scoreCmpr);
+
+        std::ofstream output;
+        output.open(mapN + "/scores.txt");
+
+        if (lineNr != 0) {
+            if (list.currentSize < 10) {
+                for (int i = 0; i < list.currentSize + 1; i++)
+                    output << list.at(i) << "\n";
+            } else {
+                for (int i = 0; i < 10; i++)
+                    output << list.at(i) << "\n";
+            }
+        } else {
+            output << list.at(0);
+        }
+
+        sf::Font font;
+        if (!font.loadFromFile("FunSized.ttf")) {
+            font.loadFromFile("Roboto-Regular.ttf");
+        }
+
+        sf::Text text;
+        text.setFont(font);
+        text.setCharacterSize(30);
+        text.setPosition(SCREEN_WIDTH/2.0,SCREEN_HEIGHT/2.0);
+
+        std::string string = "Your score this game ";
+        string += std::to_string(score);
+
+        text.setString(string);
+
+        sf::Event event;
+        bool exit = false;
+        while(window->isOpen()) {
+            while(window->pollEvent(event)) {
+                if (event.type == sf::Event::Closed)
+                    window->close();
+
+                if (event.type == sf::Event::KeyPressed) {
+                    exit = true;
+                }
+            }
+
+            if (exit)
+                break;
+
+            window->clear();
+            window->draw(text);
+            window->display();
+        }
+
+        delete map;
+        delete player;
+        map = NULL;
+        player = NULL;
     }
 }
 
@@ -516,4 +654,14 @@ void DoomCopy::Game::renderWeapon() {
     player->weapon.vertexArray[3].texCoords = sf::Vector2f(px * 32, (py + 1) * 32);
 
     player->weapon.updateState();
+}
+
+void DoomCopy::Game::winCondition(std::string mapName, int& x, int& y) {
+    std::fstream file;
+    file.open(mapName +  "/whereto.conf");
+    std::string line = "";
+    std::getline(file,line);
+
+    x = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"posX=\"","\""));
+    y = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"posY=\"","\""));
 }

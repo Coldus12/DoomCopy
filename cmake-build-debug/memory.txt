@@ -1,0 +1,2533 @@
+==2541== Memcheck, a memory error detector
+==2541== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==2541== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==2541== Command: ./DoomCopy
+==2541== Parent PID: 1888
+==2541== 
+==2541== 
+==2541== HEAP SUMMARY:
+==2541==     in use at exit: 2,148,631 bytes in 8,999 blocks
+==2541==   total heap usage: 95,768 allocs, 86,769 frees, 36,020,695 bytes allocated
+==2541== 
+==2541== 0 bytes in 1 blocks are definitely lost in loss record 1 of 1,989
+==2541==    at 0x483A50F: operator new[](unsigned long) (vg_replace_malloc.c:433)
+==2541==    by 0x11C7F0: DoomCopy::Array2D<sf::Vertex*>::Array2D(int, int) (Array2D.h:22)
+==2541==    by 0x113686: DoomCopy::Game::Game() (Game.cpp:14)
+==2541==    by 0x10D902: main (main.cpp:22)
+==2541== 
+==2541== 8 bytes in 1 blocks are possibly lost in loss record 28 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x684FDE9: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6850295: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685B9D7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DC3C3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x713D7BF: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71E2CDA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2704: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2C699: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x625723C: ???
+==2541==    by 0x5A71B43: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x5A758EF: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541== 
+==2541== 8 bytes in 1 blocks are possibly lost in loss record 29 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x684FDE9: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6850295: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685B9EF: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DC3C3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x713D7BF: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71E2CDA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2704: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2C699: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x625723C: ???
+==2541==    by 0x5A71B43: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x5A758EF: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541== 
+==2541== 16 bytes in 1 blocks are possibly lost in loss record 55 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x647C4B3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C2BC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541==    by 0x62581C3: ???
+==2541==    by 0x6258C6E: ???
+==2541==    by 0x491960C: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 16 bytes in 2 blocks are possibly lost in loss record 56 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x684FDE9: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68512C0: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4907A98: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 32 bytes in 1 blocks are possibly lost in loss record 384 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6EB5C2A: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBDE03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684EBD5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C1C1: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541==    by 0x62581C3: ???
+==2541== 
+==2541== 32 bytes in 1 blocks are definitely lost in loss record 386 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x5C36DAC: XextAddDisplay (in /usr/lib/libXext.so.6.4.0)
+==2541==    by 0x6251EDB: ???
+==2541==    by 0x62581C3: ???
+==2541==    by 0x6258C6E: ???
+==2541==    by 0x491960C: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F85: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4907A98: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4909F7F: sf::Window::Window() (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x48BD7A9: sf::RenderWindow::RenderWindow(sf::VideoMode, sf::String const&, unsigned int, sf::ContextSettings const&) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11379F: DoomCopy::Game::Game() (Game.cpp:17)
+==2541==    by 0x10D902: main (main.cpp:22)
+==2541== 
+==2541== 32 bytes in 1 blocks are definitely lost in loss record 387 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x5C36DAC: XextAddDisplay (in /usr/lib/libXext.so.6.4.0)
+==2541==    by 0x62521AA: ???
+==2541==    by 0x62581C3: ???
+==2541==    by 0x6258C6E: ???
+==2541==    by 0x491960C: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F85: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4907A98: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4909F7F: sf::Window::Window() (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x48BD7A9: sf::RenderWindow::RenderWindow(sf::VideoMode, sf::String const&, unsigned int, sf::ContextSettings const&) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11379F: DoomCopy::Game::Game() (Game.cpp:17)
+==2541==    by 0x10D902: main (main.cpp:22)
+==2541== 
+==2541== 40 bytes in 1 blocks are possibly lost in loss record 979 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x71C8444: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x704718F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C3C1E: sf::Texture::create(unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11141A: DoomCopy::Texture::Texture(int, int) (Texture.h:25)
+==2541==    by 0x10FE2B: DoomCopy::Map::Map(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:12)
+==2541==    by 0x115B65: DoomCopy::Game::startGraphicalGame(char const*, DoomCopy::Point, DoomCopy::Point) (Game.cpp:199)
+==2541==    by 0x1191C8: DoomCopy::GStartGame::doAction() (Game.h:108)
+==2541==    by 0x113A9E: DoomCopy::Game::Game() (Game.cpp:49)
+==2541==    by 0x10D902: main (main.cpp:22)
+==2541== 
+==2541== 40 bytes in 1 blocks are possibly lost in loss record 980 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x71C8444: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x704718F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C3C1E: sf::Texture::create(unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11141A: DoomCopy::Texture::Texture(int, int) (Texture.h:25)
+==2541==    by 0x11EB29: DoomCopy::ProjectileType::ProjectileType() (Projectile.h:24)
+==2541==    by 0x11EB70: DoomCopy::Weapon::Weapon() (Weapon.h:32)
+==2541==    by 0x11E012: DoomCopy::Player::Player(char const*) (Player.cpp:30)
+==2541==    by 0x115BBD: DoomCopy::Game::startGraphicalGame(char const*, DoomCopy::Point, DoomCopy::Point) (Game.cpp:200)
+==2541==    by 0x1191C8: DoomCopy::GStartGame::doAction() (Game.h:108)
+==2541==    by 0x113A9E: DoomCopy::Game::Game() (Game.cpp:49)
+==2541==    by 0x10D902: main (main.cpp:22)
+==2541== 
+==2541== 40 bytes in 1 blocks are possibly lost in loss record 981 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x71C8444: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x704718F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C3C1E: sf::Texture::create(unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11141A: DoomCopy::Texture::Texture(int, int) (Texture.h:25)
+==2541==    by 0x11EB8C: DoomCopy::Weapon::Weapon() (Weapon.h:32)
+==2541==    by 0x11E012: DoomCopy::Player::Player(char const*) (Player.cpp:30)
+==2541==    by 0x115BBD: DoomCopy::Game::startGraphicalGame(char const*, DoomCopy::Point, DoomCopy::Point) (Game.cpp:200)
+==2541==    by 0x1191C8: DoomCopy::GStartGame::doAction() (Game.h:108)
+==2541==    by 0x113A9E: DoomCopy::Game::Game() (Game.cpp:49)
+==2541==    by 0x10D902: main (main.cpp:22)
+==2541== 
+==2541== 64 bytes in 1 blocks are possibly lost in loss record 1,611 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6CE7A3B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6850701: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4907A98: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 64 bytes in 1 blocks are possibly lost in loss record 1,612 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6CE7A3B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6850A13: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4907A98: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 64 bytes in 1 blocks are possibly lost in loss record 1,613 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6CE7A3B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6850AD5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4907A98: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 64 bytes in 1 blocks are possibly lost in loss record 1,614 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6CE7A3B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6850AF9: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4907A98: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 64 bytes in 1 blocks are possibly lost in loss record 1,615 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6CE7A3B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6850B1A: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4907A98: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 64 bytes in 1 blocks are definitely lost in loss record 1,616 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71E1B0E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71E2BB4: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D25EC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2BEC5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623FAC5: ???
+==2541==    by 0x625715C: ???
+==2541==    by 0x5A6EC22: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x5A751EE: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x5A75ABC: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541== 
+==2541== 64 bytes in 1 blocks are definitely lost in loss record 1,617 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71E1B0E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71E1CBE: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71994D4: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x719FE00: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x11A52D: DoomCopy::SetScreenHeight::doAction() (Game.h:357)
+==2541==    by 0x113A9E: DoomCopy::Game::Game() (Game.cpp:49)
+==2541==    by 0x10D902: main (main.cpp:22)
+==2541== 
+==2541== 72 bytes in 1 blocks are possibly lost in loss record 1,660 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684B494: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71A35F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C75A3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 80 bytes in 1 blocks are possibly lost in loss record 1,661 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68B7F6C: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6726A20: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67C2068: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C128: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541== 
+==2541== 80 bytes in 1 blocks are possibly lost in loss record 1,662 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68B7F6C: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67C2125: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C128: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541== 
+==2541== 80 bytes in 1 blocks are definitely lost in loss record 1,663 of 1,989
+==2541==    at 0x4839DEF: operator new(unsigned long) (vg_replace_malloc.c:344)
+==2541==    by 0x48CA743: sf::VertexArray::VertexArray(sf::PrimitiveType, unsigned long) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11EBB4: DoomCopy::Weapon::Weapon() (Weapon.h:33)
+==2541==    by 0x11E012: DoomCopy::Player::Player(char const*) (Player.cpp:30)
+==2541==    by 0x115BBD: DoomCopy::Game::startGraphicalGame(char const*, DoomCopy::Point, DoomCopy::Point) (Game.cpp:200)
+==2541==    by 0x1191C8: DoomCopy::GStartGame::doAction() (Game.h:108)
+==2541==    by 0x113A9E: DoomCopy::Game::Game() (Game.cpp:49)
+==2541==    by 0x10D902: main (main.cpp:22)
+==2541== 
+==2541== 84 bytes in 7 blocks are possibly lost in loss record 1,664 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6846658: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685A814: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x65252BB: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DC076: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71EB329: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71EB596: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71EE219: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x706303B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70631DD: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C3904: sf::Texture::create(unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11141A: DoomCopy::Texture::Texture(int, int) (Texture.h:25)
+==2541== 
+==2541== 86 bytes in 1 blocks are possibly lost in loss record 1,665 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBA955: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBDC9C: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684EBD5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C1C1: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541== 
+==2541== 96 bytes in 2 blocks are possibly lost in loss record 1,672 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68511B0: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4907A98: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 96 bytes in 2 blocks are possibly lost in loss record 1,673 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68511D4: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4907A98: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 109 bytes in 1 blocks are possibly lost in loss record 1,678 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBDE88: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684EBD5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C1C1: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541==    by 0x62581C3: ???
+==2541== 
+==2541== 112 bytes in 1 blocks are possibly lost in loss record 1,682 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6726A43: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67C2068: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C128: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541==    by 0x62581C3: ???
+==2541== 
+==2541== 112 bytes in 1 blocks are possibly lost in loss record 1,683 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67C2150: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C128: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541==    by 0x62581C3: ???
+==2541==    by 0x6258C6E: ???
+==2541== 
+==2541== 112 bytes in 1 blocks are possibly lost in loss record 1,684 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x70538A8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7062C42: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70631DD: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C3904: sf::Texture::create(unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11141A: DoomCopy::Texture::Texture(int, int) (Texture.h:25)
+==2541==    by 0x10FE2B: DoomCopy::Map::Map(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:12)
+==2541==    by 0x115B65: DoomCopy::Game::startGraphicalGame(char const*, DoomCopy::Point, DoomCopy::Point) (Game.cpp:199)
+==2541==    by 0x1191C8: DoomCopy::GStartGame::doAction() (Game.h:108)
+==2541==    by 0x113A9E: DoomCopy::Game::Game() (Game.cpp:49)
+==2541==    by 0x10D902: main (main.cpp:22)
+==2541== 
+==2541== 112 bytes in 1 blocks are possibly lost in loss record 1,685 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x70538A8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7062C42: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70631DD: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C3904: sf::Texture::create(unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11141A: DoomCopy::Texture::Texture(int, int) (Texture.h:25)
+==2541==    by 0x11EB29: DoomCopy::ProjectileType::ProjectileType() (Projectile.h:24)
+==2541==    by 0x11EB70: DoomCopy::Weapon::Weapon() (Weapon.h:32)
+==2541==    by 0x11E012: DoomCopy::Player::Player(char const*) (Player.cpp:30)
+==2541==    by 0x115BBD: DoomCopy::Game::startGraphicalGame(char const*, DoomCopy::Point, DoomCopy::Point) (Game.cpp:200)
+==2541==    by 0x1191C8: DoomCopy::GStartGame::doAction() (Game.h:108)
+==2541==    by 0x113A9E: DoomCopy::Game::Game() (Game.cpp:49)
+==2541== 
+==2541== 112 bytes in 1 blocks are possibly lost in loss record 1,686 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x70538A8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7062C42: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70631DD: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C3904: sf::Texture::create(unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11141A: DoomCopy::Texture::Texture(int, int) (Texture.h:25)
+==2541==    by 0x11EB8C: DoomCopy::Weapon::Weapon() (Weapon.h:32)
+==2541==    by 0x11E012: DoomCopy::Player::Player(char const*) (Player.cpp:30)
+==2541==    by 0x115BBD: DoomCopy::Game::startGraphicalGame(char const*, DoomCopy::Point, DoomCopy::Point) (Game.cpp:200)
+==2541==    by 0x1191C8: DoomCopy::GStartGame::doAction() (Game.h:108)
+==2541==    by 0x113A9E: DoomCopy::Game::Game() (Game.cpp:49)
+==2541==    by 0x10D902: main (main.cpp:22)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,687 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684C701: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685BFE9: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541==    by 0x62581C3: ???
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,688 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684C71D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685BFE9: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541==    by 0x62581C3: ???
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,689 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C79BE: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4907A98: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,690 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68509EF: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,691 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6850A45: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,692 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C805E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,693 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C8067: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,694 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C8070: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,695 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C8079: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,696 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C80C1: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,697 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C8101: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,698 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C810D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,699 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C8119: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,700 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD5B7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C8127: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,701 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD5B7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C8135: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,702 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C819B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4907A98: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,703 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C8243: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,704 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C824F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,705 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB813: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C826B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4907A98: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,706 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C8277: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,707 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C8283: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,708 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C668A: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,709 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C66AF: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,710 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C66BC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,711 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C6B5F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,712 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C6E69: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,713 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C6F08: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,714 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD5B7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C6F77: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 120 bytes in 1 blocks are possibly lost in loss record 1,715 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD5B7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C6F86: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 128 bytes in 1 blocks are possibly lost in loss record 1,728 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB868: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C826B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 128 bytes in 1 blocks are definitely lost in loss record 1,729 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2902: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x10F4D4: DoomCopy::Texture::addImg(char const*, char const*) (Texture.h:41)
+==2541==    by 0x120744: DoomCopy::ProjectileType::loadProjectileType(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Projectile.cpp:21)
+==2541==    by 0x11EE5E: DoomCopy::Weapon::loadWeapon(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Weapon.cpp:17)
+==2541== 
+==2541== 128 bytes in 1 blocks are definitely lost in loss record 1,730 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2938: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x10F4D4: DoomCopy::Texture::addImg(char const*, char const*) (Texture.h:41)
+==2541==    by 0x120744: DoomCopy::ProjectileType::loadProjectileType(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Projectile.cpp:21)
+==2541==    by 0x11EE5E: DoomCopy::Weapon::loadWeapon(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Weapon.cpp:17)
+==2541== 
+==2541== 128 bytes in 1 blocks are definitely lost in loss record 1,731 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2902: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x10F4D4: DoomCopy::Texture::addImg(char const*, char const*) (Texture.h:41)
+==2541==    by 0x11F295: DoomCopy::Weapon::loadWeapon(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Weapon.cpp:23)
+==2541==    by 0x115C05: DoomCopy::Game::startGraphicalGame(char const*, DoomCopy::Point, DoomCopy::Point) (Game.cpp:201)
+==2541== 
+==2541== 128 bytes in 1 blocks are definitely lost in loss record 1,732 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2938: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x10F4D4: DoomCopy::Texture::addImg(char const*, char const*) (Texture.h:41)
+==2541==    by 0x11F295: DoomCopy::Weapon::loadWeapon(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Weapon.cpp:23)
+==2541==    by 0x115C05: DoomCopy::Game::startGraphicalGame(char const*, DoomCopy::Point, DoomCopy::Point) (Game.cpp:201)
+==2541== 
+==2541== 128 bytes in 1 blocks are definitely lost in loss record 1,733 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2902: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x10F4D4: DoomCopy::Texture::addImg(char const*, char const*) (Texture.h:41)
+==2541==    by 0x11F4FF: DoomCopy::Weapon::loadWeapon(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Weapon.cpp:26)
+==2541==    by 0x115C05: DoomCopy::Game::startGraphicalGame(char const*, DoomCopy::Point, DoomCopy::Point) (Game.cpp:201)
+==2541== 
+==2541== 128 bytes in 1 blocks are definitely lost in loss record 1,734 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2938: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x10F4D4: DoomCopy::Texture::addImg(char const*, char const*) (Texture.h:41)
+==2541==    by 0x11F4FF: DoomCopy::Weapon::loadWeapon(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Weapon.cpp:26)
+==2541==    by 0x115C05: DoomCopy::Game::startGraphicalGame(char const*, DoomCopy::Point, DoomCopy::Point) (Game.cpp:201)
+==2541== 
+==2541== 144 bytes in 1 blocks are possibly lost in loss record 1,742 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6846B31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E7BA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E9E7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C088: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541==    by 0x62581C3: ???
+==2541== 
+==2541== 144 bytes in 1 blocks are possibly lost in loss record 1,743 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6846B31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E7BA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E9E7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684FA67: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6850A5B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541== 
+==2541== 144 bytes in 1 blocks are possibly lost in loss record 1,744 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6846B31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E7BA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E9E7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684FAF7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6850AA5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541== 
+==2541== 144 bytes in 1 blocks are possibly lost in loss record 1,745 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6846B31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E7BA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E9E7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685AA2F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x65252BB: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6CE7722: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6851D1D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541== 
+==2541== 144 bytes in 1 blocks are possibly lost in loss record 1,746 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6846B31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E7BA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E9E7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685AA2F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x65252BB: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6CE7722: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6846D6C: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68529FD: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x66712B6: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6673C46: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6857069: ??? (in /usr/lib/dri/iris_dri.so)
+==2541== 
+==2541== 144 bytes in 1 blocks are possibly lost in loss record 1,747 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6846B31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E7BA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E9E7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685AA2F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x65252BB: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6CE7722: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67FC40D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6809749: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x680993D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x681C324: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6842DA1: ??? (in /usr/lib/dri/iris_dri.so)
+==2541== 
+==2541== 144 bytes in 1 blocks are possibly lost in loss record 1,748 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6846B31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E7BA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E9E7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684FD03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684FDDE: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6850295: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685B9D7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DC3C3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2641: sf::Texture::update(unsigned char const*, unsigned int, unsigned int, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x48C425C: sf::Texture::loadFromImage(sf::Image const&, sf::Rect<int> const&) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x488DB44: sf::Font::Page::Page() (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541== 
+==2541== 144 bytes in 1 blocks are possibly lost in loss record 1,749 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6846B31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E7BA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E9E7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684FD03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684FDDE: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6850295: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685B9D7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DC532: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71B91AA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623EF7E: ???
+==2541==    by 0x490A491: sf::Window::display() (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 144 bytes in 1 blocks are possibly lost in loss record 1,750 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6846B31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E7BA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E9E7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685AA2F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x65252BB: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6CE7722: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67D5E18: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x683C813: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x683E845: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6544906: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6CF023A: ??? (in /usr/lib/dri/iris_dri.so)
+==2541== 
+==2541== 144 bytes in 1 blocks are possibly lost in loss record 1,751 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6846B31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E7BA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E9E7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685AA2F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x65252BB: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6CE7722: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67D5E18: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x683C908: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x683E845: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6544906: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6CF023A: ??? (in /usr/lib/dri/iris_dri.so)
+==2541== 
+==2541== 144 bytes in 1 blocks are possibly lost in loss record 1,752 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6846B31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E7BA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E9E7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685AA2F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x65252BB: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6CE7722: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6CE795D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6CEFFFC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x719C5EE: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6FA3E3C: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6FA4A82: ??? (in /usr/lib/dri/iris_dri.so)
+==2541== 
+==2541== 144 bytes in 1 blocks are possibly lost in loss record 1,753 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6846B31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E7BA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E9E7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684FAF7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6543DF9: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6CF023A: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x719C5EE: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6FA3E3C: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6FA4A82: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48BCD18: sf::RenderTarget::draw(sf::Vertex const*, unsigned long, sf::PrimitiveType, sf::RenderStates const&) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x48CA6A9: sf::VertexArray::draw(sf::RenderTarget&, sf::RenderStates) const (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541== 
+==2541== 144 bytes in 1 blocks are possibly lost in loss record 1,754 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6846B31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E7BA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E9E7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685AA2F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x65252BB: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6CE7722: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67FC40D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6842E08: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6673D31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6857069: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6857F04: ??? (in /usr/lib/dri/iris_dri.so)
+==2541== 
+==2541== 144 bytes in 1 blocks are possibly lost in loss record 1,755 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6846B31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E7BA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E9E7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685AA2F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x65252BB: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6CE7722: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67FC40D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67E79DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6844315: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6673D31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6857069: ??? (in /usr/lib/dri/iris_dri.so)
+==2541== 
+==2541== 160 bytes in 4 blocks are possibly lost in loss record 1,761 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x71C8444: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x704718F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C3C1E: sf::Texture::create(unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11141A: DoomCopy::Texture::Texture(int, int) (Texture.h:25)
+==2541==    by 0x111679: DoomCopy::Creature::Creature(DoomCopy::Point, double, DoomCopy::Point, double, double) (Creature.h:49)
+==2541==    by 0x111F11: DoomCopy::MeleeEnemy::MeleeEnemy(DoomCopy::Point, DoomCopy::Point, double, double, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*, double, double) (MeleeEnemy.h:17)
+==2541==    by 0x110D6A: DoomCopy::Map::loadEnemies(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:69)
+==2541==    by 0x110141: DoomCopy::Map::load(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:38)
+==2541==    by 0x10FE87: DoomCopy::Map::Map(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:13)
+==2541==    by 0x115B65: DoomCopy::Game::startGraphicalGame(char const*, DoomCopy::Point, DoomCopy::Point) (Game.cpp:199)
+==2541==    by 0x1191C8: DoomCopy::GStartGame::doAction() (Game.h:108)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,769 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684C701: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685BFE9: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,770 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C79BE: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,771 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68509EF: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,772 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6850A45: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,773 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C805E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,774 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C8067: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,775 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C8079: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,776 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C80C1: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,777 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C8101: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,778 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C810D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,779 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C8119: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,780 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD5B7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C8127: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,781 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD5B7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C8135: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,782 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C819B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,783 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C824F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,784 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C8277: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,785 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C8283: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,786 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C668A: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,787 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C66AF: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,788 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C66BC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,789 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C6B5F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,790 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C6E69: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,791 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x709DBD7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C6F08: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,792 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD5B7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C6F77: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,793 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD5B7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C6F86: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 168 bytes in 1 blocks are possibly lost in loss record 1,794 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB694: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBBF2F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FCAD3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C28A9: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x48C45B3: sf::Texture::Texture(sf::Texture const&) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11FCF7: DoomCopy::Texture::Texture(DoomCopy::Texture const&) (Texture.h:13)
+==2541==    by 0x11FEB6: DoomCopy::ProjectileType::ProjectileType(DoomCopy::ProjectileType const&) (Projectile.h:17)
+==2541==    by 0x11FF63: DoomCopy::Projectile::Projectile(DoomCopy::ProjectileType, DoomCopy::Point, DoomCopy::Point) (Projectile.h:50)
+==2541==    by 0x11FB09: DoomCopy::Weapon::gShot(DoomCopy::Map&) (Weapon.cpp:36)
+==2541== 
+==2541== 176 bytes in 1 blocks are possibly lost in loss record 1,798 of 1,989
+==2541==    at 0x483BD7B: realloc (vg_replace_malloc.c:836)
+==2541==    by 0x6EB9F11: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68B7DDF: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6726E46: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67C2068: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C128: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541== 
+==2541== 176 bytes in 1 blocks are possibly lost in loss record 1,799 of 1,989
+==2541==    at 0x483BD7B: realloc (vg_replace_malloc.c:836)
+==2541==    by 0x6EB9F11: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68B7DDF: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67C2183: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C128: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541==    by 0x62581C3: ???
+==2541== 
+==2541== 184 bytes in 1 blocks are possibly lost in loss record 1,800 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x708F944: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C66D7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 192 bytes in 3 blocks are definitely lost in loss record 1,802 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71E1B0E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71E1CBE: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71994D4: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x719FE00: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x119C09: DoomCopy::SetScreenWidth::doAction() (Game.h:237)
+==2541==    by 0x113A9E: DoomCopy::Game::Game() (Game.cpp:49)
+==2541==    by 0x10D902: main (main.cpp:22)
+==2541== 
+==2541== 216 bytes in 1 blocks are possibly lost in loss record 1,812 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB694: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBBF42: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68461BE: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685A8B3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x65252BB: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71BAF98: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71BAFFF: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623CC6C: ???
+==2541==    by 0x623DB34: ???
+==2541== 
+==2541== 224 bytes in 2 blocks are possibly lost in loss record 1,813 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684C225: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684FE5F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68512C0: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 224 bytes in 2 blocks are possibly lost in loss record 1,814 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684C18F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684FE5F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68512C0: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 240 bytes in 2 blocks are possibly lost in loss record 1,815 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD4F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685122E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 240 bytes in 2 blocks are possibly lost in loss record 1,816 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB813: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685124A: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 256 bytes in 2 blocks are possibly lost in loss record 1,819 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB868: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685124A: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 288 bytes in 2 blocks are possibly lost in loss record 1,824 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6846B31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E7BA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685A87F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x65252BB: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71BAF98: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71BAFFF: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623CC6C: ???
+==2541==    by 0x623DB34: ???
+==2541==    by 0x623DF6B: ???
+==2541==    by 0x71BC0FF: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71B94A3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541== 
+==2541== 288 bytes in 2 blocks are possibly lost in loss record 1,825 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6846B31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E7BA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E9E7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685AA2F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x65252BB: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6CE7722: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67FC40D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67E7ADF: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6842DD8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6673D31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6857069: ??? (in /usr/lib/dri/iris_dri.so)
+==2541== 
+==2541== 296 bytes in 1 blocks are possibly lost in loss record 1,826 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684B5BE: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71A35F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C75A3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 304 bytes in 1 blocks are possibly lost in loss record 1,827 of 1,989
+==2541==    at 0x483BD7B: realloc (vg_replace_malloc.c:836)
+==2541==    by 0x6EB9F11: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x666B1A3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684B571: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71A35F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C75A3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 336 bytes in 2 blocks are possibly lost in loss record 1,831 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBD548: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685122E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 416 bytes in 1 blocks are possibly lost in loss record 1,837 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBDC3C: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684EBD5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C1C1: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541== 
+==2541== 448 bytes in 4 blocks are possibly lost in loss record 1,839 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x70538A8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7062C42: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70631DD: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C3904: sf::Texture::create(unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11141A: DoomCopy::Texture::Texture(int, int) (Texture.h:25)
+==2541==    by 0x111679: DoomCopy::Creature::Creature(DoomCopy::Point, double, DoomCopy::Point, double, double) (Creature.h:49)
+==2541==    by 0x111F11: DoomCopy::MeleeEnemy::MeleeEnemy(DoomCopy::Point, DoomCopy::Point, double, double, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*, double, double) (MeleeEnemy.h:17)
+==2541==    by 0x110D6A: DoomCopy::Map::loadEnemies(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:69)
+==2541==    by 0x110141: DoomCopy::Map::load(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:38)
+==2541==    by 0x10FE87: DoomCopy::Map::Map(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:13)
+==2541==    by 0x115B65: DoomCopy::Game::startGraphicalGame(char const*, DoomCopy::Point, DoomCopy::Point) (Game.cpp:199)
+==2541== 
+==2541== 448 bytes in 7 blocks are definitely lost in loss record 1,840 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71E1B0E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71E1CBE: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71994D4: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x719FE00: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x1140BD: DoomCopy::Game::Game() (Game.cpp:101)
+==2541==    by 0x10D902: main (main.cpp:22)
+==2541== 
+==2541== 480 (48 direct, 432 indirect) bytes in 1 blocks are definitely lost in loss record 1,846 of 1,989
+==2541==    at 0x4839DEF: operator new(unsigned long) (vg_replace_malloc.c:344)
+==2541==    by 0x10FBF6: DoomCopy::List<DoomCopy::BlockType>::addItem(DoomCopy::BlockType) (List.h:138)
+==2541==    by 0x10EDAC: DoomCopy::Blocks::load(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, DoomCopy::Texture&) (BlockType.cpp:34)
+==2541==    by 0x11010F: DoomCopy::Map::load(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:37)
+==2541==    by 0x10FE87: DoomCopy::Map::Map(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:13)
+==2541==    by 0x115B65: DoomCopy::Game::startGraphicalGame(char const*, DoomCopy::Point, DoomCopy::Point) (Game.cpp:199)
+==2541==    by 0x1191C8: DoomCopy::GStartGame::doAction() (Game.h:108)
+==2541==    by 0x113A9E: DoomCopy::Game::Game() (Game.cpp:49)
+==2541==    by 0x10D902: main (main.cpp:22)
+==2541== 
+==2541== 504 bytes in 1 blocks are possibly lost in loss record 1,849 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684B4B2: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71A35F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C75A3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 504 bytes in 1 blocks are possibly lost in loss record 1,850 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB694: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBBF2F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7047172: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C3C1E: sf::Texture::create(unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x48C4546: sf::Texture::Texture(sf::Texture const&) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11FCF7: DoomCopy::Texture::Texture(DoomCopy::Texture const&) (Texture.h:13)
+==2541==    by 0x11FEB6: DoomCopy::ProjectileType::ProjectileType(DoomCopy::ProjectileType const&) (Projectile.h:17)
+==2541==    by 0x11FF63: DoomCopy::Projectile::Projectile(DoomCopy::ProjectileType, DoomCopy::Point, DoomCopy::Point) (Projectile.h:50)
+==2541==    by 0x11FB09: DoomCopy::Weapon::gShot(DoomCopy::Map&) (Weapon.cpp:36)
+==2541== 
+==2541== 512 bytes in 4 blocks are definitely lost in loss record 1,862 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2902: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x10F4D4: DoomCopy::Texture::addImg(char const*, char const*) (Texture.h:41)
+==2541==    by 0x111F82: DoomCopy::MeleeEnemy::MeleeEnemy(DoomCopy::Point, DoomCopy::Point, double, double, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*, double, double) (MeleeEnemy.h:19)
+==2541==    by 0x110D6A: DoomCopy::Map::loadEnemies(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:69)
+==2541== 
+==2541== 512 bytes in 4 blocks are definitely lost in loss record 1,863 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2938: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x10F4D4: DoomCopy::Texture::addImg(char const*, char const*) (Texture.h:41)
+==2541==    by 0x111F82: DoomCopy::MeleeEnemy::MeleeEnemy(DoomCopy::Point, DoomCopy::Point, double, double, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*, double, double) (MeleeEnemy.h:19)
+==2541==    by 0x110D6A: DoomCopy::Map::loadEnemies(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:69)
+==2541== 
+==2541== 512 bytes in 4 blocks are definitely lost in loss record 1,864 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2902: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x10F4D4: DoomCopy::Texture::addImg(char const*, char const*) (Texture.h:41)
+==2541==    by 0x111FFA: DoomCopy::MeleeEnemy::MeleeEnemy(DoomCopy::Point, DoomCopy::Point, double, double, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*, double, double) (MeleeEnemy.h:20)
+==2541==    by 0x110D6A: DoomCopy::Map::loadEnemies(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:69)
+==2541== 
+==2541== 512 bytes in 4 blocks are definitely lost in loss record 1,865 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2938: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x10F4D4: DoomCopy::Texture::addImg(char const*, char const*) (Texture.h:41)
+==2541==    by 0x111FFA: DoomCopy::MeleeEnemy::MeleeEnemy(DoomCopy::Point, DoomCopy::Point, double, double, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*, double, double) (MeleeEnemy.h:20)
+==2541==    by 0x110D6A: DoomCopy::Map::loadEnemies(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:69)
+==2541== 
+==2541== 512 bytes in 4 blocks are definitely lost in loss record 1,866 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2902: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x10F4D4: DoomCopy::Texture::addImg(char const*, char const*) (Texture.h:41)
+==2541==    by 0x112072: DoomCopy::MeleeEnemy::MeleeEnemy(DoomCopy::Point, DoomCopy::Point, double, double, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*, double, double) (MeleeEnemy.h:21)
+==2541==    by 0x110D6A: DoomCopy::Map::loadEnemies(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:69)
+==2541== 
+==2541== 512 bytes in 4 blocks are definitely lost in loss record 1,867 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2938: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x10F4D4: DoomCopy::Texture::addImg(char const*, char const*) (Texture.h:41)
+==2541==    by 0x112072: DoomCopy::MeleeEnemy::MeleeEnemy(DoomCopy::Point, DoomCopy::Point, double, double, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*, double, double) (MeleeEnemy.h:21)
+==2541==    by 0x110D6A: DoomCopy::Map::loadEnemies(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:69)
+==2541== 
+==2541== 512 bytes in 4 blocks are definitely lost in loss record 1,868 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2902: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x10F4D4: DoomCopy::Texture::addImg(char const*, char const*) (Texture.h:41)
+==2541==    by 0x1120EA: DoomCopy::MeleeEnemy::MeleeEnemy(DoomCopy::Point, DoomCopy::Point, double, double, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*, double, double) (MeleeEnemy.h:22)
+==2541==    by 0x110D6A: DoomCopy::Map::loadEnemies(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:69)
+==2541== 
+==2541== 512 bytes in 4 blocks are definitely lost in loss record 1,869 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2938: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x10F4D4: DoomCopy::Texture::addImg(char const*, char const*) (Texture.h:41)
+==2541==    by 0x1120EA: DoomCopy::MeleeEnemy::MeleeEnemy(DoomCopy::Point, DoomCopy::Point, double, double, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*, double, double) (MeleeEnemy.h:22)
+==2541==    by 0x110D6A: DoomCopy::Map::loadEnemies(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:69)
+==2541== 
+==2541== 512 bytes in 4 blocks are definitely lost in loss record 1,870 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2902: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x10F4D4: DoomCopy::Texture::addImg(char const*, char const*) (Texture.h:41)
+==2541==    by 0x112162: DoomCopy::MeleeEnemy::MeleeEnemy(DoomCopy::Point, DoomCopy::Point, double, double, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*, double, double) (MeleeEnemy.h:23)
+==2541==    by 0x110D6A: DoomCopy::Map::loadEnemies(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:69)
+==2541== 
+==2541== 512 bytes in 4 blocks are definitely lost in loss record 1,871 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2938: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x10F4D4: DoomCopy::Texture::addImg(char const*, char const*) (Texture.h:41)
+==2541==    by 0x112162: DoomCopy::MeleeEnemy::MeleeEnemy(DoomCopy::Point, DoomCopy::Point, double, double, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*, double, double) (MeleeEnemy.h:23)
+==2541==    by 0x110D6A: DoomCopy::Map::loadEnemies(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:69)
+==2541== 
+==2541== 512 bytes in 4 blocks are definitely lost in loss record 1,872 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2902: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x10F4D4: DoomCopy::Texture::addImg(char const*, char const*) (Texture.h:41)
+==2541==    by 0x1121DA: DoomCopy::MeleeEnemy::MeleeEnemy(DoomCopy::Point, DoomCopy::Point, double, double, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*, double, double) (MeleeEnemy.h:24)
+==2541==    by 0x110D6A: DoomCopy::Map::loadEnemies(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:69)
+==2541== 
+==2541== 512 bytes in 4 blocks are definitely lost in loss record 1,873 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2938: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x10F4D4: DoomCopy::Texture::addImg(char const*, char const*) (Texture.h:41)
+==2541==    by 0x1121DA: DoomCopy::MeleeEnemy::MeleeEnemy(DoomCopy::Point, DoomCopy::Point, double, double, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*, double, double) (MeleeEnemy.h:24)
+==2541==    by 0x110D6A: DoomCopy::Map::loadEnemies(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:69)
+==2541== 
+==2541== 576 bytes in 4 blocks are possibly lost in loss record 1,875 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6846B31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E7BA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E9E7: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684FD03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684FDDE: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68512C0: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541== 
+==2541== 640 bytes in 5 blocks are definitely lost in loss record 1,879 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2902: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x488EF72: sf::Font::findGlyphRect(sf::Font::Page&, unsigned int, unsigned int) const (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x488F3B9: sf::Font::loadGlyph(unsigned int, unsigned int, bool, float) const (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x488F96D: sf::Font::getGlyph(unsigned int, unsigned int, bool, float) const (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541== 
+==2541== 640 bytes in 5 blocks are definitely lost in loss record 1,880 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2938: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x488EF72: sf::Font::findGlyphRect(sf::Font::Page&, unsigned int, unsigned int) const (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x488F3B9: sf::Font::loadGlyph(unsigned int, unsigned int, bool, float) const (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x488F96D: sf::Font::getGlyph(unsigned int, unsigned int, bool, float) const (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541== 
+==2541== 784 bytes in 1 blocks are possibly lost in loss record 1,886 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67C2055: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C128: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541==    by 0x62581C3: ???
+==2541== 
+==2541== 816 bytes in 6 blocks are possibly lost in loss record 1,888 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67C24A5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C128: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541==    by 0x62581C3: ???
+==2541== 
+==2541== 888 bytes in 1 blocks are possibly lost in loss record 1,892 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685BF58: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541==    by 0x62581C3: ???
+==2541==    by 0x6258C6E: ???
+==2541== 
+==2541== 1,072 bytes in 1 blocks are possibly lost in loss record 1,895 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x71C8421: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x704718F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C3C1E: sf::Texture::create(unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11141A: DoomCopy::Texture::Texture(int, int) (Texture.h:25)
+==2541==    by 0x10FE2B: DoomCopy::Map::Map(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:12)
+==2541==    by 0x115B65: DoomCopy::Game::startGraphicalGame(char const*, DoomCopy::Point, DoomCopy::Point) (Game.cpp:199)
+==2541==    by 0x1191C8: DoomCopy::GStartGame::doAction() (Game.h:108)
+==2541==    by 0x113A9E: DoomCopy::Game::Game() (Game.cpp:49)
+==2541==    by 0x10D902: main (main.cpp:22)
+==2541== 
+==2541== 1,072 bytes in 1 blocks are possibly lost in loss record 1,896 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x71C8421: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x704718F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C3C1E: sf::Texture::create(unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11141A: DoomCopy::Texture::Texture(int, int) (Texture.h:25)
+==2541==    by 0x11EB29: DoomCopy::ProjectileType::ProjectileType() (Projectile.h:24)
+==2541==    by 0x11EB70: DoomCopy::Weapon::Weapon() (Weapon.h:32)
+==2541==    by 0x11E012: DoomCopy::Player::Player(char const*) (Player.cpp:30)
+==2541==    by 0x115BBD: DoomCopy::Game::startGraphicalGame(char const*, DoomCopy::Point, DoomCopy::Point) (Game.cpp:200)
+==2541==    by 0x1191C8: DoomCopy::GStartGame::doAction() (Game.h:108)
+==2541==    by 0x113A9E: DoomCopy::Game::Game() (Game.cpp:49)
+==2541==    by 0x10D902: main (main.cpp:22)
+==2541== 
+==2541== 1,072 bytes in 1 blocks are possibly lost in loss record 1,897 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x71C8421: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x704718F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C3C1E: sf::Texture::create(unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11141A: DoomCopy::Texture::Texture(int, int) (Texture.h:25)
+==2541==    by 0x11EB8C: DoomCopy::Weapon::Weapon() (Weapon.h:32)
+==2541==    by 0x11E012: DoomCopy::Player::Player(char const*) (Player.cpp:30)
+==2541==    by 0x115BBD: DoomCopy::Game::startGraphicalGame(char const*, DoomCopy::Point, DoomCopy::Point) (Game.cpp:200)
+==2541==    by 0x1191C8: DoomCopy::GStartGame::doAction() (Game.h:108)
+==2541==    by 0x113A9E: DoomCopy::Game::Game() (Game.cpp:49)
+==2541==    by 0x10D902: main (main.cpp:22)
+==2541== 
+==2541== 1,152 bytes in 16 blocks are possibly lost in loss record 1,901 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68B7DF0: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6726E46: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67C2068: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C128: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541== 
+==2541== 1,152 bytes in 16 blocks are possibly lost in loss record 1,902 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68B7DF0: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67C2183: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C128: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541== 
+==2541== 1,152 bytes in 9 blocks are definitely lost in loss record 1,903 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2902: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x10F4D4: DoomCopy::Texture::addImg(char const*, char const*) (Texture.h:41)
+==2541==    by 0x10ED47: DoomCopy::Blocks::load(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, DoomCopy::Texture&) (BlockType.cpp:32)
+==2541==    by 0x11010F: DoomCopy::Map::load(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:37)
+==2541== 
+==2541== 1,152 bytes in 9 blocks are definitely lost in loss record 1,904 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2938: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x10F4D4: DoomCopy::Texture::addImg(char const*, char const*) (Texture.h:41)
+==2541==    by 0x10ED47: DoomCopy::Blocks::load(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, DoomCopy::Texture&) (BlockType.cpp:32)
+==2541==    by 0x11010F: DoomCopy::Map::load(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:37)
+==2541== 
+==2541== 1,280 bytes in 1 blocks are possibly lost in loss record 1,905 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6EB5BCF: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBDE03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684EBD5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C1C1: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541==    by 0x62581C3: ???
+==2541== 
+==2541== 1,296 bytes in 9 blocks are possibly lost in loss record 1,906 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6846B31: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684E7BA: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685A87F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x65252BB: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DC076: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71EB329: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71EB596: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71EE219: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x706303B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70631DD: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C3904: sf::Texture::create(unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541== 
+==2541== 1,336 bytes in 1 blocks are possibly lost in loss record 1,908 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x718DDD6: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C80B5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 1,464 bytes in 1 blocks are possibly lost in loss record 1,909 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x718DD88: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C8097: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 1,536 bytes in 12 blocks are definitely lost in loss record 1,910 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2902: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x48C45B3: sf::Texture::Texture(sf::Texture const&) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11FCF7: DoomCopy::Texture::Texture(DoomCopy::Texture const&) (Texture.h:13)
+==2541==    by 0x11FEB6: DoomCopy::ProjectileType::ProjectileType(DoomCopy::ProjectileType const&) (Projectile.h:17)
+==2541== 
+==2541== 1,536 bytes in 12 blocks are definitely lost in loss record 1,911 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x681B4DC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6831C7B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DADE3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DB27D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FE7B8: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70FFC9B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x7100059: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C2938: sf::Texture::update(sf::Texture const&, unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x48C45B3: sf::Texture::Texture(sf::Texture const&) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11FCF7: DoomCopy::Texture::Texture(DoomCopy::Texture const&) (Texture.h:13)
+==2541==    by 0x11FEB6: DoomCopy::ProjectileType::ProjectileType(DoomCopy::ProjectileType const&) (Projectile.h:17)
+==2541== 
+==2541== 1,600 bytes in 2 blocks are possibly lost in loss record 1,913 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6851206: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4907A98: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4909F7F: sf::Window::Window() (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 1,720 bytes in 1 blocks are possibly lost in loss record 1,915 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67C210A: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C128: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541==    by 0x62581C3: ???
+==2541==    by 0x6258C6E: ???
+==2541== 
+==2541== 1,792 bytes in 16 blocks are possibly lost in loss record 1,916 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68B7BD3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6726D37: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67C2068: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C128: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541== 
+==2541== 1,792 bytes in 16 blocks are possibly lost in loss record 1,917 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68B7BD3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67C22BC: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C128: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541==    by 0x62581C3: ???
+==2541== 
+==2541== 1,976 bytes in 1 blocks are possibly lost in loss record 1,918 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6726A0F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67C2068: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C128: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541==    by 0x62581C3: ???
+==2541== 
+==2541== 2,880 (16 direct, 2,864 indirect) bytes in 1 blocks are definitely lost in loss record 1,935 of 1,989
+==2541==    at 0x4839DEF: operator new(unsigned long) (vg_replace_malloc.c:344)
+==2541==    by 0x1125D6: DoomCopy::List<DoomCopy::Creature*>::addItem(DoomCopy::Creature*) (List.h:142)
+==2541==    by 0x110D7D: DoomCopy::Map::loadEnemies(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:69)
+==2541==    by 0x110141: DoomCopy::Map::load(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:38)
+==2541==    by 0x10FE87: DoomCopy::Map::Map(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:13)
+==2541==    by 0x115B65: DoomCopy::Game::startGraphicalGame(char const*, DoomCopy::Point, DoomCopy::Point) (Game.cpp:199)
+==2541==    by 0x1191C8: DoomCopy::GStartGame::doAction() (Game.h:108)
+==2541==    by 0x113A9E: DoomCopy::Game::Game() (Game.cpp:49)
+==2541==    by 0x10D902: main (main.cpp:22)
+==2541== 
+==2541== 3,584 bytes in 7 blocks are possibly lost in loss record 1,937 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6846AB0: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685A4FD: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x65252BB: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DC076: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71EB329: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71EB596: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71EE219: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x706303B: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x70631DD: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C3904: sf::Texture::create(unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11141A: DoomCopy::Texture::Texture(int, int) (Texture.h:25)
+==2541== 
+==2541== 4,160 bytes in 16 blocks are possibly lost in loss record 1,943 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68B7E16: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67C2183: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C128: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541== 
+==2541== 4,288 bytes in 4 blocks are possibly lost in loss record 1,944 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x71C8421: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x704718F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x48C3C1E: sf::Texture::create(unsigned int, unsigned int) (in /usr/lib/libsfml-graphics.so.2.5.1)
+==2541==    by 0x11141A: DoomCopy::Texture::Texture(int, int) (Texture.h:25)
+==2541==    by 0x111679: DoomCopy::Creature::Creature(DoomCopy::Point, double, DoomCopy::Point, double, double) (Creature.h:49)
+==2541==    by 0x111F11: DoomCopy::MeleeEnemy::MeleeEnemy(DoomCopy::Point, DoomCopy::Point, double, double, double, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*, double, double) (MeleeEnemy.h:17)
+==2541==    by 0x110D6A: DoomCopy::Map::loadEnemies(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:69)
+==2541==    by 0x110141: DoomCopy::Map::load(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:38)
+==2541==    by 0x10FE87: DoomCopy::Map::Map(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:13)
+==2541==    by 0x115B65: DoomCopy::Game::startGraphicalGame(char const*, DoomCopy::Point, DoomCopy::Point) (Game.cpp:199)
+==2541==    by 0x1191C8: DoomCopy::GStartGame::doAction() (Game.h:108)
+==2541== 
+==2541== 4,672 bytes in 16 blocks are possibly lost in loss record 1,947 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68B7E16: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6726E46: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67C2068: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C128: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541== 
+==2541== 7,688 bytes in 1 blocks are possibly lost in loss record 1,955 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x68B6FF6: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685AC55: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6525CDB: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6CE7762: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6851D1D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541== 
+==2541== 11,200 bytes in 2 blocks are possibly lost in loss record 1,961 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6851215: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4907A98: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4909F7F: sf::Window::Window() (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 12,048 bytes in 1 blocks are possibly lost in loss record 1,962 of 1,989
+==2541==    at 0x483BB65: calloc (vg_replace_malloc.c:762)
+==2541==    by 0x6851CD4: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4907A98: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4909F7F: sf::Window::Window() (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 14,384 bytes in 1 blocks are possibly lost in loss record 1,966 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x666AA14: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684B571: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71A35F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C75A3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541== 
+==2541== 14,384 bytes in 1 blocks are possibly lost in loss record 1,967 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x666B1F5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x684B571: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71A35F3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C75A3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541== 
+==2541== 31,680 (576 direct, 31,104 indirect) bytes in 1 blocks are definitely lost in loss record 1,980 of 1,989
+==2541==    at 0x483A50F: operator new[](unsigned long) (vg_replace_malloc.c:433)
+==2541==    by 0x10FFEC: DoomCopy::Map::load(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:26)
+==2541==    by 0x10FE87: DoomCopy::Map::Map(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (Map.cpp:13)
+==2541==    by 0x115B65: DoomCopy::Game::startGraphicalGame(char const*, DoomCopy::Point, DoomCopy::Point) (Game.cpp:199)
+==2541==    by 0x1191C8: DoomCopy::GStartGame::doAction() (Game.h:108)
+==2541==    by 0x113A9E: DoomCopy::Game::Game() (Game.cpp:49)
+==2541==    by 0x10D902: main (main.cpp:22)
+==2541== 
+==2541== 32,432 bytes in 1 blocks are possibly lost in loss record 1,981 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68506E3: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71C496E: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D2E03: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D2DEF5: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x623F91F: ???
+==2541==    by 0x625E978: ???
+==2541==    by 0x5A761FB: ??? (in /usr/lib/libGLX.so.0.0.0)
+==2541==    by 0x4918A27: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541==    by 0x4918F5E: ??? (in /usr/lib/libsfml-window.so.2.5.1)
+==2541== 
+==2541== 40,176 bytes in 1 blocks are possibly lost in loss record 1,983 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68B7F81: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67C2125: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C128: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541== 
+==2541== 46,320 bytes in 1 blocks are possibly lost in loss record 1,984 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68B7F81: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6726A20: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67C2068: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C128: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541== 
+==2541== 434,720 bytes in 1,672 blocks are possibly lost in loss record 1,988 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68B7FF2: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67C2125: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C128: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541==    by 0x6251BF0: ???
+==2541== 
+==2541== 562,976 bytes in 1,928 blocks are possibly lost in loss record 1,989 of 1,989
+==2541==    at 0x483977F: malloc (vg_replace_malloc.c:309)
+==2541==    by 0x6EBA01D: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6EBB459: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x68B7FF2: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6726A20: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x67C2068: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x685C128: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71DA80F: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6C87717: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x71D5A38: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6D32873: ??? (in /usr/lib/dri/iris_dri.so)
+==2541==    by 0x6241040: ???
+==2541== 
+==2541== LEAK SUMMARY:
+==2541==    definitely lost: 15,120 bytes in 125 blocks
+==2541==    indirectly lost: 34,400 bytes in 92 blocks
+==2541==      possibly lost: 1,233,127 bytes in 3,885 blocks
+==2541==    still reachable: 865,984 bytes in 4,897 blocks
+==2541==         suppressed: 0 bytes in 0 blocks
+==2541== Reachable blocks (those to which a pointer was found) are not shown.
+==2541== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==2541== 
+==2541== For lists of detected and suppressed errors, rerun with: -s
+==2541== ERROR SUMMARY: 182 errors from 182 contexts (suppressed: 0 from 0)
