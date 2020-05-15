@@ -7,22 +7,28 @@
 
 //#include "DoomCopy.h"
 
+#include <iostream>
+
 namespace DoomCopy {
     template <class T>
     class Array2D {
-        bool destroyed = false;
+        bool destroyed = true;
     public:
         T** data;
         int rows;
         int columns;
         Array2D(int rows = 0, int columns = 0) {
-            destroyed = false;
-            this->rows = rows;
-            this->columns = columns;
-            data = new T*[this->rows];
-            for (int i = 0; i < this->rows; i++) {
-                data[i] = new T[this->columns];
-            }
+
+            //if ((rows != 0) && (columns != 0)) {
+            //if( rows!= 0) {
+                destroyed = false;
+                this->rows = rows;
+                this->columns = columns;
+                data = new T*[this->rows];
+                for (int i = 0; i < this->rows; i++) {
+                    data[i] = new T[this->columns];
+                }
+            //}
         }
 
         void inline free() {
@@ -36,6 +42,7 @@ namespace DoomCopy {
         }
 
         virtual ~Array2D() {
+            std::cout << "rows, columns: " << rows << " " << columns << std::endl;
             if (!destroyed) {
                 if (rows != 0) {
                     for (int j = 0; j < rows; j++) {

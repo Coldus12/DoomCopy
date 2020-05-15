@@ -11,6 +11,15 @@
 #include "Player.h"
 #include "Menu.h"
 
+//Segéd függvények
+void fnc(DoomCopy::Creature* cre) {
+    delete cre;
+}
+
+void fnc2(DoomCopy::Projectile* pro) {
+    delete pro;
+}
+
 DoomCopy::Game::Game() {
     if (cli == false) {
         loadSettings();
@@ -150,15 +159,6 @@ void DoomCopy::Game::loadSettings() {
     //std::cout << SCREEN_WIDTH << " " << SCREEN_HEIGHT << " " << screenWidth << " " << screenHeight << std::endl;
 }
 
-//Segéd függvények
-void fnc(DoomCopy::Creature* cre) {
-    delete cre;
-}
-
-void fnc2(DoomCopy::Projectile* pro) {
-    delete pro;
-}
-
 void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, Point screenSize) {
     SCREEN_WIDTH = screenSize.x;
     SCREEN_HEIGHT = screenSize.y;
@@ -197,12 +197,12 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
     sf::Clock clock;
     sf::Event event;
     map = new Map(mapN);
+    map->enemies.setDestructFunction(fnc);
+    map->projectiles.setDestructFunction(fnc2);
     player = new Player((mapN + "/player.conf").c_str());
     player->weapon.loadWeapon(mapN);
     double fps = 1/30.0;
 
-    map->enemies.setDestructFunction(fnc);
-    map->projectiles.setDestructFunction(fnc2);
 
     while(window->isOpen()) {
         clock.restart();

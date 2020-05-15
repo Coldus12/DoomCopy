@@ -19,6 +19,7 @@
  * */
 
 int main() {
+    std::cout << "heee" << std::endl;
     DoomCopy::Game game;
     //game.startGraphicalGame("desert",DoomCopy::Point(320,180),DoomCopy::Point(1280,720));
     return 0;

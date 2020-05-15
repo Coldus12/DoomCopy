@@ -4,6 +4,7 @@
 
 #ifndef DOOMCOPY_LIST_H
 #define DOOMCOPY_LIST_H
+
 #include <iostream>
 
 namespace DoomCopy {

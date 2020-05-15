@@ -22,6 +22,8 @@ void DoomCopy::Map::load(std::string pathToMap) {
     this->rows = img.getSize().y;
     this->columns = img.getSize().x;
 
+    std::cout << "map size: " << img.getSize().x << "x" << img.getSize().y << std::endl;
+
 
     this->data = new int*[this->rows];
     for (int i = 0; i < this->rows; i++) {

@@ -16,6 +16,8 @@
 #include "Creature.h"
 #include "Menu.h"
 #include "List.h"
+#include "Map.h"
+#include "Player.h"
 
 inline bool cmp(DoomCopy::Creature* i, DoomCopy::Creature* j) {
     return (i->distanceFromPlayer > j->distanceFromPlayer);
@@ -88,12 +90,12 @@ namespace DoomCopy {
         bool isCLI() {return cli;}
 
         ~Game() {
-            if (window != NULL)
-                delete window;
             if (player != NULL)
                 delete player;
             if (map != NULL)
                 delete map;
+            if (window != NULL)
+                delete window;
         }
     };
 

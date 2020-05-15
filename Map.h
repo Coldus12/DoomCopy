@@ -23,20 +23,6 @@ namespace DoomCopy {
         Map(std::string pathToMap);
         void load(std::string pathToMap);
         void loadEnemies(std::string pathToMap);
-
-        ~Map() {
-            ListItem<Creature*>* iter = enemies.getHead();
-            while (iter != NULL) {
-                delete iter->item;
-                iter = iter->next;
-            }
-
-            ListItem<Projectile*>* iter2 = projectiles.getHead();
-            while (iter2 != NULL) {
-                delete iter2->item;
-                iter2 = iter2->next;
-            }
-        }
     };
 
     class Ray {
