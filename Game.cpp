@@ -164,6 +164,8 @@ void DoomCopy::Game::loadSettings() {
 }
 
 void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, Point screenSize) {
+    bool isPlayerAlive = true;
+
     //Cél ahová el kell jutni
     int wherex;
     int wherey;
@@ -239,10 +241,21 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
     player->weapon.loadWeapon(mapN);
     double fps = 1/30.0;
 
+    sf::Font font;
+    if (!font.loadFromFile("FunSized.ttf")) {
+        font.loadFromFile("Roboto-Regular.ttf");
+    }
+
+    sf::Text currentHP;
+    currentHP.setString(std::to_string(int(player->HP)));
+    currentHP.setFillColor(sf::Color::Red);
+    currentHP.setPosition(0,0);
+    currentHP.setFont(font);
+    currentHP.setCharacterSize(30);
+
     //Az óra indítása
     sf::Clock gameTime;
     bool mapDone = false;
-
 
     while(window->isOpen()) {
         clock.restart();
@@ -307,6 +320,13 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
         renderWeapon();
         map->enemies.sort(cmp);
 
+        if (player->HP <= 0) {
+            isPlayerAlive = false;
+            break;
+        }
+
+        currentHP.setString(std::to_string(int(player->HP)));
+
         window->clear();
 
         if (!mapShown) {
@@ -332,6 +352,7 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
 
             //Drawing weapon
             window->draw(player->weapon.vertexArray,player->weapon.texture.states);
+            window->draw(currentHP);
         } else {
             sf::Uint8 playerColor(0);
             sf::Uint8 whereToGo(255);
@@ -427,6 +448,45 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
         delete player;
         map = NULL;
         player = NULL;
+    }
+
+    if (!isPlayerAlive) {
+        sf::Font font;
+        if (!font.loadFromFile("FunSized.ttf")) {
+            font.loadFromFile("Roboto-Regular.ttf");
+        }
+
+        sf::Text text;
+        text.setFont(font);
+        text.setCharacterSize(50);
+        text.setPosition(SCREEN_WIDTH/2.0,SCREEN_HEIGHT/2.0);
+        text.setString("You are dead");
+        text.setFillColor(sf::Color::Red);
+
+        delete map;
+        delete player;
+        map = NULL;
+        player = NULL;
+
+        sf::Event event;
+        bool exit = false;
+        while(window->isOpen()) {
+            while(window->pollEvent(event)) {
+                if (event.type == sf::Event::Closed)
+                    window->close();
+
+                if (event.type == sf::Event::KeyPressed) {
+                    exit = true;
+                }
+            }
+
+            if (exit)
+                break;
+
+            window->clear();
+            window->draw(text);
+            window->display();
+        }
     }
 }
 
@@ -664,4 +724,117 @@ void DoomCopy::Game::winCondition(std::string mapName, int& x, int& y) {
 
     x = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"posX=\"","\""));
     y = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"posY=\"","\""));
+}
+
+void DoomCopy::numpad(sf::RenderWindow *window, int *variableToSaveInto, std::string textToWriteOut) {
+    bool done = false;
+    sf::Event event;
+    List<int> int_list;
+    int listnr = 0;
+
+    sf::Font font;
+    if (!font.loadFromFile("FunSized.ttf")) {
+        font.loadFromFile("Roboto-Regular.ttf");
+    }
+
+    while (window->isOpen()) {
+        while (window->pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                window->close();
+
+            if (event.type == sf::Event::KeyPressed) {
+
+                if (event.key.code == sf::Keyboard::Escape)
+                    window->close();
+
+                if (event.key.code == sf::Keyboard::Num0 || event.key.code == sf::Keyboard::Numpad0) {
+                    int_list.addItem(0);
+                    listnr++;
+                }
+
+                if (event.key.code == sf::Keyboard::Num1 || event.key.code == sf::Keyboard::Numpad1) {
+                    int_list.addItem(1);
+                    listnr++;
+                }
+
+                if (event.key.code == sf::Keyboard::Num2 || event.key.code == sf::Keyboard::Numpad2) {
+                    int_list.addItem(2);
+                    listnr++;
+                }
+
+                if (event.key.code == sf::Keyboard::Num3 || event.key.code == sf::Keyboard::Numpad3) {
+                    int_list.addItem(3);
+                    listnr++;
+                }
+
+                if (event.key.code == sf::Keyboard::Num4 || event.key.code == sf::Keyboard::Numpad4) {
+                    int_list.addItem(4);
+                    listnr++;
+                }
+
+                if (event.key.code == sf::Keyboard::Num5 || event.key.code == sf::Keyboard::Numpad5) {
+                    int_list.addItem(5);
+                    listnr++;
+                }
+
+                if (event.key.code == sf::Keyboard::Num6 || event.key.code == sf::Keyboard::Numpad6) {
+                    int_list.addItem(6);
+                    listnr++;
+                }
+
+                if (event.key.code == sf::Keyboard::Num7 || event.key.code == sf::Keyboard::Numpad7) {
+                    int_list.addItem(7);
+                    listnr++;
+                }
+
+                if (event.key.code == sf::Keyboard::Num8 || event.key.code == sf::Keyboard::Numpad8) {
+                    int_list.addItem(8);
+                    listnr++;
+                }
+
+                if (event.key.code == sf::Keyboard::Num9 || event.key.code == sf::Keyboard::Numpad9) {
+                    int_list.addItem(9);
+                    listnr++;
+                }
+
+                if (event.key.code == sf::Keyboard::BackSpace) {
+                    if (listnr > 0) {
+                        int_list.deleteAt(listnr - 1);
+                        listnr--;
+                    }
+                }
+
+                if (event.key.code == sf::Keyboard::Enter) {
+                    int screenWidth = 0;
+                    for (int i = 0; i < listnr; i++) {
+                        screenWidth += int_list.at(i);
+                        if (i != listnr - 1)
+                            screenWidth *= 10;
+                    }
+                    //game->setScreenWidth(screenWidth);
+                    *variableToSaveInto = screenWidth;
+                    done = true;
+                }
+            }
+        }
+
+        sf::Text text;
+        std::string string = textToWriteOut;
+        for (int i = 0; i < listnr; i++)
+            string += std::to_string(int_list.at(i));
+
+        text.setString(string);
+        text.setPosition(100,100);
+        text.setCharacterSize(75);
+        text.setFont(font);
+        text.setFillColor(sf::Color::White);
+
+        window->clear();
+        window->draw(text);
+        window->display();
+
+        if (done)
+            break;
+
+    }
 }

@@ -7,10 +7,11 @@
 /*TODO
  * Menu - ALmost
  *  Settings - Done
- *  High score
+ *  High score - Done
  *  Choosemma
  * Map loading properly - Done
  * Weapon - Done
+ * HP - Done
  * Projectile - Done
  * CLI-game
  * Objective - Done

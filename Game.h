@@ -100,6 +100,8 @@ namespace DoomCopy {
         }
     };
 
+    void numpad(sf::RenderWindow* window, int* variableToSaveInto, std::string textToWriteOut);
+
     class GStartGame : public Menu {
     public:
         Game* game;
@@ -136,115 +138,10 @@ namespace DoomCopy {
         }
 
         void doAction() {
-            bool done = false;
-            sf::Event event;
-            List<int> int_list;
-            int listnr = 0;
-
-            sf::Font font;
-            if (!font.loadFromFile("FunSized.ttf")) {
-                font.loadFromFile("Roboto-Regular.ttf");
-            }
-
-            while (game->window->isOpen()) {
-                while (game->window->pollEvent(event)) {
-                    if (event.type == sf::Event::Closed)
-                        game->window->close();
-
-                    if (event.type == sf::Event::KeyPressed) {
-
-                        if (event.key.code == sf::Keyboard::Escape)
-                            game->window->close();
-
-                        if (event.key.code == sf::Keyboard::Num0 || event.key.code == sf::Keyboard::Numpad0) {
-                            int_list.addItem(0);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num1 || event.key.code == sf::Keyboard::Numpad1) {
-                            int_list.addItem(1);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num2 || event.key.code == sf::Keyboard::Numpad2) {
-                            int_list.addItem(2);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num3 || event.key.code == sf::Keyboard::Numpad3) {
-                            int_list.addItem(3);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num4 || event.key.code == sf::Keyboard::Numpad4) {
-                            int_list.addItem(4);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num5 || event.key.code == sf::Keyboard::Numpad5) {
-                            int_list.addItem(5);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num6 || event.key.code == sf::Keyboard::Numpad6) {
-                            int_list.addItem(6);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num7 || event.key.code == sf::Keyboard::Numpad7) {
-                            int_list.addItem(7);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num8 || event.key.code == sf::Keyboard::Numpad8) {
-                            int_list.addItem(8);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num9 || event.key.code == sf::Keyboard::Numpad9) {
-                            int_list.addItem(9);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::BackSpace) {
-                            if (listnr > 0) {
-                                int_list.deleteAt(listnr - 1);
-                                listnr--;
-                            }
-                        }
-
-                        if (event.key.code == sf::Keyboard::Enter) {
-                            int screenWidth = 0;
-                            for (int i = 0; i < listnr; i++) {
-                                screenWidth += int_list.at(i);
-                                if (i != listnr - 1)
-                                    screenWidth *= 10;
-                            }
-                            game->setScreenWidth(screenWidth);
-                            done = true;
-                        }
-                    }
-                }
-
-                sf::Text text;
-                std::string string = "New width ";
-                for (int i = 0; i < listnr; i++)
-                    string += std::to_string(int_list.at(i));
-
-                text.setString(string);
-                text.setPosition(100,100);
-                text.setCharacterSize(75);
-                text.setFont(font);
-                text.setFillColor(sf::Color::White);
-
-                game->window->clear();
-                game->window->draw(text);
-                game->window->display();
-
-                if (done)
-                    break;
-
-            }
+            std::string string = "New width ";
+            int newScreenWidth = 0;
+            numpad(game->window, &newScreenWidth, string);
+            game->setScreenWidth(newScreenWidth);
         }
     };
 
@@ -256,115 +153,10 @@ namespace DoomCopy {
         }
 
         void doAction() {
-            bool done = false;
-            sf::Event event;
-            List<int> int_list;
-            int listnr = 0;
-
-            sf::Font font;
-            if (!font.loadFromFile("FunSized.ttf")) {
-                font.loadFromFile("Roboto-Regular.ttf");
-            }
-
-            while (game->window->isOpen()) {
-                while (game->window->pollEvent(event)) {
-                    if (event.type == sf::Event::Closed)
-                        game->window->close();
-
-                    if (event.type == sf::Event::KeyPressed) {
-
-                        if (event.key.code == sf::Keyboard::Escape)
-                            game->window->close();
-
-                        if (event.key.code == sf::Keyboard::Num0 || event.key.code == sf::Keyboard::Numpad0) {
-                            int_list.addItem(0);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num1 || event.key.code == sf::Keyboard::Numpad1) {
-                            int_list.addItem(1);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num2 || event.key.code == sf::Keyboard::Numpad2) {
-                            int_list.addItem(2);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num3 || event.key.code == sf::Keyboard::Numpad3) {
-                            int_list.addItem(3);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num4 || event.key.code == sf::Keyboard::Numpad4) {
-                            int_list.addItem(4);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num5 || event.key.code == sf::Keyboard::Numpad5) {
-                            int_list.addItem(5);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num6 || event.key.code == sf::Keyboard::Numpad6) {
-                            int_list.addItem(6);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num7 || event.key.code == sf::Keyboard::Numpad7) {
-                            int_list.addItem(7);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num8 || event.key.code == sf::Keyboard::Numpad8) {
-                            int_list.addItem(8);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num9 || event.key.code == sf::Keyboard::Numpad9) {
-                            int_list.addItem(9);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::BackSpace) {
-                            if (listnr > 0) {
-                                int_list.deleteAt(listnr - 1);
-                                listnr--;
-                            }
-                        }
-
-                        if (event.key.code == sf::Keyboard::Enter) {
-                            int screenHeight = 0;
-                            for (int i = 0; i < listnr; i++) {
-                                screenHeight += int_list.at(i);
-                                if (i != listnr - 1)
-                                    screenHeight *= 10;
-                            }
-                            game->setScreenHeight(screenHeight);
-                            done = true;
-                        }
-                    }
-                }
-
-                sf::Text text;
-                std::string string = "New height ";
-                for (int i = 0; i < listnr; i++)
-                    string += std::to_string(int_list.at(i));
-
-                text.setString(string);
-                text.setPosition(100,100);
-                text.setCharacterSize(75);
-                text.setFont(font);
-                text.setFillColor(sf::Color::White);
-
-                game->window->clear();
-                game->window->draw(text);
-                game->window->display();
-
-                if (done)
-                    break;
-
-            }
+            std::string string = "New height ";
+            int newScreenHeight = 0;
+            numpad(game->window, &newScreenHeight, string);
+            game->setScreenHeight(newScreenHeight);
         }
     };
 
@@ -376,115 +168,10 @@ namespace DoomCopy {
         }
 
         void doAction() {
-            bool done = false;
-            sf::Event event;
-            List<int> int_list;
-            int listnr = 0;
-
-            sf::Font font;
-            if (!font.loadFromFile("FunSized.ttf")) {
-                font.loadFromFile("Roboto-Regular.ttf");
-            }
-
-            while (game->window->isOpen()) {
-                while (game->window->pollEvent(event)) {
-                    if (event.type == sf::Event::Closed)
-                        game->window->close();
-
-                    if (event.type == sf::Event::KeyPressed) {
-
-                        if (event.key.code == sf::Keyboard::Escape)
-                            game->window->close();
-
-                        if (event.key.code == sf::Keyboard::Num0 || event.key.code == sf::Keyboard::Numpad0) {
-                            int_list.addItem(0);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num1 || event.key.code == sf::Keyboard::Numpad1) {
-                            int_list.addItem(1);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num2 || event.key.code == sf::Keyboard::Numpad2) {
-                            int_list.addItem(2);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num3 || event.key.code == sf::Keyboard::Numpad3) {
-                            int_list.addItem(3);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num4 || event.key.code == sf::Keyboard::Numpad4) {
-                            int_list.addItem(4);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num5 || event.key.code == sf::Keyboard::Numpad5) {
-                            int_list.addItem(5);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num6 || event.key.code == sf::Keyboard::Numpad6) {
-                            int_list.addItem(6);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num7 || event.key.code == sf::Keyboard::Numpad7) {
-                            int_list.addItem(7);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num8 || event.key.code == sf::Keyboard::Numpad8) {
-                            int_list.addItem(8);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num9 || event.key.code == sf::Keyboard::Numpad9) {
-                            int_list.addItem(9);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::BackSpace) {
-                            if (listnr > 0) {
-                                int_list.deleteAt(listnr - 1);
-                                listnr--;
-                            }
-                        }
-
-                        if (event.key.code == sf::Keyboard::Enter) {
-                            int resWidth = 0;
-                            for (int i = 0; i < listnr; i++) {
-                                resWidth += int_list.at(i);
-                                if (i != listnr - 1)
-                                    resWidth *= 10;
-                            }
-                            game->setResWidth(resWidth);
-                            done = true;
-                        }
-                    }
-                }
-
-                sf::Text text;
-                std::string string = "New width ";
-                for (int i = 0; i < listnr; i++)
-                    string += std::to_string(int_list.at(i));
-
-                text.setString(string);
-                text.setPosition(100,100);
-                text.setCharacterSize(75);
-                text.setFont(font);
-                text.setFillColor(sf::Color::White);
-
-                game->window->clear();
-                game->window->draw(text);
-                game->window->display();
-
-                if (done)
-                    break;
-
-            }
+            std::string string = "New width ";
+            int newResWidth = 0;
+            numpad(game->window,&newResWidth,string);
+            game->setResWidth(newResWidth);
         }
     };
 
@@ -496,115 +183,10 @@ namespace DoomCopy {
         }
 
         void doAction() {
-            bool done = false;
-            sf::Event event;
-            List<int> int_list;
-            int listnr = 0;
-
-            sf::Font font;
-            if (!font.loadFromFile("FunSized.ttf")) {
-                font.loadFromFile("Roboto-Regular.ttf");
-            }
-
-            while (game->window->isOpen()) {
-                while (game->window->pollEvent(event)) {
-                    if (event.type == sf::Event::Closed)
-                        game->window->close();
-
-                    if (event.type == sf::Event::KeyPressed) {
-
-                        if (event.key.code == sf::Keyboard::Escape)
-                            game->window->close();
-
-                        if (event.key.code == sf::Keyboard::Num0 || event.key.code == sf::Keyboard::Numpad0) {
-                            int_list.addItem(0);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num1 || event.key.code == sf::Keyboard::Numpad1) {
-                            int_list.addItem(1);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num2 || event.key.code == sf::Keyboard::Numpad2) {
-                            int_list.addItem(2);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num3 || event.key.code == sf::Keyboard::Numpad3) {
-                            int_list.addItem(3);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num4 || event.key.code == sf::Keyboard::Numpad4) {
-                            int_list.addItem(4);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num5 || event.key.code == sf::Keyboard::Numpad5) {
-                            int_list.addItem(5);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num6 || event.key.code == sf::Keyboard::Numpad6) {
-                            int_list.addItem(6);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num7 || event.key.code == sf::Keyboard::Numpad7) {
-                            int_list.addItem(7);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num8 || event.key.code == sf::Keyboard::Numpad8) {
-                            int_list.addItem(8);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::Num9 || event.key.code == sf::Keyboard::Numpad9) {
-                            int_list.addItem(9);
-                            listnr++;
-                        }
-
-                        if (event.key.code == sf::Keyboard::BackSpace) {
-                            if (listnr > 0) {
-                                int_list.deleteAt(listnr - 1);
-                                listnr--;
-                            }
-                        }
-
-                        if (event.key.code == sf::Keyboard::Enter) {
-                            int resHeight = 0;
-                            for (int i = 0; i < listnr; i++) {
-                                resHeight += int_list.at(i);
-                                if (i != listnr - 1)
-                                    resHeight *= 10;
-                            }
-                            game->setResHeight(resHeight);
-                            done = true;
-                        }
-                    }
-                }
-
-                sf::Text text;
-                std::string string = "New height ";
-                for (int i = 0; i < listnr; i++)
-                    string += std::to_string(int_list.at(i));
-
-                text.setString(string);
-                text.setPosition(100,100);
-                text.setCharacterSize(75);
-                text.setFont(font);
-                text.setFillColor(sf::Color::White);
-
-                game->window->clear();
-                game->window->draw(text);
-                game->window->display();
-
-                if (done)
-                    break;
-
-            }
+            std::string string = "New Height ";
+            int newResHeight = 0;
+            numpad(game->window,&newResHeight,string);
+            game->setResHeight(newResHeight);
         }
     };
 
@@ -641,6 +223,84 @@ namespace DoomCopy {
         }
     };
 
+    class MapHighScore : public Menu {
+    public:
+        Game* game;
+        sf::Text scores[10];
+        int lineNr = 0;
+        std::string mName;
+        MapHighScore(Menu* back, std::string mapName, Game& game) : Menu(0,mapName,back) {
+            mName = mapName;
+            this->game = &game;
+            mapName += "/scores.txt";
+            std::fstream file;
+            file.open(mapName);
+            std::string line = "";
+
+            do {
+                std::getline(file,line);
+                if (!line.empty()) {
+                    scores[lineNr].setString(line);
+                    lineNr++;
+                } else
+                    break;
+            } while (!file.eof());
+
+            for (int i = 0; i < lineNr; i++) {
+                scores[i].setPosition(this->game->getScreenWidth()/2,this->game->getScreenHeight()/lineNr * i);
+                scores[i].setCharacterSize(50);
+                scores[i].setFillColor(sf::Color::White);
+            }
+        }
+
+        void doAction() {
+            sf::Event event;
+            bool exit = false;
+            sf::Font font;
+            if (!font.loadFromFile("FunSized.ttf")) {
+                font.loadFromFile("Roboto-Regular.ttf");
+            }
+            while (game->window->isOpen()) {
+                while(game->window->pollEvent(event)) {
+                    if (event.type == sf::Event::Closed)
+                        game->window->close();
+                    if (event.type == sf::Event::KeyPressed) {
+                        exit = true;
+                    }
+                }
+
+                for (int i = 0; i < lineNr; i++)
+                    scores[i].setFont(font);
+
+                game->window->clear();
+                for (int i = 0; i < lineNr; i++)
+                    game->window->draw(scores[i]);
+                game->window->display();
+
+                if (exit) break;
+            }
+        }
+    };
+
+    class HighScore : public Menu {
+    public:
+        Game* game;
+        HighScore(Menu* back, Game& game) : Menu(4,"High scores",back) {
+            this->game = &game;
+            std::fstream file;
+            std::string line = "";
+            file.open("maps.conf");
+
+            do {
+                std::getline(file,line);
+                if (!line.empty()) {
+                    this->addItem(new MapHighScore(this,line,*this->game));
+                }
+            } while(!file.eof());
+        }
+
+    };
+
     class MainMenu : public Menu {
     public:
         Game* game;
@@ -648,10 +308,10 @@ namespace DoomCopy {
             this->game = &game;
             this->addItem(new Start(game,4,"Start",this));
             this->addItem(new Settings(game, 2,"Settings",this));
+            this->addItem(new HighScore(this,*this->game));
             this->addItem(new Exit(game,this));
         }
     };
-
 }
 
 #endif //DOOMCOPY_GAME_H
