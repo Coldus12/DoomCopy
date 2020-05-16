@@ -8,7 +8,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Creature.cpp" "/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/cmake-build-debug/CMakeFiles/DoomCopy.dir/Creature.cpp.o"
   "/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Game.cpp" "/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/cmake-build-debug/CMakeFiles/DoomCopy.dir/Game.cpp.o"
   "/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Map.cpp" "/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/cmake-build-debug/CMakeFiles/DoomCopy.dir/Map.cpp.o"
-  "/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Menu.cpp" "/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/cmake-build-debug/CMakeFiles/DoomCopy.dir/Menu.cpp.o"
   "/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Player.cpp" "/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/cmake-build-debug/CMakeFiles/DoomCopy.dir/Player.cpp.o"
   "/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Projectile.cpp" "/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/cmake-build-debug/CMakeFiles/DoomCopy.dir/Projectile.cpp.o"
   "/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Weapon.cpp" "/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/cmake-build-debug/CMakeFiles/DoomCopy.dir/Weapon.cpp.o"

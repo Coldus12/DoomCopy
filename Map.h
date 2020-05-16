@@ -18,11 +18,13 @@ namespace DoomCopy {
         Blocks blocks;
         List<Creature*> enemies;
         List<Projectile*> projectiles;
+        Array2D<char> CLIMap;
 
         Map() : text(32,32) {}
         Map(std::string pathToMap);
         void load(std::string pathToMap);
         void loadEnemies(std::string pathToMap);
+
     };
 
     class Ray {

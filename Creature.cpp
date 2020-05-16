@@ -75,7 +75,7 @@ void DoomCopy::Creature::update(const Map& map, Player& player) {
                     dmgPlayer(player,5);
             }
 
-            if ((!map.blocks.isTypeSolid(map.data[int(position.y + speed * dy)][int(position.x + speed * dx)])) && (distanceFromPlayer > 1.5)) {
+            if ((!map.blocks.isTypeSolid(map.data[int(position.y + speed/20 * dy)][int(position.x + speed/20 * dx)])) && (distanceFromPlayer > 1.5)) {
                 position.x += speed/20.0 * dx;
                 position.y += speed/20.0 * dy;
 

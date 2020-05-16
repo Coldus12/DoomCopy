@@ -35,13 +35,14 @@ namespace DoomCopy {
         Array2D<sf::Vertex*> verteces;
         Player* player = NULL;
 
-        bool cli = false;
+        //bool cli = true;
         sf::Keyboard::Key bindings[10];
 
     public:
         sf::RenderWindow* window = NULL;
+        sf::Font font;
 
-        Game();
+        Game(bool cli);
         void startGraphicalGame(const char* mapName, Point resolution, Point screenSize);
 
         void renderWalls();
@@ -51,6 +52,9 @@ namespace DoomCopy {
         void deleteDeadOrNonExistent();
         void loadSettings();
         void winCondition(std::string mapName, int& x, int& y);
+
+        void startCLIGame(const char* mapName);
+        bool command(const std::string& cmd, bool& exit, int& aim);
 
         void setScreenWidth(int newWidth) {
             SCREEN_WIDTH = newWidth;
@@ -87,8 +91,6 @@ namespace DoomCopy {
         int getResHeight() {
             return screenHeight;
         }
-
-        bool isCLI() {return cli;}
 
         ~Game() {
             if (player != NULL)
@@ -256,10 +258,14 @@ namespace DoomCopy {
         void doAction() {
             sf::Event event;
             bool exit = false;
+
             sf::Font font;
             if (!font.loadFromFile("FunSized.ttf")) {
-                font.loadFromFile("Roboto-Regular.ttf");
+                if (!font.loadFromFile("Roboto-Regular.ttf")) {
+                    font.loadFromFile("advanced_pixel-7.ttf");
+                }
             }
+
             while (game->window->isOpen()) {
                 while(game->window->pollEvent(event)) {
                     if (event.type == sf::Event::Closed)

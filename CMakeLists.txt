@@ -11,6 +11,6 @@ find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(DoomCopy main.cpp Array2D.h List.h StringManager.h Texture.h Point.h BlockType.cpp BlockType.h Map.cpp Map.h Creature.cpp Creature.h Player.h Ray.h Game.cpp Game.h DoomCopy.h MeleeEnemy.h Player.cpp Weapon.cpp Weapon.h Projectile.cpp Projectile.h Menu.h)
+add_executable(DoomCopy main.cpp Array2D.h List.h StringManager.h Texture.h Point.h BlockType.cpp BlockType.h Map.cpp Map.h Creature.cpp Creature.h Player.h Game.cpp Game.h MeleeEnemy.h Player.cpp Weapon.cpp Weapon.h Projectile.cpp Projectile.h Menu.h)
 
 target_link_libraries(DoomCopy sfml-graphics sfml-audio)

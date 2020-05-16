@@ -97,9 +97,6 @@
 		<Unit filename="/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Creature.h">
 			<Option target="DoomCopy"/>
 		</Unit>
-		<Unit filename="/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/DoomCopy.h">
-			<Option target="DoomCopy"/>
-		</Unit>
 		<Unit filename="/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Game.cpp">
 			<Option target="DoomCopy"/>
 		</Unit>
@@ -118,9 +115,6 @@
 		<Unit filename="/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/MeleeEnemy.h">
 			<Option target="DoomCopy"/>
 		</Unit>
-		<Unit filename="/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Menu.cpp">
-			<Option target="DoomCopy"/>
-		</Unit>
 		<Unit filename="/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Menu.h">
 			<Option target="DoomCopy"/>
 		</Unit>
@@ -137,9 +131,6 @@
 			<Option target="DoomCopy"/>
 		</Unit>
 		<Unit filename="/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Projectile.h">
-			<Option target="DoomCopy"/>
-		</Unit>
-		<Unit filename="/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Ray.h">
 			<Option target="DoomCopy"/>
 		</Unit>
 		<Unit filename="/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/StringManager.h">

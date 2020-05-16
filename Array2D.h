@@ -42,7 +42,6 @@ namespace DoomCopy {
         }
 
         virtual ~Array2D() {
-            std::cout << "rows, columns: " << rows << " " << columns << std::endl;
             if (!destroyed) {
                 if (rows != 0) {
                     for (int j = 0; j < rows; j++) {

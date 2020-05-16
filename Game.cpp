@@ -24,19 +24,21 @@ bool scoreCmpr(int i, int i2) {
     return i > i2;
 }
 
-DoomCopy::Game::Game() {
+DoomCopy::Game::Game(bool cli) {
     if (cli == false) {
+
+        if (!font.loadFromFile("FunSized.ttf")) {
+            if (!font.loadFromFile("Roboto-Regular.ttf")) {
+                font.loadFromFile("advanced_pixel-7.ttf");
+            }
+        }
+
         loadSettings();
         window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "DoomCopy!",sf::Style::Titlebar | sf::Style::Close);
 
         MainMenu menu("Main",*this);
         Menu* iter = &menu;
         int sel = 0;
-
-        sf::Font font;
-        if (!font.loadFromFile("FunSized.ttf")) {
-            font.loadFromFile("Roboto-Regular.ttf");
-        }
 
         sf::Event event;
         while(window->isOpen()) {
@@ -121,6 +123,27 @@ DoomCopy::Game::Game() {
 
             window->display();
         }
+    } else {
+        std::fstream file;
+        file.open("maps.conf");
+        std::string fileLine;
+
+        std::cout << "Maps to play:" << std::endl;
+
+        do {
+            std::getline(file,fileLine);
+            if (!fileLine.empty())
+                std::cout << fileLine << std::endl;
+            else break;
+        } while(!file.eof());
+
+        std::cout << "To start playing just type in the name of a map! (to quit type \"quit\")" << std::endl;
+        std::string line = "";
+        std::cin >> line;
+        if (line.find("quit") != std::string::npos)
+            return;
+        else
+            startCLIGame(line.c_str());
     }
 }
 
@@ -159,12 +182,14 @@ void DoomCopy::Game::loadSettings() {
     } while(!keyCodes.eof());
 
     bindings[9] = sf::Keyboard::Escape;
-
-    //std::cout << SCREEN_WIDTH << " " << SCREEN_HEIGHT << " " << screenWidth << " " << screenHeight << std::endl;
 }
 
 void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, Point screenSize) {
     bool isPlayerAlive = true;
+    bool fullscreen = false;
+
+    int OSW = SCREEN_WIDTH;
+    int OSH = SCREEN_HEIGHT;
 
     //Cél ahová el kell jutni
     int wherex;
@@ -241,11 +266,6 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
     player->weapon.loadWeapon(mapN);
     double fps = 1/30.0;
 
-    sf::Font font;
-    if (!font.loadFromFile("FunSized.ttf")) {
-        font.loadFromFile("Roboto-Regular.ttf");
-    }
-
     sf::Text currentHP;
     currentHP.setString(std::to_string(int(player->HP)));
     currentHP.setFillColor(sf::Color::Red);
@@ -281,10 +301,16 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
                     mapShown = !mapShown;
                 }
                 if (event.key.code == bindings[6]) {
-                    window->create(sf::VideoMode::getFullscreenModes()[0], "DoomCopy!", sf::Style::Fullscreen);
-                    SCREEN_WIDTH = window->getSize().x;
-                    SCREEN_HEIGHT = window->getSize().y;
-                    std::cout << SCREEN_WIDTH << " " << SCREEN_HEIGHT << std::endl;
+                    fullscreen = !fullscreen;
+                    if (fullscreen) {
+                        window->create(sf::VideoMode::getFullscreenModes()[0], "DoomCopy!", sf::Style::Fullscreen);
+                        SCREEN_WIDTH = window->getSize().x;
+                        SCREEN_HEIGHT = window->getSize().y;
+                    } else {
+                        SCREEN_WIDTH = OSW;
+                        SCREEN_HEIGHT = OSH;
+                        window->create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "DoomCopy!",sf::Style::Titlebar | sf::Style::Close);
+                    }
                 }
             }
         }
@@ -409,11 +435,6 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
             output << list.at(0);
         }
 
-        sf::Font font;
-        if (!font.loadFromFile("FunSized.ttf")) {
-            font.loadFromFile("Roboto-Regular.ttf");
-        }
-
         sf::Text text;
         text.setFont(font);
         text.setCharacterSize(30);
@@ -451,11 +472,6 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
     }
 
     if (!isPlayerAlive) {
-        sf::Font font;
-        if (!font.loadFromFile("FunSized.ttf")) {
-            font.loadFromFile("Roboto-Regular.ttf");
-        }
-
         sf::Text text;
         text.setFont(font);
         text.setCharacterSize(50);
@@ -734,7 +750,9 @@ void DoomCopy::numpad(sf::RenderWindow *window, int *variableToSaveInto, std::st
 
     sf::Font font;
     if (!font.loadFromFile("FunSized.ttf")) {
-        font.loadFromFile("Roboto-Regular.ttf");
+        if (!font.loadFromFile("Roboto-Regular.ttf")) {
+            font.loadFromFile("advanced_pixel-7.ttf");
+        }
     }
 
     while (window->isOpen()) {
@@ -837,4 +855,164 @@ void DoomCopy::numpad(sf::RenderWindow *window, int *variableToSaveInto, std::st
             break;
 
     }
+}
+
+void DoomCopy::Game::startCLIGame(const char *mapName) {
+    bool isPlayerAlive = true;
+
+    //Cél ahová el kell jutni
+    int wherex;
+    int wherey;
+    winCondition(mapName,wherex,wherey);
+
+    std::string mapN = mapName;
+    map = new Map(mapN);
+    map->enemies.setDestructFunction(fnc);
+    int nrOfEnemiesAtStart = map->enemies.currentSize+1;
+    map->projectiles.setDestructFunction(fnc2);
+    player = new Player((mapN + "/player.conf").c_str());
+    player->weapon.loadWeapon(mapN);
+    bool mapDone = false;
+
+    map->CLIMap.data[wherey][wherex] = 'F';
+
+    ListItem<Creature*>* iterEnemy = map->enemies.getHead();
+    while(iterEnemy != NULL) {
+        iterEnemy->item->setSpeed(10);
+        iterEnemy = iterEnemy->next;
+    }
+
+    int aim = 0;
+
+    while(!mapDone && isPlayerAlive) {
+        char line[100];
+        std::cin.getline(line, sizeof(line));
+
+        if (command(line, mapDone, aim)) {
+            //Updating enemies
+            ListItem<Creature*>* iterEnemy = map->enemies.getHead();
+            while(iterEnemy != NULL) {
+                iterEnemy->item->update(*map,*player);
+                if(iterEnemy->item->distanceFromPlayer <= 1) {
+                    player->HP -= 5;
+                    std::cout << "You've taken " << 5 << " damage from a nearby monster" << std::endl;
+                }
+                iterEnemy = iterEnemy->next;
+            }
+
+            map->enemies.sort(cmp);
+        } else {
+
+        }
+
+        if (player->direction >= M_PI) player->direction -= 2 * M_PI;
+        if (player->direction <= -M_PI) player->direction += 2 * M_PI;
+
+        if ((int(player->getPosX()) == wherex) && (int(player->getPosY()) == wherey)) {
+            mapDone = true;
+            break;
+        }
+
+        //Deleting stuff from the list
+        deleteDeadOrNonExistent();
+
+        if (player->HP <= 0) {
+            std::cout << "You are dead!" << std::endl;
+            isPlayerAlive = false;
+            break;
+        }
+    }
+}
+
+bool DoomCopy::Game::command(const std::string& cmd, bool& exit, int& aim) {
+    //move command
+    if (cmd.find("move") != std::string::npos) {
+
+        if (cmd.find("up") != std::string::npos) {
+            player->move(0,-1,*map);
+        } else if (cmd.find("down") != std::string::npos) {
+            player->move(0,1,*map);
+        } else if (cmd.find("left") != std::string::npos) {
+            player->move(-1,0,*map);
+        } else if (cmd.find("right") != std::string::npos) {
+            player->move(1,0,*map);
+        }
+
+        std::cout << player->getPosX() << " " << player->getPosY() << std::endl;
+
+        return true;
+
+    //shoot command
+    } else if (cmd.find("shoot") != std::string::npos) {
+        if (map->enemies.getHead() != NULL) {
+            if ((aim <= map->enemies.currentSize) && (aim >= 0))
+                if (map->enemies.at(aim)->distanceFromPlayer < player->weapon.range) {
+                    map->enemies.at(aim)->damage(player->weapon.type.dmg);
+                    std::cout << aim << ". Monster took " << player->weapon.type.dmg << std::endl;
+                    std::cout << aim << "\'s hp: " << map->enemies.at(aim)->getHP() << std::endl;
+                } else
+                    std::cout << aim << ". seems to be out of range." << std::endl;
+        }
+
+        return true;
+
+    //listmonsters command
+    } else if ((cmd.find("listmonsters") != std::string::npos) || (cmd.find("Listmonsters") != std::string::npos)) {
+        std::cout << "Monsters:" << std::endl;
+        if (map->enemies.getHead() != NULL) {
+            for (int i = 0; i < map->enemies.currentSize + 1; i++)
+                std::cout << i << ". " << map->enemies.at(i)->getPos().x << " " << map->enemies.at(i)->getPos().y << std::endl;
+        } else
+            std::cout << "None alive" << std::endl;
+
+        return false;
+
+    //printmap command
+    } else if ((cmd.find("printmap") != std::string::npos) || (cmd.find("Printmap") != std::string::npos)) {
+        char* tmp;
+        if (map->enemies.getHead() != NULL) {
+            tmp = new char[map->enemies.currentSize+1];
+            for (int i = 0; i < map->enemies.currentSize+1; i++) {
+                tmp[i] = map->CLIMap.data[int(map->enemies.at(i)->getPos().y)][int(map->enemies.at(i)->getPos().x)];
+                map->CLIMap.data[int(map->enemies.at(i)->getPos().y)][int(map->enemies.at(i)->getPos().x)] = std::to_string(i).c_str()[0];
+            }
+        }
+
+        for (int i = 0; i < map->rows; i++) {
+            for (int j = 0; j < map->columns; j++) {
+                if ((i == int(player->getPosY())) && (j == int(player->getPosX())))
+                    std::cout << "@";
+                else
+                    std::cout << map->CLIMap.data[i][j];
+            }
+            std::cout << std::endl;
+        }
+
+        if (map->enemies.getHead() != NULL) {
+            for (int i = 0; i < map->enemies.currentSize+1; i++) {
+                map->CLIMap.data[int(map->enemies.at(i)->getPos().y)][int(map->enemies.at(i)->getPos().x)] = tmp[i];
+            }
+            delete[] tmp;
+        }
+
+        return false;
+
+    //quit command
+    } else if ((cmd.find("quit") != std::string::npos) || (cmd.find("Quit") != std::string::npos)) {
+        exit = true;
+        return false;
+
+    //aim command
+    } else if (cmd.find("aim") != std::string::npos) {
+        std::string c = cmd;
+        c += "\"";
+        aim = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(c,"aim ","\""));
+        return false;
+
+    //hp command
+    } else if (cmd.find("hp") != std::string::npos) {
+        std::cout << player->HP << std::endl;
+    }
+
+    return false;
 }

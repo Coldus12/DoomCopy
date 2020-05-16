@@ -231,33 +231,6 @@ Map.cpp.s:
 	$(MAKE) -f CMakeFiles/DoomCopy.dir/build.make CMakeFiles/DoomCopy.dir/Map.cpp.s
 .PHONY : Map.cpp.s
 
-Menu.o: Menu.cpp.o
-
-.PHONY : Menu.o
-
-# target to build an object file
-Menu.cpp.o:
-	$(MAKE) -f CMakeFiles/DoomCopy.dir/build.make CMakeFiles/DoomCopy.dir/Menu.cpp.o
-.PHONY : Menu.cpp.o
-
-Menu.i: Menu.cpp.i
-
-.PHONY : Menu.i
-
-# target to preprocess a source file
-Menu.cpp.i:
-	$(MAKE) -f CMakeFiles/DoomCopy.dir/build.make CMakeFiles/DoomCopy.dir/Menu.cpp.i
-.PHONY : Menu.cpp.i
-
-Menu.s: Menu.cpp.s
-
-.PHONY : Menu.s
-
-# target to generate assembly for a file
-Menu.cpp.s:
-	$(MAKE) -f CMakeFiles/DoomCopy.dir/build.make CMakeFiles/DoomCopy.dir/Menu.cpp.s
-.PHONY : Menu.cpp.s
-
 Player.o: Player.cpp.o
 
 .PHONY : Player.o
@@ -387,9 +360,6 @@ help:
 	@echo "... Map.o"
 	@echo "... Map.i"
 	@echo "... Map.s"
-	@echo "... Menu.o"
-	@echo "... Menu.i"
-	@echo "... Menu.s"
 	@echo "... Player.o"
 	@echo "... Player.i"
 	@echo "... Player.s"

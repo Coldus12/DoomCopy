@@ -3,7 +3,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/DoomCopy.dir/Creature.cpp.o"
   "CMakeFiles/DoomCopy.dir/Game.cpp.o"
   "CMakeFiles/DoomCopy.dir/Map.cpp.o"
-  "CMakeFiles/DoomCopy.dir/Menu.cpp.o"
   "CMakeFiles/DoomCopy.dir/Player.cpp.o"
   "CMakeFiles/DoomCopy.dir/Projectile.cpp.o"
   "CMakeFiles/DoomCopy.dir/Weapon.cpp.o"

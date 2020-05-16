@@ -24,16 +24,14 @@ CMakeFiles/DoomCopy.dir/Creature.cpp.o: ../Weapon.h
 CMakeFiles/DoomCopy.dir/Game.cpp.o: ../Array2D.h
 CMakeFiles/DoomCopy.dir/Game.cpp.o: ../BlockType.h
 CMakeFiles/DoomCopy.dir/Game.cpp.o: ../Creature.h
-CMakeFiles/DoomCopy.dir/Game.cpp.o: ../DoomCopy.h
 CMakeFiles/DoomCopy.dir/Game.cpp.o: ../Game.cpp
 CMakeFiles/DoomCopy.dir/Game.cpp.o: ../Game.h
 CMakeFiles/DoomCopy.dir/Game.cpp.o: ../List.h
 CMakeFiles/DoomCopy.dir/Game.cpp.o: ../Map.h
-CMakeFiles/DoomCopy.dir/Game.cpp.o: ../MeleeEnemy.h
+CMakeFiles/DoomCopy.dir/Game.cpp.o: ../Menu.h
 CMakeFiles/DoomCopy.dir/Game.cpp.o: ../Player.h
 CMakeFiles/DoomCopy.dir/Game.cpp.o: ../Point.h
 CMakeFiles/DoomCopy.dir/Game.cpp.o: ../Projectile.h
-CMakeFiles/DoomCopy.dir/Game.cpp.o: ../Ray.h
 CMakeFiles/DoomCopy.dir/Game.cpp.o: ../StringManager.h
 CMakeFiles/DoomCopy.dir/Game.cpp.o: ../Texture.h
 CMakeFiles/DoomCopy.dir/Game.cpp.o: ../Weapon.h
@@ -49,9 +47,6 @@ CMakeFiles/DoomCopy.dir/Map.cpp.o: ../Point.h
 CMakeFiles/DoomCopy.dir/Map.cpp.o: ../Projectile.h
 CMakeFiles/DoomCopy.dir/Map.cpp.o: ../StringManager.h
 CMakeFiles/DoomCopy.dir/Map.cpp.o: ../Texture.h
-
-CMakeFiles/DoomCopy.dir/Menu.cpp.o: ../Menu.cpp
-CMakeFiles/DoomCopy.dir/Menu.cpp.o: ../Menu.h
 
 CMakeFiles/DoomCopy.dir/Player.cpp.o: ../Array2D.h
 CMakeFiles/DoomCopy.dir/Player.cpp.o: ../BlockType.h
@@ -92,9 +87,17 @@ CMakeFiles/DoomCopy.dir/Weapon.cpp.o: ../Weapon.cpp
 CMakeFiles/DoomCopy.dir/Weapon.cpp.o: ../Weapon.h
 
 CMakeFiles/DoomCopy.dir/main.cpp.o: ../Array2D.h
+CMakeFiles/DoomCopy.dir/main.cpp.o: ../BlockType.h
 CMakeFiles/DoomCopy.dir/main.cpp.o: ../Creature.h
 CMakeFiles/DoomCopy.dir/main.cpp.o: ../Game.h
+CMakeFiles/DoomCopy.dir/main.cpp.o: ../List.h
+CMakeFiles/DoomCopy.dir/main.cpp.o: ../Map.h
+CMakeFiles/DoomCopy.dir/main.cpp.o: ../Menu.h
+CMakeFiles/DoomCopy.dir/main.cpp.o: ../Player.h
 CMakeFiles/DoomCopy.dir/main.cpp.o: ../Point.h
+CMakeFiles/DoomCopy.dir/main.cpp.o: ../Projectile.h
+CMakeFiles/DoomCopy.dir/main.cpp.o: ../StringManager.h
 CMakeFiles/DoomCopy.dir/main.cpp.o: ../Texture.h
+CMakeFiles/DoomCopy.dir/main.cpp.o: ../Weapon.h
 CMakeFiles/DoomCopy.dir/main.cpp.o: ../main.cpp
 

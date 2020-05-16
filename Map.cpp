@@ -22,9 +22,6 @@ void DoomCopy::Map::load(std::string pathToMap) {
     this->rows = img.getSize().y;
     this->columns = img.getSize().x;
 
-    std::cout << "map size: " << img.getSize().x << "x" << img.getSize().y << std::endl;
-
-
     this->data = new int*[this->rows];
     for (int i = 0; i < this->rows; i++) {
         this->data[i] = new int[this->columns];
@@ -38,6 +35,24 @@ void DoomCopy::Map::load(std::string pathToMap) {
 
     blocks.load(pathToMap, text);
     Map::loadEnemies(pathToMap);
+
+    //CLIMap létrehozása
+    CLIMap.rows = this->rows;
+    CLIMap.columns = this->columns;
+
+    CLIMap.data = new char*[CLIMap.rows];
+    for (int i = 0; i < CLIMap.rows; i++) {
+        CLIMap.data[i] = new char[CLIMap.columns];
+    }
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            if (blocks.isTypeSolid(data[i][j]))
+                CLIMap.data[i][j] = 'X';
+            else
+                CLIMap.data[i][j] = ' ';
+        }
+    }
 }
 
 void DoomCopy::Map::loadEnemies(std::string pathToMap) {
