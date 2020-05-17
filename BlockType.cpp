@@ -6,10 +6,14 @@
 #include "BlockType.h"
 #include "StringManager.h"
 
+//                                          Blocks - constructor
+//----------------------------------------------------------------------------------------------------------------------
 DoomCopy::Blocks::Blocks(std::string path, Texture& text) {
     load(path, text);
 }
 
+//                                          Blocks - load
+//----------------------------------------------------------------------------------------------------------------------
 void DoomCopy::Blocks::load(std::string path, Texture& text) {
     std::string line = "";
     std::ifstream file;
@@ -35,6 +39,9 @@ void DoomCopy::Blocks::load(std::string path, Texture& text) {
     } while(!file.eof());
 }
 
+
+//                                          Blocks - isTypeSolid
+//----------------------------------------------------------------------------------------------------------------------
 bool DoomCopy::Blocks::isTypeSolid(int type) const {
     ListItem<BlockType>* iter = blockType.getHead();
     while(iter->next != NULL) {
@@ -44,7 +51,8 @@ bool DoomCopy::Blocks::isTypeSolid(int type) const {
     }
     if (iter->item.x == type)
         return iter->item.isSolid;
-    throw "This blocktype is not present in the database therefore it is not known whether it is solid or not.";
+
+    throw std::domain_error("This blocktype is not present in the database therefore it is not known whether it is solid or not.");
 }
 
 std::string DoomCopy::Blocks::getTextureName(int type) {
@@ -56,9 +64,13 @@ std::string DoomCopy::Blocks::getTextureName(int type) {
     }
     if (iter->item.x == type)
         return iter->item.textureName;
-    throw "This blocktype is not present in the database.";
+
+    throw std::domain_error("This blocktype is not present in the database.");
 }
 
+
+//                                          Blocks - printTypes
+//----------------------------------------------------------------------------------------------------------------------
 void DoomCopy::Blocks::printTypes() {
     ListItem<BlockType>* iter = blockType.getHead();
     while(iter->next != NULL) {

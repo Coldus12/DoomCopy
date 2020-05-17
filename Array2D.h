@@ -5,10 +5,14 @@
 #ifndef DOOMCOPY_ARRAY2D_H
 #define DOOMCOPY_ARRAY2D_H
 
-//#include "DoomCopy.h"
-
 #include <iostream>
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////                                                Array2D                                                         ////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///Generikus ketdimenzios tomb
+///@param T - adattipus
 namespace DoomCopy {
     template <class T>
     class Array2D {
@@ -17,18 +21,18 @@ namespace DoomCopy {
         T** data;
         int rows;
         int columns;
-        Array2D(int rows = 0, int columns = 0) {
 
-            //if ((rows != 0) && (columns != 0)) {
-            //if( rows!= 0) {
-                destroyed = false;
-                this->rows = rows;
-                this->columns = columns;
-                data = new T*[this->rows];
-                for (int i = 0; i < this->rows; i++) {
-                    data[i] = new T[this->columns];
-                }
-            //}
+        ///A ketdimenzios tomb konstruktore
+        ///@param rows - a ketdimenzios tombben levo sorok szama
+        ///@param columns - a ketdimenzios tombben levo oszlopok szama
+        Array2D(int rows = 0, int columns = 0) {
+            destroyed = false;
+            this->rows = rows;
+            this->columns = columns;
+            data = new T*[this->rows];
+            for (int i = 0; i < this->rows; i++) {
+                data[i] = new T[this->columns];
+            }
         }
 
         void inline free() {
@@ -38,9 +42,10 @@ namespace DoomCopy {
                 }
             }
             delete[] data;
-            //destroyed = true;
         }
 
+        ///Virtualis destruktor
+        ///Felszabaditja a dinamikusan lefoglalt memoriateruleteket
         virtual ~Array2D() {
             if (!destroyed) {
                 if (rows != 0) {

@@ -19,12 +19,23 @@
 #include "Map.h"
 #include "Player.h"
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////                                                 Game                                                           ////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+///Szornyek tavolsagat osszehasonlito fuggveny, a palya
+///szornylistajanak rendezese miatt van erre szukseg.
+///@param i - egyik szorny pointere
+///@param j - masik szorny pointere
+///@return - i tavolabb van-e a jatekostol mint j
 inline bool cmp(DoomCopy::Creature* i, DoomCopy::Creature* j) {
     return (i->distanceFromPlayer > j->distanceFromPlayer);
 }
 
 namespace DoomCopy {
 
+    ///Maga a jatek, ez kezel mindent, es ebben tortenik minden.
     class Game {
         double degree = M_PI/180;
         Map* map = NULL;
@@ -42,52 +53,114 @@ namespace DoomCopy {
         sf::RenderWindow* window = NULL;
         sf::Font font;
 
+        ///Elinditja a jatekot vagy grafikusan vagy CLI-ben futva.
+        ///@param cli - cli-ben induljon-e a jatek
         Game(bool cli);
+
+        ///Elinditja a jatekot grafikusan egy palyan, adott ablakmerettel, es felbontassal.
+        ///@param mapName - palya neve
+        ///@param resolution - felbontas
+        ///@param screenSize - ablak merete
         void startGraphicalGame(const char* mapName, Point resolution, Point screenSize);
 
+        ///Kiszamolja, hogy mit lat a jatekos: milyen blokknak, melyik reszet, melyik texturat.
         void renderWalls();
+
+        ///Vegig fut a palya szorny listajan, es megfelelo helyre, a szorny allapotanak
+        ///megfelelo texturaju szornyet rajzol ki, ha az a jatekos latoszogben benne van,
+        ///nem takarja ki blokk, es nincs tavolabb, mint a jatekos latotavolsaga.
         void renderEnemies();
+
+        ///Vegig fut a palya lovedek listajan, es a megfelelo helyekre kirajzolja a lovedekeket,
+        ///ha azok a jatekos latoszogebe esnek, nincsenek tavolabb, mint a jatekos latotavolsaga,
+        ///es nem takarja el oket egy (vagy tobb) blokk.
         void renderProjectiles();
+
+        ///Beallitja a jatekos fegyverenek allapota alapjan, hogy a fegyver melyik texturajat rajzolja majd ki.
         void renderWeapon();
+
+        ///Kitorli a lovedek listabol azokat a lovedekeket, amik mar nem leteznek (bele utkoztek valamibe, vagy
+        ///tul mentek a range-ukon). Es kitorli azokat a szornyeket a szorny listabol, melyek mar meghaltak.
         void deleteDeadOrNonExistent();
+
+        ///Betolti a controls.conf konfiguracios fajlbol a kezdo beallitasokat,
+        ///mint az iranyitast, felbontast, es kepenyo meretet
         void loadSettings();
+
+        ///Betolti egy palya mappajaban levo whereto.conf konfiguracios fajlt, ami tartalmazza
+        ///azt a poziciot, ahova a jatekosnak el kell jutnia azert, hogy a palyan vegig jusson.
+        ///@param x - ide tolti be az elerendo cel x koordinatajat
+        ///@param y - ide tolti be az elerendo cel y koordinatajat
+        ///@param mapName - a palya neve, aminek a mappajaban a whereto.conf talalhato
         void winCondition(std::string mapName, int& x, int& y);
 
+        ///Elinditja a jatekot a mapName nevu palyaval CLI-s modban.
+        ///@param mapName - palya neve
         void startCLIGame(const char* mapName);
+
+        ///Ertelmezi a kovetkezo parancsokat: quit, shoot, aim, move, printmap, listmonsters, hp
+        ///Akcio tipusu parancsok: shoot, move
+        ///Nem akcio tipusu parancsok: aim, quit, printmap, hp, listmonsters
+        ///@param cmd - parancs
+        ///@param aim - a becolazando szorny indexe
+        ///@param exit - kilepjen-e a jatekbol
+        ///@return - akcio tipusu parancs lett-e beirva
         bool command(const std::string& cmd, bool& exit, int& aim);
 
+        ///Beallit grafikus futasban az ablaknak egy uj szelesseget, felteve, hogy az nagyobb, mint 100
+        ///@param newWidth - az ablak uj szelessege
         void setScreenWidth(int newWidth) {
-            SCREEN_WIDTH = newWidth;
-            if (window != NULL)
-                window->setSize(sf::Vector2u(SCREEN_WIDTH, SCREEN_HEIGHT));
+            if (newWidth > 100) {
+                SCREEN_WIDTH = newWidth;
+                if (window != NULL)
+                    window->setSize(sf::Vector2u(SCREEN_WIDTH, SCREEN_HEIGHT));
+            }
         }
 
+        ///Beallit grafikus futasban az ablaknak egy uj magassagot, felteve, hogy az nagyobb, mint 100
+        ///@param newHeight - az ablak uj magassaga
         void setScreenHeight(int newHeight) {
-            SCREEN_HEIGHT = newHeight;
-            if (window != NULL)
-                window->setSize(sf::Vector2u(SCREEN_WIDTH, SCREEN_HEIGHT));
+            if (newHeight > 100) {
+                SCREEN_HEIGHT = newHeight;
+                if (window != NULL)
+                    window->setSize(sf::Vector2u(SCREEN_WIDTH, SCREEN_HEIGHT));
+            }
         }
 
+        ///Beallit a felbontasnak egy uj szelesseget (felteve hogy az nagyobb mint 100)
+        ///@param newRWidth - felbontas uj szelessege
         void setResWidth(int newRWidth) {
-            screenWidth = newRWidth;
+            if (newRWidth > 100)
+                screenWidth = newRWidth;
         }
 
+        ///Beallit a felbontasnak egy uj magassagot (felteve hogy az nagyobb mint 100)
+        ///@param newRHeight - felbontas uj magassaga
         void setResHeight(int newRHeight) {
-            screenHeight = newRHeight;
+            if (newRHeight > 100)
+                screenHeight = newRHeight;
         }
 
+        ///Visszaadja az ablak szelesseget
+        ///@return - ablak szelessege
         int getScreenWidth() {
             return SCREEN_WIDTH;
         }
 
+        ///Visszaadja az ablak magassagat
+        ///@return - ablak magassaga
         int getScreenHeight() {
             return SCREEN_HEIGHT;
         }
 
+        ///Visszaadja a felbontas szelesseget
+        ///@return - felbontas szelessege
         int getResWidth() {
             return screenWidth;
         }
 
+        ///Visszaadja a felbontas magassagat
+        ///@return - felbontas magassaga
         int getResHeight() {
             return screenHeight;
         }
@@ -102,8 +175,17 @@ namespace DoomCopy {
         }
     };
 
+    ///4 menu is ezt a fuggvenyt hasznalja. Gyakorlatilag egy numpad, mint ahogy azt a neve
+    ///is sugallja. Egy ablakon erzekeli a szamok beuteset, egy tetszoleges szoveg utan kiirja
+    ///azokat, es ha entert nyomnak, akkor az uj szamot (amit beutottek) be irja egy a fuggvenynek
+    ///atadott valtozoba.
+    ///@param window - ablak amibe a numpad uzemel
+    ///@param textToWriteOut - a szoveg amiket a szamok ele kiir
+    ///@param variableToSaveInto - a valtozo amibe az uj erteket elmenti.
     void numpad(sf::RenderWindow* window, int* variableToSaveInto, std::string textToWriteOut);
 
+    ///Egy palya elinditasara szolgalo menupont.
+    ///Elinditja a menuponttal azonos nevu palya grafikusan.
     class GStartGame : public Menu {
     public:
         Game* game;
@@ -116,6 +198,8 @@ namespace DoomCopy {
         }
     };
 
+    ///Start menu, kivalasztasa utan felsorolja az osszes map.conf-ban levo palyat.
+    ///GStartGame-ekre mutat.
     class Start : public Menu {
     public:
         Game* game;
@@ -132,6 +216,7 @@ namespace DoomCopy {
         }
     };
 
+    ///A menupont amelyik atallitja az ablak szelesseget
     class SetScreenWidth : public Menu {
     public:
         Game* game;
@@ -147,6 +232,7 @@ namespace DoomCopy {
         }
     };
 
+    ///A menupont amelyik atallitja az ablak magassagat
     class SetScreenHeight : public Menu {
     public:
         Game* game;
@@ -162,6 +248,7 @@ namespace DoomCopy {
         }
     };
 
+    ///Menupont ami atallitja a felbontas szelesseget
     class SetResWidth : public Menu {
     public:
         Game* game;
@@ -177,6 +264,7 @@ namespace DoomCopy {
         }
     };
 
+    ///Menupont ami atallitja a felbontas magassagat
     class SetResHeight : public Menu {
     public:
         Game* game;
@@ -192,6 +280,7 @@ namespace DoomCopy {
         }
     };
 
+    ///Kepernyo beallitasait tartalmazo almenu
     class ScreenSettings : public Menu {
     public:
         Game* game;
@@ -204,6 +293,7 @@ namespace DoomCopy {
         }
     };
 
+    ///Beallitasokat tartalmazo menu
     class Settings : public Menu {
     public:
         Game* game;
@@ -213,6 +303,7 @@ namespace DoomCopy {
         }
     };
 
+    ///Kilepesi menu
     class Exit : public Menu {
     public:
         Game* game;
@@ -225,6 +316,7 @@ namespace DoomCopy {
         }
     };
 
+    ///Egy palyahoz tartozo high score-okat tolti be, majd kivalasztasa utan irja ki.
     class MapHighScore : public Menu {
     public:
         Game* game;
@@ -288,6 +380,7 @@ namespace DoomCopy {
         }
     };
 
+    ///MapHighScore menupontokat tartalmazo menu
     class HighScore : public Menu {
     public:
         Game* game;
@@ -307,6 +400,7 @@ namespace DoomCopy {
 
     };
 
+    ///Fomenu, ha a jatek grafikus modban indul, akkor az ablakban ezt a menut lathatjuk eloszor
     class MainMenu : public Menu {
     public:
         Game* game;

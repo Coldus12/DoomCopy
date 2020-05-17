@@ -6,17 +6,27 @@
 #include "Creature.h"
 #include "Player.h"
 
-void DoomCopy::Creature::move(double relativeX, double relativY, const DoomCopy::Map& map) {
-    int x = int(position.x + relativeX);
-    int y = int(position.y + relativY);
-    int oX = int(position.x);
-    int oY = int(position.y);
 
-    if (!(map.blocks.isTypeSolid(map.data[y][x]) || map.blocks.isTypeSolid(map.data[oY][x]) || map.blocks.isTypeSolid(map.data[y][oX]) || map.blocks.isTypeSolid(map.data[oY][oX]))) {
-        position.x += relativeX;
-        position.y += relativY;
+//                                          Creature - move
+//----------------------------------------------------------------------------------------------------------------------
+void DoomCopy::Creature::move(double relativeX, double relativY, const DoomCopy::Map& map) {
+    try {
+        int x = int(position.x + relativeX);
+        int y = int(position.y + relativY);
+        int oX = int(position.x);
+        int oY = int(position.y);
+
+        if (!(map.blocks.isTypeSolid(map.data[y][x]) || map.blocks.isTypeSolid(map.data[oY][x]) || map.blocks.isTypeSolid(map.data[y][oX]) || map.blocks.isTypeSolid(map.data[oY][oX]))) {
+            position.x += relativeX;
+            position.y += relativY;
+        }
+    } catch (std::exception& ex) {
+        std::cerr << "The creature couldn't move, reason being: " << ex.what() << std::endl;
     }
 }
+
+//                                          isPlayerVisible
+//----------------------------------------------------------------------------------------------------------------------
 
 bool DoomCopy::Creature::isPlayerVisble(const Map& map, Point playerPos) {
     double dx = playerPos.x - position.x;
@@ -55,65 +65,72 @@ bool DoomCopy::Creature::isPlayerVisble(const Map& map, Point playerPos) {
         return false;
 }
 
+//                                          Creature - update
+//----------------------------------------------------------------------------------------------------------------------
 void DoomCopy::Creature::update(const Map& map, Player& player) {
-    sf::Time passed = clock.getElapsedTime();
-    if (passed.asSeconds() >= 1/10.0) {
-        //std::cout << position.x << " " << position.y << " player " << player.getPosX() << " " << player.getPosY() << std::endl;
+    try {
+        sf::Time passed = clock.getElapsedTime();
+        if (passed.asSeconds() >= 1/10.0) {
 
-        double dx = player.getPosX() - position.x;
-        double dy = player.getPosY() - position.y;
+            double dx = player.getPosX() - position.x;
+            double dy = player.getPosY() - position.y;
 
-        if (isPlayerVisble(map,Point(player.getPosX(),player.getPosY()))) {
-            if (distanceFromPlayer <= 1.5) {
+            if (isPlayerVisble(map,Point(player.getPosX(),player.getPosY()))) {
+                if (distanceFromPlayer <= 1.5) {
 
-                if (currentStatus == attack1)
-                    currentStatus = attack2;
-                else
-                    currentStatus = attack1;
+                    if (currentStatus == attack1)
+                        currentStatus = attack2;
+                    else
+                        currentStatus = attack1;
 
-                if (currentStatus == attack2)
-                    dmgPlayer(player,5);
-            }
-
-            if ((!map.blocks.isTypeSolid(map.data[int(position.y + speed/20 * dy)][int(position.x + speed/20 * dx)])) && (distanceFromPlayer > 1.5)) {
-                position.x += speed/20.0 * dx;
-                position.y += speed/20.0 * dy;
-
-                if (currentStatus == run1)
-                    currentStatus = run2;
-                else
-                    currentStatus = run1;
-            }
-        } else {
-            //Not visible
-            double dir = atan2(directionVector.y,directionVector.x);
-
-            if ((dir - M_PI/2.0) <= player.direction <= (dir + M_PI/2.0))
-                currentStatus = stand;
-            else
-                currentStatus = back;
-
-            std::srand((unsigned) time(NULL));
-            int random = std::rand()%4;
-
-            if (random) {
-                turn(20 * M_PI/180.0);
-            } else {
-                double mx = cos(directionVector.x);
-                double my = sin(directionVector.y);
-
-                if (!map.blocks.isTypeSolid(map.data[int(position.y + my)][int(position.x + mx)])) {
-                    position.x += mx;
-                    position.y += my;
+                    if (currentStatus == attack2)
+                        dmgPlayer(player,5);
                 }
+
+                if ((!map.blocks.isTypeSolid(map.data[int(position.y + speed/20 * dy)][int(position.x + speed/20 * dx)])) && (distanceFromPlayer > 1.5)) {
+                    position.x += speed/20.0 * dx;
+                    position.y += speed/20.0 * dy;
+
+                    if (currentStatus == run1)
+                        currentStatus = run2;
+                    else
+                        currentStatus = run1;
+                }
+            } else {
+                //Not visible
+                double dir = atan2(directionVector.y,directionVector.x);
+
+                if ((dir - M_PI/2.0) <= player.direction <= (dir + M_PI/2.0))
+                    currentStatus = stand;
+                else
+                    currentStatus = back;
+
+                std::srand((unsigned) time(NULL));
+                int random = std::rand()%4;
+
+                if (random) {
+                    turn(20 * M_PI/180.0);
+                } else {
+                    double mx = cos(directionVector.x);
+                    double my = sin(directionVector.y);
+
+                    if (!map.blocks.isTypeSolid(map.data[int(position.y + my)][int(position.x + mx)])) {
+                        position.x += mx;
+                        position.y += my;
+                    }
+                }
+
             }
 
+            clock.restart();
         }
-
-        clock.restart();
+    } catch (std::exception& ex) {
+        std::cerr << "Something went wrong while udating the creature: " << ex.what() << std::endl;
     }
 }
 
+//                                          Creature - dmgPlayer
+//----------------------------------------------------------------------------------------------------------------------
 void DoomCopy::Creature::dmgPlayer(Player& player, double amount) {
     player.HP -= amount;
 }

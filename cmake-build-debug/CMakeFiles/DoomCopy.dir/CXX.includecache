@@ -10,11 +10,29 @@
 iostream
 -
 
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/BlockType.cpp
+fstream
+-
+BlockType.h
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/BlockType.h
+StringManager.h
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/StringManager.h
+
 /home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/BlockType.h
 List.h
 /home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/List.h
 Texture.h
 /home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Texture.h
+
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Creature.cpp
+Array2D.h
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Array2D.h
+Map.h
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Map.h
+Creature.h
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Creature.h
+Player.h
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Player.h
 
 /home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Creature.h
 iostream
@@ -73,6 +91,22 @@ Player.h
 /home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/List.h
 iostream
 -
+sstream
+-
+
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Map.cpp
+fstream
+-
+Array2D.h
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Array2D.h
+Map.h
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Map.h
+StringManager.h
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/StringManager.h
+MeleeEnemy.h
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/MeleeEnemy.h
+Projectile.h
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Projectile.h
 
 /home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Map.h
 Array2D.h
@@ -86,6 +120,10 @@ Creature.h
 Projectile.h
 /home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Projectile.h
 
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/MeleeEnemy.h
+Creature.h
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Creature.h
+
 /home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Menu.h
 iostream
 -
@@ -93,6 +131,12 @@ fstream
 -
 SFML/Graphics/Text.hpp
 -
+
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Player.cpp
+fstream
+-
+Player.h
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Player.h
 
 /home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Player.h
 Point.h
@@ -103,6 +147,14 @@ Weapon.h
 /home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Weapon.h
 
 /home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Point.h
+
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Projectile.cpp
+fstream
+-
+Projectile.h
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Projectile.h
+Player.h
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Player.h
 
 /home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Projectile.h
 SFML/System/Clock.hpp
@@ -125,6 +177,12 @@ SFML/Graphics/RenderStates.hpp
 -
 Point.h
 /home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Point.h
+
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Weapon.cpp
+fstream
+-
+Weapon.h
+/home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Weapon.h
 
 /home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Weapon.h
 Texture.h

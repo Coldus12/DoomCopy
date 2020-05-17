@@ -4,27 +4,33 @@
 
 #include <fstream>
 #include "Projectile.h"
-
-//Teszt ez:
 #include "Player.h"
 
+//                                     projectiletype - loadProjectileType
+//----------------------------------------------------------------------------------------------------------------------
 void DoomCopy::ProjectileType::loadProjectileType(std::string path,std::string line) {
-    //std::cout << "load projectiles fnc" << std::endl;
-    dmg = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"damage=\"","\""));
-    speed = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"speed=\"","\""));
-    size = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"size=\"","\""));
-    range = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"range=\"","\""));
+    try {
+        dmg = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"damage=\"","\""));
+        speed = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"speed=\"","\""));
+        //size = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"size=\"","\""));
+        range = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"range=\"","\""));
 
-    path += "/" + StringManager::get_substring_btwn_first_and_next(line,"pathToTexture=\"","\"");
-    //std::cout << path << std::endl;
+        path += "/" + StringManager::get_substring_btwn_first_and_next(line,"pathToTexture=\"","\"");
 
-    text.addImg(path.c_str(),StringManager::get_substring_btwn_last_occurences(path,"/",".png").c_str());
+        text.addImg(path.c_str(),StringManager::get_substring_btwn_last_occurences(path,"/",".png").c_str());
+    } catch (std::exception& ex) {
+        std::cerr << "Something went wrong: " << ex.what() << std::endl;
+    }
 }
 
+//                                              cmpr - nearby
+//----------------------------------------------------------------------------------------------------------------------
 bool DoomCopy::cmpr::nearby(DoomCopy::Creature* t) {
     return (((t->getPos().x - 0.75) <= p.x) && ((t->getPos().x + 0.75) >= p.x) && ((t->getPos().y - 0.75) <= p.y) && ((t->getPos().y + 0.75) >= p.y));
 }
 
+//                                          projectile - update
+//----------------------------------------------------------------------------------------------------------------------
 void DoomCopy::Projectile::update(Map &map, Player& player) {
     if (clock.getElapsedTime().asSeconds() >= 1/20.0) {
         if (stillExists) {

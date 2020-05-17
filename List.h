@@ -6,9 +6,16 @@
 #define DOOMCOPY_LIST_H
 
 #include <iostream>
+#include <sstream>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////                                                  List                                                          ////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 namespace DoomCopy {
 
+    ///Listitem - lancolt lista egysegeleme
+    ///@param T - adattipus
     template <typename T>
     class ListItem {
     public:
@@ -20,12 +27,20 @@ namespace DoomCopy {
         }
     };
 
+    ///Automatikus lancolt lista sablon
+    ///hasonlo az std::vector-hoz, csak minden
+    ///szempontbol rosszabb.
+    ///@param T - adattipus
     template <typename T>
     class List {
         ListItem<T>* head = NULL;
         bool isDestructFucSet = false;
         void (*fnc)(T t);
 
+        ///Fuggvény ami felcsereli ket elem
+        ///poziciojat a listaban
+        ///@param nr1 - a lancolt lista egyik elemenek indexe
+        ///@param nr2 - a lancolt list masik elemenek indexe
         void swap(size_t nr1, size_t nr2) {
             if ((0 < nr1 <= currentSize) && (0 < nr2 <= currentSize)) {
                 if (abs(int(nr2) - int(nr1)) > 1) {
@@ -102,14 +117,28 @@ namespace DoomCopy {
             for (int j = low; j <= high - 1; j ++) {
                 if (fnc(at(j),pivot->item)) {
                     li++;
-                    swap(li,j);
+                    try {
+                        swap(li, j);
+                    } catch (std::exception& ex) {
+                        std::cerr << ex.what() << std::endl;
+                    }
                 }
             }
 
-            swap(li + 1, high);
+            try {
+                swap(li + 1, high);
+            } catch (std::exception& ex) {
+                std::cerr << ex.what() << std::endl;
+            }
             return (li + 1);
         }
 
+        ///Quicksort lancolt listara
+        ///Forras, ami alapjan implementalva van:
+        ///https://www.geeksforgeeks.org/quick-sort/
+        ///@param low - a lista elso eleme ahonnan a quicksortot inditjuk
+        ///@param high - a lista utolso eleme (ameddig a quicksort tart)
+        ///@param fnc - egy osszehasonlito fuggveny ami alapjan a rendezes tortenik
         void quickSort(size_t low, size_t high, bool fnc(T i, T i2)) {
             if (low < high) {
                 size_t pi = partition(low, high, fnc);
@@ -129,10 +158,16 @@ namespace DoomCopy {
             head = new ListItem<T>(first);
         }
 
+        ///Beallitja a lancolt lista elso elemet
+        ///felteve, hogy a lista eddig teljesen ures volt.
+        ///@param first - az elem amivel kezdeni szeretnenk
         void setHead(T first) {
-            head = new ListItem<T>(first);
+            if (head == NULL)
+                head = new ListItem<T>(first);
         }
 
+        ///Hozzaad egy uj elemet a lancolt listahoz
+        ///@param newItem - az uj elem
         void addItem(T newItem) {
             ListItem<T>* iter = head;
             if (iter == NULL) {
@@ -145,23 +180,17 @@ namespace DoomCopy {
             }
         }
 
-        void printData() {
-            ListItem<T>* iter = head;
-            int i = 0;
-            while (iter->next != NULL) {
-                std::cout << iter->item << std::endl;
-                i++;
-                iter = iter->next;
-            }
-            std::cout << iter->item << std::endl;
-        }
-
+        ///Quicksort ami az egesz lista lefut
+        ///@param fnc - osszehasonlito fuggveny ami alapjan a rendezes tortenik
         void sort(bool fnc(T i, T i2)) {
             quickSort(0,currentSize,fnc);
         }
 
         ListItem <T>* getHead() const {return head;}
 
+        ///Visszaadja a lista egy adott indexu elemet
+        ///@param idx - index
+        ///@return - adott indexu elem
         T at(size_t idx) {
             if ((idx >= 0) && (idx <= currentSize)) {
                 size_t i = 0;
@@ -173,10 +202,17 @@ namespace DoomCopy {
                     iter = iter->next;
                 }
             } else {
-                throw std::out_of_range("idx is out of range.");
+                std::stringstream err;
+                err << "index is out of range: " << idx;
+                throw std::out_of_range(err.str());
             }
+
+            return NULL;
         }
 
+        ///Visszaadja a lista egy adott indexen talalhato memoria cimet
+        ///@param idx - index
+        ///@return - adott indexu elem memoriacime
         ListItem<T>* addrAt(size_t idx) {
             if ((idx >= 0) && (idx <= currentSize)) {
                 size_t i = 0;
@@ -188,10 +224,19 @@ namespace DoomCopy {
                     iter = iter->next;
                 }
             } else {
-                throw std::out_of_range("idx is out of range.");
+                std::stringstream err;
+                err << "index is out of range: " << idx;
+                throw std::out_of_range(err.str());
             }
+
+            return NULL;
         }
 
+        ///Egy fuggveny alapjan keres elemet a listabol.
+        ///Az elso olyan elemmel ter vissza ami teljesiti
+        ///a kereso fuggveny feltetele(i)t.
+        ///@param fnc - fuggveny ami alapjan adott elemet kereseni lehet
+        ///@return - az elso elem amire a biztositott fuggveny igazzal tert vissza
         T searchBy(bool fnc(T)) {
             ListItem<T>* iter = head;
             while(iter != NULL) {
@@ -200,9 +245,14 @@ namespace DoomCopy {
                 iter = iter->next;
             }
 
-            throw "well shit.... Nincs közte...";
+            throw std::domain_error("No item in the list satisfies the search function provided.");
         }
 
+        ///Egy fuggveny alapjan keres elemet a listabol.
+        ///Az elso olyan elem memoria cimevel ter vissza
+        ///ami teljesiti a kereso fuggveny feltetele(i)t.
+        ///@param fnc - fuggveny ami alapjan adott elemet kereseni lehet
+        ///@return - az elso elem memoriaja amire a biztositott fuggveny igazzal tert vissza
         ListItem<T>* pSearchBy(bool fnc(T)) {
             ListItem<T>* iter = head;
             while(iter != NULL) {
@@ -210,10 +260,14 @@ namespace DoomCopy {
                     return iter;
                 iter = iter->next;
             }
-
-            throw "well shit.... Nincs közte...";
+            //Nincs kozte -> NULL
+            return NULL;
         }
 
+        ///Egy igaz/hamis fuggveny-t vegig futtat a lista
+        ///minden elemen, es amint talal akar egyet is igazzal ter vissza.
+        ///@param fnc - fuggveny pointer elem vizsgalasahoz
+        ///@return - tartalmaz-e adott tulajdonsagu elemet
         bool doesItContain(bool fnc(T)) {
             ListItem<T>* iter = head;
             while(iter != NULL) {
@@ -224,77 +278,94 @@ namespace DoomCopy {
             return false;
         }
 
+        ///Kitorli a lista egy adott indexen talalhato elemet
+        ///@param idx - kitorlendo elem indexe
         void deleteAt(size_t idx) {
-            std::cout << currentSize << " " << idx << std::endl;
             if ((idx >= 0) && (idx <= currentSize)) {
-                if (idx == 0) {
-                    if (head != NULL) {
-                        if (head->next != NULL) {
-                            ListItem<T>* next = head->next;
-                            delete head;
-                            head = next;
-                        } else {
-                            delete head;
-                            head = NULL;
+                try {
+                    if (idx == 0) {
+                        if (head != NULL) {
+                            if (head->next != NULL) {
+                                ListItem<T>* next = head->next;
+                                delete head;
+                                head = next;
+                            } else {
+                                delete head;
+                                head = NULL;
+                            }
                         }
+                    } else if (addrAt(idx)->next == NULL) {
+                        ListItem<T>* del = addrAt(idx);
+                        delete del;
+                        addrAt(idx-1)->next = NULL;
+                    } else {
+                        ListItem<T>* del = addrAt(idx);
+                        ListItem<T>* tmp = addrAt(idx+1);
+                        addrAt(idx-1)->next = tmp;
+                        delete del;
                     }
-                } else if (addrAt(idx)->next == NULL) {
-                    ListItem<T>* del = addrAt(idx);
-                    delete del;
-                    addrAt(idx-1)->next = NULL;
-                } else {
-                    ListItem<T>* del = addrAt(idx);
-                    ListItem<T>* tmp = addrAt(idx+1);
-                    addrAt(idx-1)->next = tmp;
-                    delete del;
+
+                    if (currentSize > 0)
+                        currentSize--;
+                } catch  (std::exception& ex) {
+                    std::cerr << "Could not delete item at index: " << idx << " reason being: " << ex.what() << std::endl;
                 }
-
-                if (currentSize > 0)
-                    currentSize--;
-
             } else {
                 throw std::out_of_range("del idx is out of range.");
             }
         }
 
+        ///A lista egy adoot indexu elemen lefuttat
+        ///egy fuggveny (pl.: ha a lanc dinamikusan foglalt
+        ///elemeket tartalmaz, akkor ez valamilyen delete fgvny)
+        ///majd kitorli az elemet a listabol.
+        ///@param idx - kitorlendo elem indexe
+        ///@param fnc - fuggveny ami a torlendo elemen lefut
         void deleteAt(size_t idx, void fnc(T)) {
             if ((idx >= 0) && (idx <= currentSize)) {
-                if (idx == 0) {
-                    if (head != NULL) {
-                        if (head->next != NULL) {
-                            ListItem<T>* next = head->next;
-                            fnc(head->item);
-                            delete head;
-                            head = next;
-                        } else {
-                            fnc(head->item);
-                            delete head;
-                            head = NULL;
+                try {
+                    if (idx == 0) {
+                        if (head != NULL) {
+                            if (head->next != NULL) {
+                                ListItem<T>* next = head->next;
+                                fnc(head->item);
+                                delete head;
+                                head = next;
+                            } else {
+                                fnc(head->item);
+                                delete head;
+                                head = NULL;
+                            }
                         }
+                    } else if (addrAt(idx)->next == NULL) {
+                        //std::cout << "here we are" << std::endl;
+                        ListItem<T>* del = addrAt(idx);
+                        ListItem<T>* before = addrAt(idx-1);
+                        fnc(del->item);
+                        delete del;
+                        before->next = NULL;
+                    } else {
+                        ListItem<T>* del = addrAt(idx);
+                        ListItem<T>* tmp = addrAt(idx+1);
+                        addrAt(idx-1)->next = tmp;
+                        fnc(del->item);
+                        delete del;
                     }
-                } else if (addrAt(idx)->next == NULL) {
-                    //std::cout << "here we are" << std::endl;
-                    ListItem<T>* del = addrAt(idx);
-                    ListItem<T>* before = addrAt(idx-1);
-                    fnc(del->item);
-                    delete del;
-                    before->next = NULL;
-                } else {
-                    ListItem<T>* del = addrAt(idx);
-                    ListItem<T>* tmp = addrAt(idx+1);
-                    addrAt(idx-1)->next = tmp;
-                    fnc(del->item);
-                    delete del;
+
+                    if (currentSize > 0)
+                        currentSize--;
+                } catch (std::exception& ex) {
+                    std::cerr << "Could not delete item at index: " << idx << " reason being: " << ex.what() << std::endl;
                 }
-
-                if (currentSize > 0)
-                    currentSize--;
-
             } else {
                 throw std::out_of_range("del idx is out of range.");
             }
         }
 
+
+        ///Beallit egy fuggvenyt ami majd lefut a lista
+        ///minden elemere, amikor a listanak a destruktora fut.
+        ///@param fnc - a fuggveny
         void setDestructFunction(void fnc(T)) {
             isDestructFucSet = true;
             this->fnc = fnc;

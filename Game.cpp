@@ -11,142 +11,161 @@
 #include "Player.h"
 #include "Menu.h"
 
-//Segéd függvények
+//                                          Seged fuggvenyke
+//----------------------------------------------------------------------------------------------------------------------
+//Szornyek torlesehez
 void fnc(DoomCopy::Creature* cre) {
     delete cre;
 }
 
+//Lovedekek torlesehez
 void fnc2(DoomCopy::Projectile* pro) {
     delete pro;
 }
 
+//ket "highscore"-t osszehasonlito fuggveny
 bool scoreCmpr(int i, int i2) {
     return i > i2;
 }
 
+//                                          A JATEK
+//----------------------------------------------------------------------------------------------------------------------
 DoomCopy::Game::Game(bool cli) {
-    if (cli == false) {
+    try {
+        //                                      Grafikus modban inditva
+        //--------------------------------------------------------------------------------------------------------------
+        if (cli == false) {
 
-        if (!font.loadFromFile("FunSized.ttf")) {
-            if (!font.loadFromFile("Roboto-Regular.ttf")) {
-                font.loadFromFile("advanced_pixel-7.ttf");
-            }
-        }
-
-        loadSettings();
-        window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "DoomCopy!",sf::Style::Titlebar | sf::Style::Close);
-
-        MainMenu menu("Main",*this);
-        Menu* iter = &menu;
-        int sel = 0;
-
-        sf::Event event;
-        while(window->isOpen()) {
-
-            while(window->pollEvent(event)) {
-                if (event.type == sf::Event::Closed) {
-                    window->close();
-                } else if (event.type == sf::Event::KeyPressed) {
-                    if (event.key.code == sf::Keyboard::Escape)
-                        window->close();
-
-                    if (event.key.code == sf::Keyboard::Up)
-                        sel--;
-
-                    if (event.key.code == sf::Keyboard::Down)
-                        sel++;
-
-                    if(event.key.code == sf::Keyboard::Enter) {
-                        if (sel != iter->nr_of_menus) {
-                            if (iter->options[sel]->nr_of_menus != 0)
-                                iter = iter->options[sel];
-                            else
-                                iter->options[sel]->doAction();
-                        } else {
-                            iter = iter->back;
-                        }
-                    }
-
+            //Font betoltese
+            if (!font.loadFromFile("FunSized.ttf")) {
+                if (!font.loadFromFile("Roboto-Regular.ttf")) {
+                    font.loadFromFile("advanced_pixel-7.ttf");
                 }
             }
 
-            for (int i = 0; i < iter->nr_of_menus; i++) {
-                iter->options[i]->gText.setString(iter->options[i]->text);
-                iter->options[i]->gText.setFillColor(sf::Color::White);
-                iter->options[i]->gText.setCharacterSize(30);
+            //Beallitasok betoltese
+            loadSettings();
+            window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "DoomCopy!",sf::Style::Titlebar | sf::Style::Close);
+
+            //Fomenu
+            MainMenu menu("Main",*this);
+            Menu* iter = &menu;
+            int sel = 0;
+
+            sf::Event event;
+            while(window->isOpen()) {
+
+                while(window->pollEvent(event)) {
+                    if (event.type == sf::Event::Closed) {
+                        window->close();
+                    } else if (event.type == sf::Event::KeyPressed) {
+                        if (event.key.code == sf::Keyboard::Escape)
+                            window->close();
+
+                        if (event.key.code == sf::Keyboard::Up)
+                            sel--;
+
+                        if (event.key.code == sf::Keyboard::Down)
+                            sel++;
+
+                        if(event.key.code == sf::Keyboard::Enter) {
+                            if (sel != iter->nr_of_menus) {
+                                if (iter->options[sel]->nr_of_menus != 0)
+                                    iter = iter->options[sel];
+                                else
+                                    iter->options[sel]->doAction();
+                            } else {
+                                iter = iter->back;
+                            }
+                        }
+
+                    }
+                }
+
+                for (int i = 0; i < iter->nr_of_menus; i++) {
+                    iter->options[i]->gText.setString(iter->options[i]->text);
+                    iter->options[i]->gText.setFillColor(sf::Color::White);
+                    iter->options[i]->gText.setCharacterSize(30);
+
+                    if (iter->back != NULL)
+                        iter->options[i]->gText.setPosition(SCREEN_WIDTH/2 - 30,(SCREEN_HEIGHT/2)/(iter->nr_of_menus + 1) * i + SCREEN_HEIGHT/3);
+                    else
+                        iter->options[i]->gText.setPosition(SCREEN_WIDTH/2 - 30,(SCREEN_HEIGHT/2)/iter->nr_of_menus * i + SCREEN_HEIGHT/3);
+
+                    iter->options[i]->gText.setFont(font);
+                }
+
+                if (iter->back != NULL) {
+                    iter->back->gText.setString("Back");
+                    iter->back->gText.setFillColor(sf::Color::White);
+                    iter->back->gText.setCharacterSize(30);
+                    iter->back->gText.setFont(font);
+                    iter->back->gText.setPosition(SCREEN_WIDTH/2 - 30, (SCREEN_HEIGHT/2)/(iter->nr_of_menus + 1) * iter->nr_of_menus + (SCREEN_HEIGHT/3));
+
+                    if (sel < 0)
+                        sel = iter->nr_of_menus;
+                    if (sel > iter->nr_of_menus)
+                        sel = 0;
+
+                    if (sel != iter->nr_of_menus)
+                        iter->options[sel]->gText.setFillColor(sf::Color::Red);
+                    else
+                        iter->back->gText.setFillColor(sf::Color::Red);
+
+                } else {
+                    if (sel < 0)
+                        sel = iter->nr_of_menus - 1;
+                    if (sel > iter->nr_of_menus - 1)
+                        sel = 0;
+
+                    iter->options[sel]->gText.setFillColor(sf::Color::Red);
+                }
+
+
+
+
+
+                window->clear();
+
+                for (int i = 0; i < iter->nr_of_menus; i++)
+                    window->draw(iter->options[i]->gText);
 
                 if (iter->back != NULL)
-                    iter->options[i]->gText.setPosition(SCREEN_WIDTH/2 - 30,(SCREEN_HEIGHT/2)/(iter->nr_of_menus + 1) * i + SCREEN_HEIGHT/3);
-                else
-                    iter->options[i]->gText.setPosition(SCREEN_WIDTH/2 - 30,(SCREEN_HEIGHT/2)/iter->nr_of_menus * i + SCREEN_HEIGHT/3);
+                    window->draw(iter->back->gText);
 
-                iter->options[i]->gText.setFont(font);
+                window->display();
             }
+        } else {
+            //                                          CLI-ben inditva
+            //----------------------------------------------------------------------------------------------------------
+            std::fstream file;
+            file.open("maps.conf");
+            std::string fileLine;
 
-            if (iter->back != NULL) {
-                iter->back->gText.setString("Back");
-                iter->back->gText.setFillColor(sf::Color::White);
-                iter->back->gText.setCharacterSize(30);
-                iter->back->gText.setFont(font);
-                iter->back->gText.setPosition(SCREEN_WIDTH/2 - 30, (SCREEN_HEIGHT/2)/(iter->nr_of_menus + 1) * iter->nr_of_menus + (SCREEN_HEIGHT/3));
+            std::cout << "Maps to play:" << std::endl;
 
-                if (sel < 0)
-                    sel = iter->nr_of_menus;
-                if (sel > iter->nr_of_menus)
-                    sel = 0;
+            do {
+                std::getline(file,fileLine);
+                if (!fileLine.empty())
+                    std::cout << fileLine << std::endl;
+                else break;
+            } while(!file.eof());
 
-                if (sel != iter->nr_of_menus)
-                    iter->options[sel]->gText.setFillColor(sf::Color::Red);
-                else
-                    iter->back->gText.setFillColor(sf::Color::Red);
-
-            } else {
-                if (sel < 0)
-                    sel = iter->nr_of_menus - 1;
-                if (sel > iter->nr_of_menus - 1)
-                    sel = 0;
-
-                iter->options[sel]->gText.setFillColor(sf::Color::Red);
-            }
-
-
-
-
-
-            window->clear();
-
-            for (int i = 0; i < iter->nr_of_menus; i++)
-                window->draw(iter->options[i]->gText);
-
-            if (iter->back != NULL)
-                window->draw(iter->back->gText);
-
-            window->display();
+            std::cout << "To start playing just type in the name of a map! (to quit type \"quit\")" << std::endl;
+            std::string line = "";
+            std::cin >> line;
+            if (line.find("quit") != std::string::npos)
+                return;
+            else
+                startCLIGame(line.c_str());
         }
-    } else {
-        std::fstream file;
-        file.open("maps.conf");
-        std::string fileLine;
-
-        std::cout << "Maps to play:" << std::endl;
-
-        do {
-            std::getline(file,fileLine);
-            if (!fileLine.empty())
-                std::cout << fileLine << std::endl;
-            else break;
-        } while(!file.eof());
-
-        std::cout << "To start playing just type in the name of a map! (to quit type \"quit\")" << std::endl;
-        std::string line = "";
-        std::cin >> line;
-        if (line.find("quit") != std::string::npos)
-            return;
-        else
-            startCLIGame(line.c_str());
+    } catch (std::exception& ex) {
+        std::cerr << "Something went wrong: " << ex.what() << std::endl;
     }
 }
 
+//                                        Game - loadSettings
+//----------------------------------------------------------------------------------------------------------------------
 void DoomCopy::Game::loadSettings() {
     std::fstream keyCodes;
     keyCodes.open("controls.conf");
@@ -155,7 +174,6 @@ void DoomCopy::Game::loadSettings() {
     do {
         std::getline(keyCodes,line);
         if (line.find("moveForward") != std::string::npos)
-            //bindings[0] = int(StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line, "moveForward=\"", "\"")));
             bindings[0] = static_cast<sf::Keyboard::Key>(StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line, "moveForward=\"", "\"")));
         if (line.find("moveBackward") != std::string::npos)
             bindings[1] = static_cast<sf::Keyboard::Key>(StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line, "moveBackward=\"", "\"")));
@@ -184,6 +202,8 @@ void DoomCopy::Game::loadSettings() {
     bindings[9] = sf::Keyboard::Escape;
 }
 
+//                                        Game - startGraphicalGame
+//----------------------------------------------------------------------------------------------------------------------
 void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, Point screenSize) {
     bool isPlayerAlive = true;
     bool fullscreen = false;
@@ -191,7 +211,7 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
     int OSW = SCREEN_WIDTH;
     int OSH = SCREEN_HEIGHT;
 
-    //Cél ahová el kell jutni
+    //Cel ahova el kell jutni
     int wherex;
     int wherey;
     winCondition(mapName,wherex,wherey);
@@ -234,13 +254,10 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
         window->setSize(sf::Vector2u(SCREEN_WIDTH,SCREEN_HEIGHT));
     }
 
-    //std::cout << SCREEN_WIDTH << " " << SCREEN_HEIGHT << std::endl;
-
     sf::VertexArray screen;
     screen.setPrimitiveType(sf::Quads);
     screen.resize(screenWidth*3*4);
 
-    //verteces = Array2D<sf::Vertex*>(3,screenWidth);
     verteces.rows = 3;
     verteces.columns = screenWidth;
     verteces.data = new sf::Vertex**[verteces.rows];
@@ -273,7 +290,7 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
     currentHP.setFont(font);
     currentHP.setCharacterSize(30);
 
-    //Az óra indítása
+    //Az ora inditasa
     sf::Clock gameTime;
     bool mapDone = false;
 
@@ -297,7 +314,6 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
                 if (event.key.code == bindings[4])
                     player->weapon.gShot(*map);
                 if (event.key.code == bindings[5]) {
-                    //Display map
                     mapShown = !mapShown;
                 }
                 if (event.key.code == bindings[6]) {
@@ -323,21 +339,21 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
             break;
         }
 
-        //Updating enemies
+        //Szornyek frissitese
         ListItem<Creature*>* iterEnemy = map->enemies.getHead();
         while(iterEnemy != NULL) {
             iterEnemy->item->update(*map,*player);
             iterEnemy = iterEnemy->next;
         }
 
-        //Updating enemies
+        //Lovedekek frissitese
         ListItem<Projectile*>* iterProjectile = map->projectiles.getHead();
         while(iterProjectile != NULL) {
             iterProjectile->item->update(*map,*player);
             iterProjectile = iterProjectile->next;
         }
 
-        //Deleting stuff from the list
+        //Nem letezo entitasok torlese
         deleteDeadOrNonExistent();
 
         renderWalls();
@@ -356,10 +372,10 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
         window->clear();
 
         if (!mapShown) {
-            //Drawing walls
+            //Falak kirajzolasa
             window->draw(screen,map->text.states);
 
-            //Drawing enemies
+            //Szornyek kirajzolasa
             iterEnemy = map->enemies.getHead();
             while(iterEnemy != NULL) {
                 if (iterEnemy->item->visible) {
@@ -368,7 +384,7 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
                 iterEnemy = iterEnemy->next;
             }
 
-            //Drawing projectiles
+            //Lovedekek kirajzolasa
             iterProjectile = map->projectiles.getHead();
             while(iterProjectile != NULL) {
                 if (iterProjectile->item->visible)
@@ -376,7 +392,7 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
                 iterProjectile = iterProjectile->next;
             }
 
-            //Drawing weapon
+            //Fegyver kirajzolasa
             window->draw(player->weapon.vertexArray,player->weapon.texture.states);
             window->draw(currentHP);
         } else {
@@ -396,6 +412,9 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
         sf::sleep(wait);
     }
 
+    //Ha a celba ert a jatekos
+    //Score szamitasa
+    //Fajlba irasa
     if (mapDone) {
         DoomCopy::List<int> list;
         int score = 1500;
@@ -471,6 +490,7 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
         player = NULL;
     }
 
+    //Ha meghalt a jatekos
     if (!isPlayerAlive) {
         sf::Text text;
         text.setFont(font);
@@ -506,6 +526,8 @@ void DoomCopy::Game::startGraphicalGame(const char* mapName, Point resolution, P
     }
 }
 
+//                                        Game - renderWalls
+//----------------------------------------------------------------------------------------------------------------------
 void DoomCopy::Game::renderWalls() {
     int sqSizeX = (SCREEN_WIDTH/screenWidth);
     int sqSizeY = (SCREEN_HEIGHT/screenHeight);
@@ -513,6 +535,7 @@ void DoomCopy::Game::renderWalls() {
     for (int i = 0; i < screenWidth; i++) {
         double rayDegree = (player->direction - player->FOV/2) + (((double) i)/(double) screenWidth) * player->FOV;
 
+        //Sugar kilovese
         double distance = Ray::distanceFromCollision(*map,Point(player->getPosX(),player->getPosY()),Point(cos(rayDegree),sin(rayDegree)),0.1,player->viewDistance);
 
         int ceiling = ((screenHeight/2.0) - (screenHeight/distance));
@@ -521,13 +544,13 @@ void DoomCopy::Game::renderWalls() {
         double x = player->getPosX() + distance * cos(rayDegree);
         double y = player->getPosY() + distance * sin(rayDegree);
 
-        //the midpoint of the wall that has been hit
+        //Annak a blokknak a kozepe, amit eltalalt a sugar
         double midX = int(x) + 0.5;
         double midY = int(y) + 0.5;
 
         double beta = atan2f((y - midY),(x - midX));
 
-        //Ceiling
+        //"Teto"
         //----------------------------------------------------------------------------------------------------------
         verteces.data[0][i][0].position = sf::Vector2f(i * sqSizeX,0);
         verteces.data[0][i][1].position = sf::Vector2f((i+1) * sqSizeX,0);
@@ -539,7 +562,7 @@ void DoomCopy::Game::renderWalls() {
         verteces.data[0][i][2].color = sf::Color::Black;
         verteces.data[0][i][3].color = sf::Color::Black;
 
-        //Wall
+        //Fal
         //----------------------------------------------------------------------------------------------------------
         verteces.data[1][i][0].position = sf::Vector2f(i * sqSizeX, ceiling * sqSizeY);
         verteces.data[1][i][1].position = sf::Vector2f((i+1) * sqSizeX,ceiling * sqSizeY);
@@ -572,7 +595,7 @@ void DoomCopy::Game::renderWalls() {
         verteces.data[1][i][2].texCoords = sf::Vector2f(pixelX + int(extra.x), int(extra.y) + size.y);
         verteces.data[1][i][3].texCoords = sf::Vector2f(pixelX + int(extra.x), int(extra.y) + size.y);
 
-        //Floor
+        //Talaj/padlo
         //----------------------------------------------------------------------------------------------------------
         verteces.data[2][i][0].position = sf::Vector2f(i * sqSizeX,floor * sqSizeY);
         verteces.data[2][i][1].position = sf::Vector2f((i+1) * sqSizeX,floor * sqSizeY);
@@ -586,6 +609,8 @@ void DoomCopy::Game::renderWalls() {
     }
 }
 
+//                                        Game - deleteDeadOrNonExistent
+//----------------------------------------------------------------------------------------------------------------------
 void DoomCopy::Game::deleteDeadOrNonExistent() {
     ListItem<Creature*>* iterEnemy = map->enemies.getHead();
     int i = 0;
@@ -614,6 +639,8 @@ void DoomCopy::Game::deleteDeadOrNonExistent() {
     }
 }
 
+//                                        Game - renderEnemies
+//----------------------------------------------------------------------------------------------------------------------
 void DoomCopy::Game::renderEnemies() {
     int sqSizeX = (SCREEN_WIDTH/screenWidth);
     int sqSizeY = (SCREEN_HEIGHT/screenHeight);
@@ -666,6 +693,8 @@ void DoomCopy::Game::renderEnemies() {
     }
 }
 
+//                                        Game - renderProjectiles
+//----------------------------------------------------------------------------------------------------------------------
 void DoomCopy::Game::renderProjectiles() {
     int sqSizeX = (SCREEN_WIDTH/screenWidth);
     int sqSizeY = (SCREEN_HEIGHT/screenHeight);
@@ -675,7 +704,6 @@ void DoomCopy::Game::renderProjectiles() {
     while (iter != NULL) {
 
         iter->item->visible = false;
-        //std::cout << "Projectile pos " << iter->item->currenPosition.x << " " << iter->item->currenPosition.y << std::endl;
 
         double dx = iter->item->currenPosition.x - player->getPosX();
         double dy = iter->item->currenPosition.y - player->getPosY();
@@ -715,6 +743,8 @@ void DoomCopy::Game::renderProjectiles() {
     }
 }
 
+//                                        Game - renderWeapon
+//----------------------------------------------------------------------------------------------------------------------
 void DoomCopy::Game::renderWeapon() {
     player->weapon.vertexArray[0].position = sf::Vector2f(0,0);
     player->weapon.vertexArray[1].position = sf::Vector2f(SCREEN_WIDTH,0);
@@ -732,6 +762,8 @@ void DoomCopy::Game::renderWeapon() {
     player->weapon.updateState();
 }
 
+//                                        Game - winCondition
+//----------------------------------------------------------------------------------------------------------------------
 void DoomCopy::Game::winCondition(std::string mapName, int& x, int& y) {
     std::fstream file;
     file.open(mapName +  "/whereto.conf");
@@ -742,6 +774,8 @@ void DoomCopy::Game::winCondition(std::string mapName, int& x, int& y) {
     y = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"posY=\"","\""));
 }
 
+//                                          NUMPAD
+//----------------------------------------------------------------------------------------------------------------------
 void DoomCopy::numpad(sf::RenderWindow *window, int *variableToSaveInto, std::string textToWriteOut) {
     bool done = false;
     sf::Event event;
@@ -829,7 +863,6 @@ void DoomCopy::numpad(sf::RenderWindow *window, int *variableToSaveInto, std::st
                         if (i != listnr - 1)
                             screenWidth *= 10;
                     }
-                    //game->setScreenWidth(screenWidth);
                     *variableToSaveInto = screenWidth;
                     done = true;
                 }
@@ -857,10 +890,12 @@ void DoomCopy::numpad(sf::RenderWindow *window, int *variableToSaveInto, std::st
     }
 }
 
+//                                        Game - startCLIGame
+//----------------------------------------------------------------------------------------------------------------------
 void DoomCopy::Game::startCLIGame(const char *mapName) {
     bool isPlayerAlive = true;
 
-    //Cél ahová el kell jutni
+    //Cel ahova el kell jutni
     int wherex;
     int wherey;
     winCondition(mapName,wherex,wherey);
@@ -889,7 +924,7 @@ void DoomCopy::Game::startCLIGame(const char *mapName) {
         std::cin.getline(line, sizeof(line));
 
         if (command(line, mapDone, aim)) {
-            //Updating enemies
+            //Szornyek frissitese
             ListItem<Creature*>* iterEnemy = map->enemies.getHead();
             while(iterEnemy != NULL) {
                 iterEnemy->item->update(*map,*player);
@@ -913,7 +948,7 @@ void DoomCopy::Game::startCLIGame(const char *mapName) {
             break;
         }
 
-        //Deleting stuff from the list
+        //Nem letezo/halott dolgok torlese
         deleteDeadOrNonExistent();
 
         if (player->HP <= 0) {
@@ -924,6 +959,8 @@ void DoomCopy::Game::startCLIGame(const char *mapName) {
     }
 }
 
+//                                        Game - command
+//----------------------------------------------------------------------------------------------------------------------
 bool DoomCopy::Game::command(const std::string& cmd, bool& exit, int& aim) {
     //move command
     if (cmd.find("move") != std::string::npos) {

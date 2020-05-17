@@ -1,6 +1,4 @@
 #include <iostream>
-//#include <SFML/Graphics.hpp>
-
 #include "Game.h"
 
 
@@ -15,7 +13,7 @@
  * CLI-game - Done
  * Objective - Done
  * Score - Done
- * Documentation
+ * Documentation - DONE
  * */
 
 int main(int argc, char **argv) {

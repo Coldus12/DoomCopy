@@ -9,85 +9,99 @@
 #include "MeleeEnemy.h"
 #include "Projectile.h"
 
+//                                          Map - konstruktor
+//----------------------------------------------------------------------------------------------------------------------
 DoomCopy::Map::Map(std::string pathToMap) : Array2D<int>(2,2), text(32,32) {
     load(pathToMap);
 }
 
+//                                          Map - load
+//----------------------------------------------------------------------------------------------------------------------
 void DoomCopy::Map::load(std::string pathToMap) {
-    sf::Image img;
-    img.loadFromFile(pathToMap + "/textures/map.png");
+    try {
+        sf::Image img;
+        img.loadFromFile(pathToMap + "/textures/map.png");
 
-    this->free();
+        this->free();
 
-    this->rows = img.getSize().y;
-    this->columns = img.getSize().x;
+        this->rows = img.getSize().y;
+        this->columns = img.getSize().x;
 
-    this->data = new int*[this->rows];
-    for (int i = 0; i < this->rows; i++) {
-        this->data[i] = new int[this->columns];
-    }
-
-    for (int i = 0; i < this->rows; i++) {
-        for (int j = 0; j < this->columns; j++) {
-            this->data[i][j] = img.getPixel(j,i).toInteger();
+        this->data = new int*[this->rows];
+        for (int i = 0; i < this->rows; i++) {
+            this->data[i] = new int[this->columns];
         }
-    }
 
-    blocks.load(pathToMap, text);
-    Map::loadEnemies(pathToMap);
-
-    //CLIMap létrehozása
-    CLIMap.rows = this->rows;
-    CLIMap.columns = this->columns;
-
-    CLIMap.data = new char*[CLIMap.rows];
-    for (int i = 0; i < CLIMap.rows; i++) {
-        CLIMap.data[i] = new char[CLIMap.columns];
-    }
-
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < columns; j++) {
-            if (blocks.isTypeSolid(data[i][j]))
-                CLIMap.data[i][j] = 'X';
-            else
-                CLIMap.data[i][j] = ' ';
+        for (int i = 0; i < this->rows; i++) {
+            for (int j = 0; j < this->columns; j++) {
+                this->data[i][j] = img.getPixel(j,i).toInteger();
+            }
         }
+
+        blocks.load(pathToMap, text);
+        Map::loadEnemies(pathToMap);
+
+        //CLIMap létrehozása
+        CLIMap.rows = this->rows;
+        CLIMap.columns = this->columns;
+
+        CLIMap.data = new char*[CLIMap.rows];
+        for (int i = 0; i < CLIMap.rows; i++) {
+            CLIMap.data[i] = new char[CLIMap.columns];
+        }
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (blocks.isTypeSolid(data[i][j]))
+                    CLIMap.data[i][j] = 'X';
+                else
+                    CLIMap.data[i][j] = ' ';
+            }
+        }
+    } catch (std::exception& ex) {
+        std::cerr << "Failed to load map, reason: " << ex.what() << std::endl;
     }
 }
 
+//                                          Map - loadEnemies
+//----------------------------------------------------------------------------------------------------------------------
 void DoomCopy::Map::loadEnemies(std::string pathToMap) {
+    try {
+        std::string line = "";
+        std::ifstream file;
+        file.open((pathToMap + "/monsters.conf"));
 
-    std::string line = "";
-    std::ifstream file;
-    file.open((pathToMap + "/monsters.conf"));
+        do {
+            std::getline(file,line);
 
-    do {
-        std::getline(file,line);
+            if (line.find("MeleeMonster") != std::string::npos) {
 
-        if (line.find("MeleeMonster") != std::string::npos) {
+                double posX = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"positionX=\"","\""));
+                double posY = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"positionY=\"","\""));
 
-            double posX = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"positionX=\"","\""));
-            double posY = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"positionY=\"","\""));
+                double direction = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"direction=\"","\""));
+                direction *= M_PI/180.0;
+                double dirX = cos(direction);
+                double dirY = sin(direction);
 
-            double direction = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"direction=\"","\""));
-            direction *= M_PI/180.0;
-            double dirX = cos(direction);
-            double dirY = sin(direction);
+                double dmg = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"defaultDamage=\"","\""));
+                double hp = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"defaultHealth=\"","\""));
+                double fov = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"fov=\"","\""));
 
-            double dmg = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"defaultDamage=\"","\""));
-            double hp = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"defaultHealth=\"","\""));
-            double fov = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"fov=\"","\""));
+                double viewDistance = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"viewDistance=\"","\""));
+                double attackSpeed = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"attackSpeed=\"","\""));
 
-            double viewDistance = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"viewDistance=\"","\""));
-            double attackSpeed = StringManager::string_to_double(StringManager::get_substring_btwn_first_and_next(line,"attackSpeed=\"","\""));
+                std::string textName = StringManager::get_substring_btwn_first_and_next(line,"textureName=\"","\"");
 
-            std::string textName = StringManager::get_substring_btwn_first_and_next(line,"textureName=\"","\"");
-
-            enemies.addItem(new MeleeEnemy(Point(posX,posY),Point(dirX,dirY),hp,dmg,attackSpeed,(pathToMap + "/textures/"),textName.c_str(),fov,viewDistance));
-        } else if (line.find("RangedMonster") != std::string::npos) {
+                enemies.addItem(new MeleeEnemy(Point(posX,posY),Point(dirX,dirY),hp,dmg,attackSpeed,(pathToMap + "/textures/"),textName.c_str(),fov,viewDistance));
+            } else if (line.find("RangedMonster") != std::string::npos) {
+                //RangedMonster nem lett implementalva, mert nem jutott ra ido
+            }
 
         }
-
+        while (!file.eof());
+    } catch (std::exception& ex) {
+        //Nincs kulon kezeles, ettol meg mukodnie kene a jateknak, csak nincs ellenseg.
+        std::cerr << "Failed to load enemies, reason: " << ex.what() << std::endl;
     }
-    while (!file.eof());
 }
