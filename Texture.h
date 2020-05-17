@@ -8,6 +8,7 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 #include "Point.h"
+#include <iostream>
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////                                                  Texture                                                       ////

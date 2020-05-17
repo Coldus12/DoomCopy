@@ -177,6 +177,8 @@ SFML/Graphics/RenderStates.hpp
 -
 Point.h
 /home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Point.h
+iostream
+-
 
 /home/coldus/CLionProjects/CPP_Nagyhazi/DoomCopy/Weapon.cpp
 fstream
